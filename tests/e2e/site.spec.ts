@@ -48,10 +48,62 @@ test('mobile menu opens, traps a usable close control, and closes with Escape', 
   test.skip(!testInfo.project.name.startsWith('mobile'));
   await page.goto('/');
   await page.getByRole('button', { name: /open navigation/i }).click();
-  await expect(page.getByRole('dialog', { name: /site navigation/i })).toBeVisible();
-  await expect(page.getByRole('button', { name: /close navigation/i })).toBeFocused();
+  const dialog = page.getByRole('dialog', { name: /site navigation/i });
+  const closeButton = page.getByRole('button', { name: /close navigation/i });
+  await expect(dialog).toBeVisible();
+  await expect(closeButton).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(dialog.getByRole('link').last()).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(closeButton).toBeFocused();
   await page.keyboard.press('Escape');
-  await expect(page.getByRole('dialog', { name: /site navigation/i })).toBeHidden();
+  await expect(dialog).toBeHidden();
+});
+
+test('mobile menu restores focus to its trigger after closing', async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.name.startsWith('mobile'));
+  await page.goto('/');
+
+  const trigger = page.getByRole('button', { name: /open navigation/i });
+  await trigger.click();
+  await page.keyboard.press('Escape');
+
+  await expect(trigger).toBeFocused();
+});
+
+test('mobile article tables scroll locally without widening the page', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile-390x844');
+  await page.goto('/maps');
+
+  const dimensions = await page.evaluate(() => {
+    const tableShell = document.querySelector<HTMLElement>('.table-shell');
+
+    return {
+      pageClientWidth: document.documentElement.clientWidth,
+      pageScrollWidth: document.documentElement.scrollWidth,
+      shellClientWidth: tableShell?.clientWidth ?? 0,
+      shellScrollWidth: tableShell?.scrollWidth ?? 0,
+    };
+  });
+
+  expect(dimensions.pageScrollWidth).toBeLessThanOrEqual(dimensions.pageClientWidth + 1);
+  expect(dimensions.shellScrollWidth).toBeGreaterThan(dimensions.shellClientWidth);
+});
+
+test('mobile troubleshooter core controls meet the preferred touch target height', async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile-390x844');
+  await page.goto('/tools/coop-troubleshooter');
+
+  const heights = await page
+    .locator('.choice-row label, .source-list summary')
+    .evaluateAll((targets) =>
+      targets.map((target) => Math.round(target.getBoundingClientRect().height)),
+    );
+
+  expect(heights.length).toBeGreaterThan(0);
+  expect(heights.every((height) => height >= 44), heights.join(', ')).toBe(true);
 });
 
 test('co-op troubleshooter returns an ordered safe checklist', async ({ page }) => {

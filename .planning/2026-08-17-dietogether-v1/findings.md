@@ -56,4 +56,27 @@
 - SteamDB: `https://steamdb.info/app/4317790/`
 - RetroStyle game page: `https://retrostylegames.com/games/last-pirates-die-together/`
 - GitHub: `https://github.com/alisas-cell/dietogetherguide`
-- Verified Preview candidate: `https://dietogetherguide-p6breaom1-alisasun.vercel.app`
+
+## Human Gate Pre-Fix Capture Baseline
+- Authoritative deployment: `dpl_GKQrcD92ZAzcNy8a3VDjw3z51z9U`.
+- Authoritative URL: `https://dietogetherguide-bj3w8zoiw-alisasun.vercel.app/`.
+- Vercel project/scope: `dietogetherguide` / `alisasun`; account ID `team_0a2eTmxPPNoh98bapE2BEIpu`.
+- Vercel inspect reports `target: preview`, `status: Ready`; deployment metadata points to reviewed SHA `300fb71a3a675b1af9f62c056d3a199abc55a4c4`.
+- A fresh non-persistent anonymous Playwright CLI session opened the site with no cookies, no login wall, and zero console errors/warnings.
+- Removed stale Preview deployments `dpl_A5VnTpfws33okrW4weAghWDWVGCR` and `dpl_9Nz14yaRJmEDhw36BNfnbxvSr9zN`; the project deployment list now contains only the authoritative reviewed-SHA Preview.
+- This deployment is the source of the first 10-image Human Gate capture set. It will be replaced only after the final fix commit is pushed and the replacement Preview passes the same gate.
+
+## Human Gate Fact Gate
+- Rechecked at `2026-08-17T13:59:03Z`.
+- Steam Store still states `This game is not yet available on Steam` and `Planned Release Date: 18 Aug, 2026`.
+- SteamDB remains `ReleaseState: prerelease`; its `2026-08-18T17:00:00Z` record remains a snapshot, not a guaranteed launch minute.
+- The official Steam News API and Community page show the newest item as the August 7 Busan Indie Connect post; no verified unlock/available-now announcement is present.
+- Human Gate decision: retain `EARLY ACCESS · AUG 18`; do not convert Demo evidence into Early Access facts.
+
+## Human Gate UI Findings
+- Full UI audit: `READY`, 36/36 selected rules run, zero remaining findings, unknowns, or suppressions. Machine-readable record: `.planning/2026-08-17-dietogether-v1/human-gate-ui-audit.json`.
+- Mobile tables: the wide table's grid item expanded the document to 642px at a 390px viewport. `.article-body { min-width: 0; }` keeps document width bounded while preserving the table's focusable horizontal scroller.
+- Mobile menu: focus was trapped while open but fell to the document when closed. The exact trigger element is now restored in effect cleanup.
+- Tool targets: the five radio labels measured 42px and the source disclosure measured 26px. Both now meet the preferred 44px touch height.
+- Custom 404: `dynamicParams = false` returned the right 404 but emitted Next.js `NoFallbackError` on server stderr. The default fallback now reaches `notFound()` cleanly; the 23 guide records remain statically generated.
+- No route, title, H1, canonical, information-architecture, evidence, release-state, or broad visual-system changes were made.

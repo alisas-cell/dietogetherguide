@@ -5,8 +5,6 @@ import { GuidePage } from '../../components/article/GuidePage';
 import { guidePageByRoute, guidePages } from '../../content';
 import { buildGuideMetadata } from '../../lib/seo/metadata';
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return guidePages.map((page) => ({
     slug: page.route.slice(1).split('/'),

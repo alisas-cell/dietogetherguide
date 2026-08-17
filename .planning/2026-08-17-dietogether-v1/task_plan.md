@@ -9,10 +9,10 @@ Build, source-check, test, push, and deploy a complete noindex Vercel Preview of
 - The 16 phases and 72 task numbers in `10_IMPLEMENTATION_PLAN.md` are the canonical execution order.
 
 ## Next Step
-Owner reviews the delivered Preview. Production promotion, formal-domain attachment, and release-day changes remain explicitly deferred until separately authorized.
+Commit and push the Human Gate fixes, create the final authoritative Preview from that exact SHA, recapture the required screenshots, and run deployed verification.
 
 ## Current Phase
-Owner acceptance gate; implementation and Preview verification are complete.
+Phase 14B — Human Gate verification and Production handoff preparation.
 
 ## Phases
 
@@ -78,6 +78,15 @@ Owner acceptance gate; implementation and Preview verification are complete.
 - [x] Push feature branch, deploy noindex Preview, and prepare acceptance report
 - **Status:** completed
 
+### Phase 14B: Human Gate Verification
+- [x] Establish one authoritative Preview tied to the reviewed branch/SHA
+- [x] Recheck the Steam/News/SteamDB fact gate
+- [x] Capture the 10 required screenshots from the deployed Preview
+- [x] Complete screenshot-led UI audit and any evidenced surgical fixes
+- [ ] Repeat deployed verification after final commit (local gate complete)
+- [ ] Commit/push the gate record and document the safe `main` merge path
+- **Status:** in_progress
+
 ### Phase 15: Production (Tasks 60–66)
 - [ ] Deliberately deferred: user has not authorized Production promotion/domain cutover
 - **Status:** pending
@@ -113,3 +122,7 @@ Owner acceptance gate; implementation and Preview verification are complete.
 | Anonymous Preview access showed Vercel login | Disabled per-project Vercel Authentication; Preview remains `noindex,nofollow` with `robots.txt` disallow and `x-robots-tag: noindex`. |
 | Local direct traffic to `vercel.app` timed out through a poisoned route | Reused the machine's configured HTTP proxy for deployed curl and Playwright verification; all deployed checks then passed. |
 | GitHub rejected a manually-triggered verification workflow without OAuth `workflow` scope | Removed the workflow file and retained the reusable `PLAYWRIGHT_BASE_URL` / proxy-aware local runner configuration. |
+| Mobile article tables widened the 390px document to 642px | Added a failing deployed regression, set the article grid child to `min-width: 0`, and verified the table now scrolls inside its focusable shell. |
+| Mobile menu did not restore focus after closing | Added a failing deployed focus regression, captured the trigger element for effect cleanup, and verified focus trapping, Escape close, and restoration. |
+| Core tool radio/disclosure targets measured 42px and 26px | Added a failing deployed target-size regression and raised only those minimum heights to 44px. |
+| `dynamicParams = false` logged Next.js `NoFallbackError` for valid custom 404 responses | Reproduced the stderr path, removed the segment flag, rebuilt, and verified known pages remain SSG while unknown routes return 404 with clean server stderr. |

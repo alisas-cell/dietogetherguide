@@ -1,0 +1,477 @@
+{
+  "audit": {
+    "ranAt": "2026-08-17T14:12:28Z",
+    "skill": "ui-audit",
+    "scope": {
+      "mode": "full",
+      "files": [
+        "app/globals.css",
+        "app/layout.tsx",
+        "app/page.tsx",
+        "app/[...slug]/page.tsx",
+        "app/tools/coop-troubleshooter/page.tsx",
+        "components/article/GuidePage.tsx",
+        "components/article/ResponsiveTable.tsx",
+        "components/article/SourceList.tsx",
+        "components/article/FaqList.tsx",
+        "components/article/EvidenceBanner.tsx",
+        "components/article/RelatedGuides.tsx",
+        "components/layout/Header.tsx",
+        "components/layout/MobileMenu.tsx",
+        "components/layout/StatusStrip.tsx",
+        "components/layout/Footer.tsx",
+        "components/layout/Brand.tsx",
+        "components/tools/CoopTroubleshooter.tsx",
+        "tests/e2e/site.spec.ts"
+      ],
+      "filesAudited": 18
+    },
+    "featuresDetected": [
+      "marketing-hero",
+      "primary-nav",
+      "secondary-nav",
+      "modal",
+      "form",
+      "list",
+      "data-table",
+      "article"
+    ],
+    "rulesPlanned": 36,
+    "rulesRun": 36,
+    "selfCheck": {
+      "passed": true,
+      "failures": []
+    }
+  },
+  "verdict": "READY",
+  "summary": {
+    "releaseBlockers": 0,
+    "fixThisSprint": 0,
+    "backlog": 0,
+    "unknown": 0,
+    "suppressed": 0
+  },
+  "deferredTo": [
+    {
+      "concern": "field performance metrics",
+      "tool": "Lighthouse or CrUX",
+      "reason": "The UI audit verifies implementation and rendered stability, not real-user Core Web Vitals."
+    },
+    {
+      "concern": "authoritative WCAG conformance",
+      "tool": "axe-core plus manual screen-reader testing",
+      "reason": "Keyboard and semantic checks passed, but a code audit is not a conformance certification."
+    }
+  ],
+  "findings": [
+    {
+      "rule": "cognitive-cognitive-load",
+      "layer": "laws",
+      "prefix": "cognitive",
+      "kind": "programmatic",
+      "feature": "marketing-hero",
+      "surface": "HomePage",
+      "file": "app/page.tsx",
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "cognitive-chunking",
+      "layer": "laws",
+      "prefix": "cognitive",
+      "kind": "programmatic",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "components/tools/CoopTroubleshooter.tsx",
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "perception-proximity",
+      "layer": "laws",
+      "prefix": "perception",
+      "kind": "programmatic",
+      "feature": "article",
+      "surface": "GuidePage",
+      "file": "components/article/GuidePage.tsx",
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "perception-common-region",
+      "layer": "laws",
+      "prefix": "perception",
+      "kind": "programmatic",
+      "feature": "list",
+      "surface": "HomePage",
+      "file": "app/page.tsx",
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "perception-similarity",
+      "layer": "laws",
+      "prefix": "perception",
+      "kind": "programmatic",
+      "feature": "primary-nav",
+      "surface": "Header",
+      "file": "components/layout/Header.tsx",
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "perception-von-restorff",
+      "layer": "laws",
+      "prefix": "perception",
+      "kind": "programmatic",
+      "feature": "marketing-hero",
+      "surface": "HomePage",
+      "file": "app/page.tsx",
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "interaction-fittss-law",
+      "layer": "laws",
+      "prefix": "interaction",
+      "kind": "programmatic",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "app/globals.css",
+      "line": 832,
+      "result": "pass",
+      "observed": "Core form choices and source disclosure now render at a minimum 44px target height.",
+      "suppressed": false
+    },
+    {
+      "rule": "focus-broken-focus-trap",
+      "layer": "modern",
+      "category": "focus",
+      "feature": "modal",
+      "surface": "MobileMenu",
+      "file": "components/layout/MobileMenu.tsx",
+      "line": 27,
+      "result": "pass",
+      "observed": "Shift+Tab and Tab wrap inside the open navigation; Escape closes it.",
+      "reactApis": ["useEffect", "useRef"],
+      "suppressed": false
+    },
+    {
+      "rule": "focus-not-restored",
+      "layer": "modern",
+      "category": "focus",
+      "feature": "modal",
+      "surface": "MobileMenu",
+      "file": "components/layout/MobileMenu.tsx",
+      "line": 48,
+      "result": "pass",
+      "observed": "Closing the menu restores focus to the navigation trigger; the deployed-before-fix regression failed and the local-after-fix regression passes.",
+      "reactApis": ["useEffect", "useRef"],
+      "suppressed": false
+    },
+    {
+      "rule": "focus-on-dynamic-content",
+      "layer": "modern",
+      "category": "focus",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "components/tools/CoopTroubleshooter.tsx",
+      "line": 30,
+      "result": "pass",
+      "observed": "Generated checklist focus moves to #tool-result; the waiting state is an aria-live region.",
+      "reactApis": ["useState"],
+      "suppressed": false
+    },
+    {
+      "rule": "mobile-viewport-scaling",
+      "layer": "modern",
+      "category": "mobile",
+      "feature": "article",
+      "surface": "RootLayout",
+      "file": "app/layout.tsx",
+      "line": 49,
+      "result": "pass",
+      "reactApis": [],
+      "suppressed": false
+    },
+    {
+      "rule": "dark-i18n-string-overflow",
+      "layer": "modern",
+      "category": "dark-i18n",
+      "feature": "article",
+      "surface": "GuidePage",
+      "file": "app/globals.css",
+      "line": 1472,
+      "result": "pass",
+      "observed": "The article grid child can shrink and wide tables scroll within their own focusable region without widening the document.",
+      "reactApis": [],
+      "suppressed": false
+    },
+    {
+      "rule": "dark-i18n-color-only-state",
+      "layer": "modern",
+      "category": "dark-i18n",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "components/tools/CoopTroubleshooter.tsx",
+      "result": "pass",
+      "reactApis": ["useState"],
+      "suppressed": false
+    },
+    {
+      "rule": "states-no-error-state",
+      "layer": "modern",
+      "category": "states",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "components/tools/CoopTroubleshooter.tsx",
+      "result": "pass",
+      "observed": "The deterministic tool performs no async request and has no recoverable fetch failure state to represent.",
+      "reactApis": ["useState"],
+      "suppressed": false
+    },
+    {
+      "rule": "microcopy-vague-error",
+      "layer": "modern",
+      "category": "microcopy",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "components/tools/CoopTroubleshooter.tsx",
+      "result": "pass",
+      "reactApis": ["useState"],
+      "suppressed": false
+    },
+    {
+      "rule": "microcopy-leaked-error-message",
+      "layer": "modern",
+      "category": "microcopy",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "components/tools/CoopTroubleshooter.tsx",
+      "result": "pass",
+      "reactApis": ["useState"],
+      "suppressed": false
+    },
+    {
+      "rule": "a11y-contrast-and-redundant-cues",
+      "layer": "surface",
+      "category": "a11y",
+      "feature": "list",
+      "surface": "EvidenceBadge",
+      "file": "app/globals.css",
+      "result": "pass",
+      "observed": "Key text/token contrast ratios range from 7.87:1 to 15.75:1 and evidence states include text labels and shape, not color alone.",
+      "suppressed": false
+    },
+    {
+      "rule": "a11y-data-table-semantics",
+      "layer": "surface",
+      "category": "a11y",
+      "feature": "data-table",
+      "surface": "ResponsiveTable",
+      "file": "components/article/ResponsiveTable.tsx",
+      "line": 11,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "a11y-icon-controls-labeled",
+      "layer": "surface",
+      "category": "a11y",
+      "feature": "modal",
+      "surface": "MobileMenu",
+      "file": "components/layout/MobileMenu.tsx",
+      "line": 61,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "a11y-image-alt-text",
+      "layer": "surface",
+      "category": "a11y",
+      "feature": "article",
+      "surface": "GuidePage",
+      "file": "components/article/GuidePage.tsx",
+      "line": 42,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "a11y-semantic-html-first",
+      "layer": "surface",
+      "category": "a11y",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "components/tools/CoopTroubleshooter.tsx",
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "a11y-skip-link-heading-order",
+      "layer": "surface",
+      "category": "a11y",
+      "feature": "article",
+      "surface": "RootLayout",
+      "file": "app/layout.tsx",
+      "line": 63,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "forms-labels-and-autocomplete",
+      "layer": "surface",
+      "category": "forms",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "components/tools/CoopTroubleshooter.tsx",
+      "line": 35,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "forms-mobile-input-font-size",
+      "layer": "surface",
+      "category": "forms",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "app/globals.css",
+      "line": 73,
+      "result": "pass",
+      "observed": "The mobile select inherits the 16px root control font.",
+      "suppressed": false
+    },
+    {
+      "rule": "interaction-focus-visible",
+      "layer": "surface",
+      "category": "interaction",
+      "feature": "form",
+      "surface": "RootLayout",
+      "file": "app/globals.css",
+      "line": 80,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "interaction-keyboard-operable",
+      "layer": "surface",
+      "category": "interaction",
+      "feature": "modal",
+      "surface": "MobileMenu",
+      "file": "components/layout/MobileMenu.tsx",
+      "line": 55,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "interaction-target-size",
+      "layer": "surface",
+      "category": "interaction",
+      "feature": "form",
+      "surface": "CoopTroubleshooter",
+      "file": "app/globals.css",
+      "line": 1666,
+      "result": "pass",
+      "observed": "Measured core control target heights are all at least 44px after the gate fix.",
+      "suppressed": false
+    },
+    {
+      "rule": "layout-flex-grid-first",
+      "layer": "surface",
+      "category": "layout",
+      "feature": "article",
+      "surface": "GuidePage",
+      "file": "app/globals.css",
+      "line": 1468,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "layout-long-content-safety",
+      "layer": "surface",
+      "category": "layout",
+      "feature": "data-table",
+      "surface": "ResponsiveTable",
+      "file": "app/globals.css",
+      "line": 1472,
+      "result": "pass",
+      "observed": "At 390px the document stays at viewport width while the 620px table scrolls inside .table-shell.",
+      "suppressed": false
+    },
+    {
+      "rule": "perf-image-dimensions-and-priority",
+      "layer": "surface",
+      "category": "perf",
+      "feature": "marketing-hero",
+      "surface": "HomePage",
+      "file": "app/page.tsx",
+      "line": 118,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "perf-lazy-load-offscreen",
+      "layer": "surface",
+      "category": "perf",
+      "feature": "article",
+      "surface": "GuidePage",
+      "file": "components/article/GuidePage.tsx",
+      "line": 41,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "type-link-distinction-no-shift",
+      "layer": "surface",
+      "category": "type",
+      "feature": "primary-nav",
+      "surface": "Header",
+      "file": "app/globals.css",
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "type-measure-leading",
+      "layer": "surface",
+      "category": "type",
+      "feature": "article",
+      "surface": "GuidePage",
+      "file": "app/globals.css",
+      "line": 1467,
+      "result": "pass",
+      "observed": "Article copy is constrained to 780px with 1.65 body leading; mobile paragraphs compute to 16px/26.4px.",
+      "suppressed": false
+    },
+    {
+      "rule": "type-readable-scale",
+      "layer": "surface",
+      "category": "type",
+      "feature": "article",
+      "surface": "GuidePage",
+      "file": "app/globals.css",
+      "line": 48,
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "nav-semantic-links",
+      "layer": "surface",
+      "category": "nav",
+      "feature": "primary-nav",
+      "surface": "Header",
+      "file": "components/layout/Header.tsx",
+      "result": "pass",
+      "suppressed": false
+    },
+    {
+      "rule": "motion-respect-reduced-motion",
+      "layer": "surface",
+      "category": "motion",
+      "feature": "article",
+      "surface": "RootLayout",
+      "file": "app/globals.css",
+      "line": 2164,
+      "result": "pass",
+      "suppressed": false
+    }
+  ]
+}

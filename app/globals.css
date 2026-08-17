@@ -830,6 +830,9 @@ main {
 }
 
 .source-list summary {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
   color: var(--text);
   font-weight: 660;
   cursor: pointer;
@@ -1469,6 +1472,10 @@ main {
   gap: 70px;
 }
 
+.article-body {
+  min-width: 0;
+}
+
 .article-body > section {
   padding-block: 12px 40px;
 }
@@ -1659,7 +1666,7 @@ main {
 
 .choice-row span {
   display: inline-flex;
-  min-height: 42px;
+  min-height: 44px;
   align-items: center;
   padding-inline: 13px;
   color: var(--muted);

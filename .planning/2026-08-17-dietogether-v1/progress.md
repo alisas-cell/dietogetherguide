@@ -3,12 +3,21 @@
 ## Session: 2026-08-17
 
 ### Current Status
-- **Phase:** Preview complete; awaiting owner acceptance
+- **Phase:** Human Gate local verification complete; final commit/Preview pending
 - **Started:** 2026-08-17
 - **Branch:** `codex/dietogether-v1`
 - **Worktree:** `/Users/alisa/Documents/ChatGPT/高优先级/.worktrees/dietogether-v1`
 
 ### Actions Taken
+- Began the GSF Human Gate without changing approved design, IA, SEO intent, routes, canonicals, or evidence rules.
+- Reconciled the Preview identity to `dpl_GKQrcD92ZAzcNy8a3VDjw3z51z9U` / `dietogetherguide-bj3w8zoiw-alisasun.vercel.app`, tied to reviewed SHA `300fb71a3a675b1af9f62c056d3a199abc55a4c4`.
+- Verified direct anonymous access in a fresh non-persistent browser session: no cookies, no Vercel login wall, correct H1/noindex/canonical, and zero console errors/warnings.
+- Deleted the two stale earlier Preview candidates after exact-ID inspection; only the authoritative Preview remains in the Vercel project.
+- Rechecked Steam Store, official News API/Community, and SteamDB at `2026-08-17T13:59:03Z`; the game remains unreleased/prerelease, so the centralized label stays `EARLY ACCESS · AUG 18`.
+- Captured all 10 requested Human Gate screenshots from the pre-fix authoritative Preview at 1440×900 and 390×844.
+- Completed a full screenshot-led UI audit: 36/36 rules, `READY`, no remaining findings or suppressions.
+- Added failing deployed regressions before fixing mobile table overflow, menu focus restoration, and core troubleshooter touch targets; all pass locally after the surgical changes.
+- Removed `dynamicParams = false` after reproducing Next.js `NoFallbackError` on custom 404 requests; known routes remain SSG, custom 404 remains 404, and production-server stderr is clean.
 - Read `superpowers:using-superpowers` and Codex platform guidance.
 - Read the full user request from the attached pasted-text file.
 - Read all 12 Planning Pack files in the exact required order.
@@ -36,8 +45,8 @@
 - Created Vercel project `dietogetherguide`, corrected its framework preset to Next.js, and kept the formal domain unattached.
 - Removed an unintended initial Production deployment immediately and confirmed its generated aliases no longer resolve.
 - Disabled the project's Vercel login wall so the owner can review the Preview directly; noindex remains enforced at the app and response layers.
-- Verified Preview candidate `dpl_A5VnTpfws33okrW4weAghWDWVGCR` / `https://dietogetherguide-p6breaom1-alisasun.vercel.app` through the configured system proxy.
-- Ran the complete Playwright acceptance suite against the deployed Preview and visually inspected the resulting 390px and 1440px captures.
+- Superseded the earlier `dpl_A5VnTpfws33okrW4weAghWDWVGCR` candidate; it is deleted and is not a valid review URL.
+- Ran the complete Playwright acceptance suite against the deployed pre-fix baseline and visually inspected the required 390px and 1440px captures.
 
 ### Test Results
 | Test | Expected | Actual | Status |
@@ -51,12 +60,13 @@
 | Component/data focused suite | Primitives and asset registry pass | 2 files, 9 tests passed | pass |
 | Content registry | 23 core routes, unique metadata, substance gates | 22 non-home records passed | pass |
 | Co-op tool safety | 8 symptoms, ordered safe outputs | 2 tests passed | pass |
-| Playwright viewport/runtime suite | 390, 430, 768, 1024, 1440 | 15 passed, 15 intentionally project-skipped | pass |
+| Playwright viewport/runtime suite | 390, 430, 768, 1024, 1440 | 19 passed, 26 intentionally project-skipped | pass |
 | Public route smoke | 24 routes, one H1, no broken local images | all 24 passed | pass |
-| Vercel Preview identity | Ready and Preview-only | `dpl_A5VnTpfws33okrW4weAghWDWVGCR`, target `preview` | pass |
+| Pre-fix capture Preview identity | Ready and Preview-only | `dpl_GKQrcD92ZAzcNy8a3VDjw3z51z9U`, target `preview`, reviewed SHA `300fb71…` | pass |
 | Preview indexing guard | Header + metadata + robots | `x-robots-tag: noindex`; `noindex,nofollow`; `Disallow: /` | pass |
-| Deployed Playwright suite | Same five viewports and all public routes | 15 passed, 15 intentionally project-skipped | pass |
+| Local production Playwright suite after Human Gate fixes | Five viewports, all public routes, regressions | 19 passed, 26 intentionally project-skipped | pass |
 | Deployed 404/schema/tool | Custom 404, JSON-LD, deterministic checklist | all assertions passed | pass |
+| Full UI audit | 36 selected laws/modern/surface rules | `READY`, 0 open findings | pass |
 
 ### Errors
 | Error | Resolution |
@@ -74,3 +84,8 @@
 | Preview was behind Vercel Authentication | Disabled project-level SSO protection because the guide contains public data and needs owner review. |
 | Direct local requests to the Preview timed out | Routed deployed curl and Playwright through the already-configured system proxy. |
 | GitHub OAuth token lacked `workflow` scope | Removed the rejected workflow file; no release or CI automation was enabled. |
+| First mobile screenshot CLI batch used `--config` on subcommands | Corrected the CLI syntax; configuration belongs to `open`, and all 10 required files were verified at exact widths. |
+| Mobile article pages widened to 642px at a 390px viewport | Added a failing deployed regression and fixed the grid child's intrinsic minimum width. |
+| Mobile menu close dropped keyboard focus | Added a failing deployed restoration regression and refocused the captured trigger during cleanup. |
+| Lint rejected cleanup access through mutable `triggerRef.current` | Captured the current trigger node inside the effect and reran lint cleanly. |
+| Next production server logged `NoFallbackError` on the custom 404 | Reproduced the route, removed `dynamicParams = false`, rebuilt, and verified clean stderr with a retained 404 response. |

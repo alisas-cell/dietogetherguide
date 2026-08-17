@@ -3,7 +3,7 @@
 ## Session: 2026-08-17
 
 ### Current Status
-- **Phase:** 14 — Preview & Owner Gate
+- **Phase:** Preview complete; awaiting owner acceptance
 - **Started:** 2026-08-17
 - **Branch:** `codex/dietogether-v1`
 - **Worktree:** `/Users/alisa/Documents/ChatGPT/高优先级/.worktrees/dietogether-v1`
@@ -32,6 +32,12 @@
 - Shipped the Co-op Troubleshooter after a documented evidence/safety gate; deferred Monster Finder and Loot Planner.
 - Added Playwright coverage for five required viewports, the mobile focus-trapped menu, tool output, 24 public routes, images, metadata/schema, and the custom 404.
 - Visually inspected the full 390px and 1440px homepage captures and corrected the mobile crew-utility grid.
+- Created public GitHub repository `alisas-cell/dietogetherguide` and pushed `codex/dietogether-v1`.
+- Created Vercel project `dietogetherguide`, corrected its framework preset to Next.js, and kept the formal domain unattached.
+- Removed an unintended initial Production deployment immediately and confirmed its generated aliases no longer resolve.
+- Disabled the project's Vercel login wall so the owner can review the Preview directly; noindex remains enforced at the app and response layers.
+- Verified Preview candidate `dpl_A5VnTpfws33okrW4weAghWDWVGCR` / `https://dietogetherguide-p6breaom1-alisasun.vercel.app` through the configured system proxy.
+- Ran the complete Playwright acceptance suite against the deployed Preview and visually inspected the resulting 390px and 1440px captures.
 
 ### Test Results
 | Test | Expected | Actual | Status |
@@ -47,6 +53,10 @@
 | Co-op tool safety | 8 symptoms, ordered safe outputs | 2 tests passed | pass |
 | Playwright viewport/runtime suite | 390, 430, 768, 1024, 1440 | 15 passed, 15 intentionally project-skipped | pass |
 | Public route smoke | 24 routes, one H1, no broken local images | all 24 passed | pass |
+| Vercel Preview identity | Ready and Preview-only | `dpl_A5VnTpfws33okrW4weAghWDWVGCR`, target `preview` | pass |
+| Preview indexing guard | Header + metadata + robots | `x-robots-tag: noindex`; `noindex,nofollow`; `Disallow: /` | pass |
+| Deployed Playwright suite | Same five viewports and all public routes | 15 passed, 15 intentionally project-skipped | pass |
+| Deployed 404/schema/tool | Custom 404, JSON-LD, deterministic checklist | all assertions passed | pass |
 
 ### Errors
 | Error | Resolution |
@@ -59,3 +69,8 @@
 | RetroStyle screenshot CDN challenged scripted acquisition | Kept the source-first rule and used 10 official images exposed by Steam instead. |
 | Browser page-asset inventory timed out | Recovered the page state and completed the task with first-party Steam asset URLs. |
 | First responsive home assertion found two matching status strings | Scoped the assertion to the status landmark and reran the suite successfully. |
+| First Vercel CLI Preview command unexpectedly created a Production target | Removed exact deployment and its aliases, then used the CLI's default deploy mode to create a true Preview. |
+| Initial Vercel framework preset was `Other` | Set it to Next.js and redeployed; the resulting manifest exposed 126 Next.js output items. |
+| Preview was behind Vercel Authentication | Disabled project-level SSO protection because the guide contains public data and needs owner review. |
+| Direct local requests to the Preview timed out | Routed deployed curl and Playwright through the already-configured system proxy. |
+| GitHub OAuth token lacked `workflow` scope | Removed the rejected workflow file; no release or CI automation was enabled. |

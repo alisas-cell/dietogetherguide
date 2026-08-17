@@ -37,6 +37,7 @@
 | Steam-hosted 10-file visual set | Satisfies the official-media-first requirement with local files and exact provenance while avoiding a challenged third-party CDN path. |
 | One evidence-gated client island | The Co-op Troubleshooter provides eight deterministic symptom flows without accounts, storage, unsafe fixes, or fabricated server diagnosis. |
 | 24 public V1 routes | The 23 required core routes plus the accepted Co-op Troubleshooter are statically generated or server-rendered with no orphan core page. |
+| Public, noindex Vercel Preview | Owner review does not require a Vercel account; page metadata, response headers, and robots policy all keep Preview out of search. |
 
 ## Issues Encountered
 | Issue | Resolution |
@@ -44,6 +45,9 @@
 | Steam Community all-news page was blocked by the browser safety layer | Verified the official feed using Steam's first-party `ISteamNews` API. |
 | The first worktree creation chain stopped on an ignore check for a nonexistent directory | Re-ran the check against the intended child path and created the worktree successfully. |
 | RetroStyle's image CDN returned a Cloudflare challenge and its browser asset inventory timed out | Used the publisher media exposed on Steam: key art, page background, header, icon, five feature strips, and the official roadmap. |
+| First Vercel deploy was mislabeled Production despite `--target preview` | Removed that exact deployment and all generated aliases; the retained delivery target is Preview and the formal domain remains unattached. |
+| Vercel project auto-detection selected `Other` | Corrected the project preset to Next.js; subsequent deployment produced the expected framework output manifest and served all routes. |
+| Preview direct traffic failed on the local unproxied network path | Used the machine's configured HTTP proxy for deployed verification; five viewports, 24 routes, tool flow, SEO, images, and 404 passed. |
 
 ## Resources
 - Planning Pack: `/Users/alisa/Downloads/dietogetherguide_gsf_pack/`
@@ -51,3 +55,5 @@
 - Steam official news API: `https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=4317790`
 - SteamDB: `https://steamdb.info/app/4317790/`
 - RetroStyle game page: `https://retrostylegames.com/games/last-pirates-die-together/`
+- GitHub: `https://github.com/alisas-cell/dietogetherguide`
+- Verified Preview candidate: `https://dietogetherguide-p6breaom1-alisasun.vercel.app`

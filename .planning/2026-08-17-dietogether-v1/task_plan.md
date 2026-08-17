@@ -9,10 +9,10 @@ Build, source-check, test, push, and deploy a complete noindex Vercel Preview of
 - The 16 phases and 72 task numbers in `10_IMPLEMENTATION_PLAN.md` are the canonical execution order.
 
 ## Next Step
-Phase 14 / Tasks 57–59: finish the verification sweep, push the feature branch, deploy a noindex Vercel Preview, and audit the deployed routes.
+Owner reviews the delivered Preview. Production promotion, formal-domain attachment, and release-day changes remain explicitly deferred until separately authorized.
 
 ## Current Phase
-Phase 14 — Preview & Owner Gate
+Owner acceptance gate; implementation and Preview verification are complete.
 
 ## Phases
 
@@ -75,8 +75,8 @@ Phase 14 — Preview & Owner Gate
 - **Status:** completed
 
 ### Phase 14: Preview & Owner Gate (Tasks 57–59)
-- [ ] Push feature branch, deploy noindex Preview, and prepare acceptance report
-- **Status:** in_progress
+- [x] Push feature branch, deploy noindex Preview, and prepare acceptance report
+- **Status:** completed
 
 ### Phase 15: Production (Tasks 60–66)
 - [ ] Deliberately deferred: user has not authorized Production promotion/domain cutover
@@ -97,6 +97,7 @@ Phase 14 — Preview & Owner Gate
 | Official-image set sourced from the Steam page | The publisher image CDN challenged direct RetroStyle screenshot acquisition; the Steam store exposed a complete 10-file editorial set with first-party URLs and local provenance. |
 | Ship the Co-op Troubleshooter | Official patches support safe Quick Join/reconnect/host-migration context; deterministic output uses only official or standard reversible steps. |
 | Defer Monster Finder and Loot Planner | No EA-confirmed roster/counterplay dataset or stable live economics exists before unlock. |
+| Disable Vercel Authentication for this project | V1 contains only public guide material; the owner needs a directly reviewable Preview, while application metadata, `robots.txt`, and `x-robots-tag` retain noindex protection. |
 
 ## Errors Encountered
 | Error | Resolution |
@@ -107,3 +108,8 @@ Phase 14 — Preview & Owner Gate
 | RetroStyle image CDN returned a Cloudflare challenge to scripted requests | Used images exposed by the official Steam store instead; no third-party or invented substitute art was added. |
 | The in-app browser asset-inventory request timed out | Recovered the official page tab, then completed acquisition through direct first-party Steam asset URLs. |
 | First Playwright home assertion matched two identical status labels | Scoped the assertion to the semantic current-status region; the product UI was correct. |
+| Vercel CLI marked the first explicit `--target preview` call as Production | Created a true Preview without `--target`, removed exact deployment `dpl_7mdByrbhiyNxZtzsuTH4dSsVcGPs`, and confirmed the Production alias no longer resolves. No formal domain was attached. |
+| The initial Vercel project preset was `Other`, causing platform-level 404s | Updated only this project to the `nextjs` preset, redeployed, and confirmed the deployment manifest contains the expected Next.js outputs. |
+| Anonymous Preview access showed Vercel login | Disabled per-project Vercel Authentication; Preview remains `noindex,nofollow` with `robots.txt` disallow and `x-robots-tag: noindex`. |
+| Local direct traffic to `vercel.app` timed out through a poisoned route | Reused the machine's configured HTTP proxy for deployed curl and Playwright verification; all deployed checks then passed. |
+| GitHub rejected a manually-triggered verification workflow without OAuth `workflow` scope | Removed the workflow file and retained the reusable `PLAYWRIGHT_BASE_URL` / proxy-aware local runner configuration. |

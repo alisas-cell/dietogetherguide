@@ -1,6 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
 const remoteBaseURL = process.env.PLAYWRIGHT_BASE_URL;
+const proxyServer = process.env.PLAYWRIGHT_PROXY_SERVER;
 const baseURL = remoteBaseURL ?? 'http://127.0.0.1:3100';
 
 export default defineConfig({
@@ -11,6 +12,7 @@ export default defineConfig({
   use: {
     baseURL,
     colorScheme: 'dark',
+    proxy: proxyServer ? { server: proxyServer } : undefined,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },

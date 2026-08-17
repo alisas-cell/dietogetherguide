@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Die Together Guide field mark</title>
+  <desc id="desc">An original elastic hook curling around a coin</desc>
+  <rect width="64" height="64" rx="14" fill="#0D191D"/>
+  <path d="M11 18c12 0 9 14 19 14 8 0 8-9 15-9 6 0 10 5 10 11 0 10-8 18-18 18-8 0-14-4-17-10" fill="none" stroke="#7FD4C8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M19 35c-5 3-6 9-3 14 3 5 10 6 15 3" fill="none" stroke="#F0C978" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="47" cy="26" r="8" fill="#D8A84E" stroke="#F2E8CF" stroke-width="2"/>
+  <path d="M47 21v10M43.5 24h5.5c2.6 0 2.6 4 0 4h-5" fill="none" stroke="#071014" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

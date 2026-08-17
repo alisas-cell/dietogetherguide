@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 
 import type { Evidence, MonsterEntry, SourceRef } from '../../data/types';
 import {
@@ -38,7 +40,7 @@ describe('evidence registry validation', () => {
       items,
       effects,
       assets,
-      now: new Date('2026-08-17T02:00:00Z'),
+      now: new Date('2026-08-17T03:00:00Z'),
     });
 
     expect(result.errors).toEqual([]);
@@ -46,6 +48,21 @@ describe('evidence registry validation', () => {
     expect(gameSnapshot.releaseTimestampUtc?.value).toBe(
       '2026-08-18T17:00:00Z',
     );
+  });
+
+  it('ships a traced local official-media set with no missing files', () => {
+    expect(assets).toHaveLength(10);
+
+    for (const asset of assets) {
+      expect(asset.publisher).not.toBe('Site Original');
+      expect(asset.localPath).toMatch(/^\/images\//);
+      expect(
+        existsSync(join(process.cwd(), 'public', asset.localPath)),
+        `Missing local file for ${asset.id}`,
+      ).toBe(true);
+      expect(asset.sourcePage).toContain('steampowered.com');
+      expect(asset.rightsNote).toContain('Official');
+    }
   });
 
   it('rejects duplicate source IDs and dangling evidence references', () => {

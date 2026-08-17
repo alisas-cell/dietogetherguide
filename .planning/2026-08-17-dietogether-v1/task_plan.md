@@ -9,10 +9,10 @@ Build, source-check, test, push, and deploy a complete noindex Vercel Preview of
 - The 16 phases and 72 task numbers in `10_IMPLEMENTATION_PLAN.md` are the canonical execution order.
 
 ## Next Step
-Phase 3 / Tasks 9–13: write component behavior tests, then implement the brand mark, global shell, article primitives, and database cards.
+Phase 5 / Tasks 16–17: write homepage structure/SEO tests, then implement the exact 15-part homepage hierarchy.
 
 ## Current Phase
-Phase 3 — Brand & Design System
+Phase 5 — Homepage
 
 ## Phases
 
@@ -30,17 +30,17 @@ Phase 3 — Brand & Design System
 - **Status:** completed
 
 ### Phase 3: Brand & Design System (Tasks 9–13)
-- [ ] Implement tokens, original fan mark, shell, content primitives, and database primitives
-- [ ] Verify fixture at 390px and 1440px
-- **Status:** in_progress
+- [x] Implement tokens, original fan mark, shell, content primitives, and database primitives
+- [ ] Verify integrated homepage at 390px and 1440px during the browser QA gate
+- **Status:** completed
 
 ### Phase 4: Official Assets (Tasks 14–15)
-- [ ] Localize 6–10 official images, optimize them, and register provenance
-- **Status:** pending
+- [x] Localize 10 official Steam images, optimize them, and register provenance
+- **Status:** completed
 
 ### Phase 5: Homepage (Tasks 16–17)
 - [ ] Build the exact 15-part homepage hierarchy and its metadata/schema
-- **Status:** pending
+- **Status:** in_progress
 
 ### Phase 6: Release/Start Content (Tasks 18–22)
 - [ ] Implement release, EA, roadmap, gameplay, and beginner routes
@@ -94,6 +94,7 @@ Phase 3 — Brand & Design System
 | Treat the Planning Pack as approved design/spec | The owner explicitly designated all files as formal product requirements and requested immediate V1 execution. |
 | English routes remain unprefixed | Required canonical/i18n architecture; no fake translations or hreflang. |
 | Preview only | Production cutover requires a later explicit owner instruction. |
+| Official-image set sourced from the Steam page | The publisher image CDN challenged direct RetroStyle screenshot acquisition; the Steam store exposed a complete 10-file editorial set with first-party URLs and local provenance. |
 
 ## Errors Encountered
 | Error | Resolution |
@@ -101,3 +102,5 @@ Phase 3 — Brand & Design System
 | `git check-ignore -q .worktrees` returned non-zero before the directory existed, stopping a chained command | Verified the intended child path with `git check-ignore -v .worktrees/dietogether-v1`, then created the worktree. |
 | The install command returned partial output before npm finished | Confirmed the live npm PID and debug log; waited for `exit 0`, lockfile, and binaries before rerunning tests. |
 | TypeScript 7 and ESLint 10 exceeded the current Next lint plugin compatibility ranges | Locked TypeScript 6.0.3 and ESLint 9.39.5, then reran lint/typecheck/tests successfully. |
+| RetroStyle image CDN returned a Cloudflare challenge to scripted requests | Used images exposed by the official Steam store instead; no third-party or invented substitute art was added. |
+| The in-app browser asset-inventory request timed out | Recovered the official page tab, then completed acquisition through direct first-party Steam asset URLs. |

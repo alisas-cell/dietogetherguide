@@ -3,7 +3,7 @@
 ## Session: 2026-08-17
 
 ### Current Status
-- **Phase:** 3 — Brand & Design System
+- **Phase:** 5 — Homepage
 - **Started:** 2026-08-17
 - **Branch:** `codex/dietogether-v1`
 - **Worktree:** `/Users/alisa/Documents/ChatGPT/高优先级/.worktrees/dietogether-v1`
@@ -24,6 +24,9 @@
 - Implemented typed evidence/source/game/entity/update registries and validation/filtering.
 - Added future-ready locale configuration with only unprefixed English enabled.
 - Added in-repo release-state and source-precedence research notes.
+- Wrote component behavior tests before implementing evidence badges, breadcrumbs, database cards, and article primitives.
+- Implemented the original fan mark, sticky release strip, responsive header/mobile navigation, footer, content tokens, and reusable editorial/database components.
+- Localized 10 official Steam media files, visually inspected the key art and roadmap, and added a typed asset-provenance registry.
 
 ### Test Results
 | Test | Expected | Actual | Status |
@@ -34,6 +37,7 @@
 | `npm test` | Foundation contracts pass | 2 files, 6 tests passed | pass |
 | `npm run typecheck` | Strict types clean | exit 0 | pass |
 | `npm run lint` | No errors or warnings | exit 0 | pass |
+| Component/data focused suite | Primitives and asset registry pass | 2 files, 9 tests passed | pass |
 
 ### Errors
 | Error | Resolution |
@@ -43,3 +47,5 @@
 | First dependency-install output returned before npm finished | Traced the npm process/log and waited for its clean completion. |
 | TypeScript 7 unsupported by current typescript-eslint | Locked TypeScript 6.0.3. |
 | ESLint 10 incompatible with current Next React lint plugins | Locked ESLint 9.39.5. |
+| RetroStyle screenshot CDN challenged scripted acquisition | Kept the source-first rule and used 10 official images exposed by Steam instead. |
+| Browser page-asset inventory timed out | Recovered the page state and completed the task with first-party Steam asset URLs. |

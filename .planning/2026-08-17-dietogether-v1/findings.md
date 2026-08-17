@@ -34,12 +34,14 @@
 | Environment-aware metadata robots | Production canonical always targets apex; Preview and development emit noindex without changing canonical. |
 | One small client island for mobile navigation and one for the troubleshooter if shipped | Preserves Server Components-first architecture and modest JavaScript. |
 | Original SVG mark and restrained cartographic route-line signature | Implements the Cursed Expedition Field Guide identity without copying official or reference-site logos. |
+| Steam-hosted 10-file visual set | Satisfies the official-media-first requirement with local files and exact provenance while avoiding a challenged third-party CDN path. |
 
 ## Issues Encountered
 | Issue | Resolution |
 |-------|------------|
 | Steam Community all-news page was blocked by the browser safety layer | Verified the official feed using Steam's first-party `ISteamNews` API. |
 | The first worktree creation chain stopped on an ignore check for a nonexistent directory | Re-ran the check against the intended child path and created the worktree successfully. |
+| RetroStyle's image CDN returned a Cloudflare challenge and its browser asset inventory timed out | Used the publisher media exposed on Steam: key art, page background, header, icon, five feature strips, and the official roadmap. |
 
 ## Resources
 - Planning Pack: `/Users/alisa/Downloads/dietogetherguide_gsf_pack/`

@@ -9,10 +9,10 @@ Build, source-check, test, push, and deploy a complete noindex Vercel Preview of
 - The 16 phases and 72 task numbers in `10_IMPLEMENTATION_PLAN.md` are the canonical execution order.
 
 ## Next Step
-Phase 2 / Tasks 4–8: scaffold the Next.js test harness, then write failing registry-validation tests before production registry code.
+Phase 3 / Tasks 9–13: write component behavior tests, then implement the brand mark, global shell, article primitives, and database cards.
 
 ## Current Phase
-Phase 2 — Foundation
+Phase 3 — Brand & Design System
 
 ## Phases
 
@@ -24,15 +24,15 @@ Phase 2 — Foundation
 - **Status:** completed
 
 ### Phase 2: Foundation (Tasks 4–8)
-- [ ] Configure Next.js, strict TypeScript, Tailwind, next-intl readiness, and test commands
-- [ ] Build typed source/evidence, release snapshot, registries, and validators using TDD
-- [ ] Pass the registry gate
-- **Status:** in_progress
+- [x] Configure Next.js, strict TypeScript, Tailwind, next-intl readiness, and test commands
+- [x] Build typed source/evidence, release snapshot, registries, and validators using TDD
+- [x] Pass the registry gate
+- **Status:** completed
 
 ### Phase 3: Brand & Design System (Tasks 9–13)
 - [ ] Implement tokens, original fan mark, shell, content primitives, and database primitives
 - [ ] Verify fixture at 390px and 1440px
-- **Status:** pending
+- **Status:** in_progress
 
 ### Phase 4: Official Assets (Tasks 14–15)
 - [ ] Localize 6–10 official images, optimize them, and register provenance
@@ -99,3 +99,5 @@ Phase 2 — Foundation
 | Error | Resolution |
 |-------|------------|
 | `git check-ignore -q .worktrees` returned non-zero before the directory existed, stopping a chained command | Verified the intended child path with `git check-ignore -v .worktrees/dietogether-v1`, then created the worktree. |
+| The install command returned partial output before npm finished | Confirmed the live npm PID and debug log; waited for `exit 0`, lockfile, and binaries before rerunning tests. |
+| TypeScript 7 and ESLint 10 exceeded the current Next lint plugin compatibility ranges | Locked TypeScript 6.0.3 and ESLint 9.39.5, then reran lint/typecheck/tests successfully. |

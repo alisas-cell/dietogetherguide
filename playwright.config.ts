@@ -1,6 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
-const baseURL = 'http://127.0.0.1:3100';
+const remoteBaseURL = process.env.PLAYWRIGHT_BASE_URL;
+const baseURL = remoteBaseURL ?? 'http://127.0.0.1:3100';
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -13,12 +14,14 @@ export default defineConfig({
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  webServer: {
-    command: 'npm run dev -- --hostname 127.0.0.1 --port 3100',
-    url: baseURL,
-    reuseExistingServer: false,
-    timeout: 120_000,
-  },
+  webServer: remoteBaseURL
+    ? undefined
+    : {
+        command: 'npm run dev -- --hostname 127.0.0.1 --port 3100',
+        url: baseURL,
+        reuseExistingServer: false,
+        timeout: 120_000,
+      },
   projects: [
     { name: 'mobile-390x844', use: { viewport: { width: 390, height: 844 } } },
     { name: 'mobile-430x932', use: { viewport: { width: 430, height: 932 } } },

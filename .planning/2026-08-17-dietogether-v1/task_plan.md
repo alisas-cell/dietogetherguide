@@ -1,0 +1,101 @@
+# Task Plan: dietogetherguide.shop V1 Preview
+
+## Goal
+Build, source-check, test, push, and deploy a complete noindex Vercel Preview of the 23-route English V1 for `dietogetherguide.shop`, without promoting it to Production.
+
+## Authoritative Requirements
+- `/Users/alisa/Downloads/dietogetherguide_gsf_pack/README.md`
+- `/Users/alisa/Downloads/dietogetherguide_gsf_pack/00_PROJECT_BRIEF.md` through `10_IMPLEMENTATION_PLAN.md`
+- The 16 phases and 72 task numbers in `10_IMPLEMENTATION_PLAN.md` are the canonical execution order.
+
+## Next Step
+Phase 2 / Tasks 4–8: scaffold the Next.js test harness, then write failing registry-validation tests before production registry code.
+
+## Current Phase
+Phase 2 — Foundation
+
+## Phases
+
+### Phase 1: Context & Source Verification (Tasks 1–3)
+- [x] Inspect workspace and Git state
+- [x] Read all 12 Planning Pack files in required order
+- [x] Recheck Steam store, official Steam News, and SteamDB
+- [x] Record current prerelease decision and source URLs
+- **Status:** completed
+
+### Phase 2: Foundation (Tasks 4–8)
+- [ ] Configure Next.js, strict TypeScript, Tailwind, next-intl readiness, and test commands
+- [ ] Build typed source/evidence, release snapshot, registries, and validators using TDD
+- [ ] Pass the registry gate
+- **Status:** in_progress
+
+### Phase 3: Brand & Design System (Tasks 9–13)
+- [ ] Implement tokens, original fan mark, shell, content primitives, and database primitives
+- [ ] Verify fixture at 390px and 1440px
+- **Status:** pending
+
+### Phase 4: Official Assets (Tasks 14–15)
+- [ ] Localize 6–10 official images, optimize them, and register provenance
+- **Status:** pending
+
+### Phase 5: Homepage (Tasks 16–17)
+- [ ] Build the exact 15-part homepage hierarchy and its metadata/schema
+- **Status:** pending
+
+### Phase 6: Release/Start Content (Tasks 18–22)
+- [ ] Implement release, EA, roadmap, gameplay, and beginner routes
+- **Status:** pending
+
+### Phase 7: Database/Content Pillars (Tasks 23–28)
+- [ ] Implement monsters, maps, Silent Cove, loot, items, and systems routes
+- **Status:** pending
+
+### Phase 8: Co-op/Fixes Pillar (Tasks 29–33)
+- [ ] Implement co-op, Quick Join, save/reconnect, troubleshooting, and requirements routes
+- **Status:** pending
+
+### Phase 9: Updates/Trust (Tasks 34–39)
+- [ ] Implement updates, FAQ, about, contact, privacy, and terms routes
+- **Status:** pending
+
+### Phase 10: Tool Gate (Tasks 40–42)
+- [ ] Evaluate and either ship or explicitly defer the Co-op Troubleshooter
+- **Status:** pending
+
+### Phase 11: SEO Infrastructure (Tasks 43–47)
+- [ ] Audit metadata, schema, breadcrumbs, sitemap, robots, OG, manifest, and internal links
+- **Status:** pending
+
+### Phase 12: Automated QA (Tasks 48–51)
+- [ ] Pass data, content hygiene, SEO, lint, typecheck, test, and build checks
+- **Status:** pending
+
+### Phase 13: Browser QA (Tasks 52–56)
+- [ ] Verify five target viewports, runtime behavior, accessibility, links/images, and performance sanity
+- **Status:** pending
+
+### Phase 14: Preview & Owner Gate (Tasks 57–59)
+- [ ] Push feature branch, deploy noindex Preview, and prepare acceptance report
+- **Status:** pending
+
+### Phase 15: Production (Tasks 60–66)
+- [ ] Deliberately deferred: user has not authorized Production promotion/domain cutover
+- **Status:** pending
+
+### Phase 16: Release-Day Transition (Tasks 67–72)
+- [ ] Deliberately deferred until actual Steam unlock is independently verified
+- **Status:** pending
+
+## Decisions Made
+| Decision | Rationale |
+|----------|-----------|
+| Keep `EARLY ACCESS · AUG 18` | Steam says not yet available; SteamDB reports `prerelease` at 2026-08-17T01:44:11Z. |
+| Work on `codex/dietogether-v1` | The implementation plan forbids feature work on `main`; isolated worktree protects the baseline. |
+| Treat the Planning Pack as approved design/spec | The owner explicitly designated all files as formal product requirements and requested immediate V1 execution. |
+| English routes remain unprefixed | Required canonical/i18n architecture; no fake translations or hreflang. |
+| Preview only | Production cutover requires a later explicit owner instruction. |
+
+## Errors Encountered
+| Error | Resolution |
+|-------|------------|
+| `git check-ignore -q .worktrees` returned non-zero before the directory existed, stopping a chained command | Verified the intended child path with `git check-ignore -v .worktrees/dietogether-v1`, then created the worktree. |

@@ -3,7 +3,7 @@
 ## Session: 2026-08-17
 
 ### Current Status
-- **Phase:** 5 — Homepage
+- **Phase:** 14 — Preview & Owner Gate
 - **Started:** 2026-08-17
 - **Branch:** `codex/dietogether-v1`
 - **Worktree:** `/Users/alisa/Documents/ChatGPT/高优先级/.worktrees/dietogether-v1`
@@ -27,6 +27,11 @@
 - Wrote component behavior tests before implementing evidence badges, breadcrumbs, database cards, and article primitives.
 - Implemented the original fan mark, sticky release strip, responsive header/mobile navigation, footer, content tokens, and reusable editorial/database components.
 - Localized 10 official Steam media files, visually inspected the key art and roadmap, and added a typed asset-provenance registry.
+- Implemented the exact homepage hierarchy and 22 distinct non-home core content routes from a centralized typed content registry.
+- Added exact canonical metadata, WebSite/WebPage/Breadcrumb/FAQ/ItemList JSON-LD, sitemap, environment-aware robots, manifest, OG image, and custom 404.
+- Shipped the Co-op Troubleshooter after a documented evidence/safety gate; deferred Monster Finder and Loot Planner.
+- Added Playwright coverage for five required viewports, the mobile focus-trapped menu, tool output, 24 public routes, images, metadata/schema, and the custom 404.
+- Visually inspected the full 390px and 1440px homepage captures and corrected the mobile crew-utility grid.
 
 ### Test Results
 | Test | Expected | Actual | Status |
@@ -38,6 +43,10 @@
 | `npm run typecheck` | Strict types clean | exit 0 | pass |
 | `npm run lint` | No errors or warnings | exit 0 | pass |
 | Component/data focused suite | Primitives and asset registry pass | 2 files, 9 tests passed | pass |
+| Content registry | 23 core routes, unique metadata, substance gates | 22 non-home records passed | pass |
+| Co-op tool safety | 8 symptoms, ordered safe outputs | 2 tests passed | pass |
+| Playwright viewport/runtime suite | 390, 430, 768, 1024, 1440 | 15 passed, 15 intentionally project-skipped | pass |
+| Public route smoke | 24 routes, one H1, no broken local images | all 24 passed | pass |
 
 ### Errors
 | Error | Resolution |
@@ -49,3 +58,4 @@
 | ESLint 10 incompatible with current Next React lint plugins | Locked ESLint 9.39.5. |
 | RetroStyle screenshot CDN challenged scripted acquisition | Kept the source-first rule and used 10 official images exposed by Steam instead. |
 | Browser page-asset inventory timed out | Recovered the page state and completed the task with first-party Steam asset URLs. |
+| First responsive home assertion found two matching status strings | Scoped the assertion to the status landmark and reran the suite successfully. |

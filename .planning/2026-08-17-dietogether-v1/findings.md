@@ -35,6 +35,8 @@
 | One small client island for mobile navigation and one for the troubleshooter if shipped | Preserves Server Components-first architecture and modest JavaScript. |
 | Original SVG mark and restrained cartographic route-line signature | Implements the Cursed Expedition Field Guide identity without copying official or reference-site logos. |
 | Steam-hosted 10-file visual set | Satisfies the official-media-first requirement with local files and exact provenance while avoiding a challenged third-party CDN path. |
+| One evidence-gated client island | The Co-op Troubleshooter provides eight deterministic symptom flows without accounts, storage, unsafe fixes, or fabricated server diagnosis. |
+| 24 public V1 routes | The 23 required core routes plus the accepted Co-op Troubleshooter are statically generated or server-rendered with no orphan core page. |
 
 ## Issues Encountered
 | Issue | Resolution |

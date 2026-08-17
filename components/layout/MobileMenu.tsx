@@ -57,6 +57,7 @@ export function MobileMenu() {
         className="menu-trigger"
         aria-expanded={open}
         aria-controls="mobile-navigation"
+        aria-label="Open navigation"
         onClick={() => setOpen(true)}
       >
         <span>Menu</span>

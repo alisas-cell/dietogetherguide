@@ -9,10 +9,10 @@ Build, source-check, test, push, and deploy a complete noindex Vercel Preview of
 - The 16 phases and 72 task numbers in `10_IMPLEMENTATION_PLAN.md` are the canonical execution order.
 
 ## Next Step
-Phase 5 / Tasks 16–17: write homepage structure/SEO tests, then implement the exact 15-part homepage hierarchy.
+Phase 14 / Tasks 57–59: finish the verification sweep, push the feature branch, deploy a noindex Vercel Preview, and audit the deployed routes.
 
 ## Current Phase
-Phase 5 — Homepage
+Phase 14 — Preview & Owner Gate
 
 ## Phases
 
@@ -31,7 +31,7 @@ Phase 5 — Homepage
 
 ### Phase 3: Brand & Design System (Tasks 9–13)
 - [x] Implement tokens, original fan mark, shell, content primitives, and database primitives
-- [ ] Verify integrated homepage at 390px and 1440px during the browser QA gate
+- [x] Verify integrated homepage at 390px and 1440px during the browser QA gate
 - **Status:** completed
 
 ### Phase 4: Official Assets (Tasks 14–15)
@@ -39,44 +39,44 @@ Phase 5 — Homepage
 - **Status:** completed
 
 ### Phase 5: Homepage (Tasks 16–17)
-- [ ] Build the exact 15-part homepage hierarchy and its metadata/schema
-- **Status:** in_progress
+- [x] Build the exact 15-part homepage hierarchy and its metadata/schema
+- **Status:** completed
 
 ### Phase 6: Release/Start Content (Tasks 18–22)
-- [ ] Implement release, EA, roadmap, gameplay, and beginner routes
-- **Status:** pending
+- [x] Implement release, EA, roadmap, gameplay, and beginner routes
+- **Status:** completed
 
 ### Phase 7: Database/Content Pillars (Tasks 23–28)
-- [ ] Implement monsters, maps, Silent Cove, loot, items, and systems routes
-- **Status:** pending
+- [x] Implement monsters, maps, Silent Cove, loot, items, and systems routes
+- **Status:** completed
 
 ### Phase 8: Co-op/Fixes Pillar (Tasks 29–33)
-- [ ] Implement co-op, Quick Join, save/reconnect, troubleshooting, and requirements routes
-- **Status:** pending
+- [x] Implement co-op, Quick Join, save/reconnect, troubleshooting, and requirements routes
+- **Status:** completed
 
 ### Phase 9: Updates/Trust (Tasks 34–39)
-- [ ] Implement updates, FAQ, about, contact, privacy, and terms routes
-- **Status:** pending
+- [x] Implement updates, FAQ, about, contact, privacy, and terms routes
+- **Status:** completed
 
 ### Phase 10: Tool Gate (Tasks 40–42)
-- [ ] Evaluate and either ship or explicitly defer the Co-op Troubleshooter
-- **Status:** pending
+- [x] Ship the evidence-gated Co-op Troubleshooter; explicitly defer Monster Finder and Loot Planner
+- **Status:** completed
 
 ### Phase 11: SEO Infrastructure (Tasks 43–47)
-- [ ] Audit metadata, schema, breadcrumbs, sitemap, robots, OG, manifest, and internal links
-- **Status:** pending
+- [x] Audit metadata, schema, breadcrumbs, sitemap, robots, OG, manifest, and internal links
+- **Status:** completed
 
 ### Phase 12: Automated QA (Tasks 48–51)
-- [ ] Pass data, content hygiene, SEO, lint, typecheck, test, and build checks
-- **Status:** pending
+- [x] Pass data, content hygiene, SEO, lint, typecheck, test, and build checks
+- **Status:** completed
 
 ### Phase 13: Browser QA (Tasks 52–56)
-- [ ] Verify five target viewports, runtime behavior, accessibility, links/images, and performance sanity
-- **Status:** pending
+- [x] Verify five target viewports, runtime behavior, accessibility, links/images, and performance sanity
+- **Status:** completed
 
 ### Phase 14: Preview & Owner Gate (Tasks 57–59)
 - [ ] Push feature branch, deploy noindex Preview, and prepare acceptance report
-- **Status:** pending
+- **Status:** in_progress
 
 ### Phase 15: Production (Tasks 60–66)
 - [ ] Deliberately deferred: user has not authorized Production promotion/domain cutover
@@ -95,6 +95,8 @@ Phase 5 — Homepage
 | English routes remain unprefixed | Required canonical/i18n architecture; no fake translations or hreflang. |
 | Preview only | Production cutover requires a later explicit owner instruction. |
 | Official-image set sourced from the Steam page | The publisher image CDN challenged direct RetroStyle screenshot acquisition; the Steam store exposed a complete 10-file editorial set with first-party URLs and local provenance. |
+| Ship the Co-op Troubleshooter | Official patches support safe Quick Join/reconnect/host-migration context; deterministic output uses only official or standard reversible steps. |
+| Defer Monster Finder and Loot Planner | No EA-confirmed roster/counterplay dataset or stable live economics exists before unlock. |
 
 ## Errors Encountered
 | Error | Resolution |
@@ -104,3 +106,4 @@ Phase 5 — Homepage
 | TypeScript 7 and ESLint 10 exceeded the current Next lint plugin compatibility ranges | Locked TypeScript 6.0.3 and ESLint 9.39.5, then reran lint/typecheck/tests successfully. |
 | RetroStyle image CDN returned a Cloudflare challenge to scripted requests | Used images exposed by the official Steam store instead; no third-party or invented substitute art was added. |
 | The in-app browser asset-inventory request timed out | Recovered the official page tab, then completed acquisition through direct first-party Steam asset URLs. |
+| First Playwright home assertion matched two identical status labels | Scoped the assertion to the semantic current-status region; the product UI was correct. |

@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Fragment } from 'react';
 
 import type { GuidePageData } from '../../content';
 import { buildGuideSchemas } from '../../lib/seo/schema';
+import { AdSlot } from '../ads/AdSlot';
 import { JsonLd } from '../seo/JsonLd';
 import { Container } from '../ui/Container';
 import { Breadcrumbs } from './Breadcrumbs';
@@ -56,65 +58,74 @@ export function GuidePage({ page }: { page: GuidePageData }) {
 
           <div className="article-layout">
             <div className="article-body">
-              {page.sections.map((section) => (
-                <section id={section.id} key={section.id}>
-                  <h2>{section.heading}</h2>
-                  {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                  {section.bullets ? (
-                    <ul>
-                      {section.bullets.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : null}
-                  {section.links ? (
-                    <div className="article-link-row">
-                      {section.links.map((link) => (
-                        <a href={link.href} key={link.href} rel="noopener noreferrer">
-                          {link.label} <span aria-hidden="true">↗</span>
-                        </a>
-                      ))}
-                    </div>
-                  ) : null}
-                  {section.table ? (
-                    <ResponsiveTable caption={section.heading}>
-                      <thead>
-                        <tr>
-                          {section.table.headers.map((header) => (
-                            <th key={header} scope="col">
-                              {header}
-                            </th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {section.table.rows.map((row, rowIndex) => (
-                          <tr key={`${section.id}-${rowIndex}`}>
-                            {row.map((cell, cellIndex) =>
-                              cellIndex === 0 ? (
-                                <th key={cell} scope="row">
-                                  {cell}
-                                </th>
-                              ) : (
-                                <td key={`${cell}-${cellIndex}`}>{cell}</td>
-                              ),
-                            )}
-                          </tr>
+              {page.sections.map((section, index) => (
+                <Fragment key={section.id}>
+                  <section id={section.id}>
+                    <h2>{section.heading}</h2>
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                    {section.bullets ? (
+                      <ul>
+                        {section.bullets.map((item) => (
+                          <li key={item}>{item}</li>
                         ))}
-                      </tbody>
-                    </ResponsiveTable>
+                      </ul>
+                    ) : null}
+                    {section.links ? (
+                      <div className="article-link-row">
+                        {section.links.map((link) => (
+                          <a href={link.href} key={link.href} rel="noopener noreferrer">
+                            {link.label} <span aria-hidden="true">↗</span>
+                          </a>
+                        ))}
+                      </div>
+                    ) : null}
+                    {section.table ? (
+                      <ResponsiveTable caption={section.heading}>
+                        <thead>
+                          <tr>
+                            {section.table.headers.map((header) => (
+                              <th key={header} scope="col">
+                                {header}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {section.table.rows.map((row, rowIndex) => (
+                            <tr key={`${section.id}-${rowIndex}`}>
+                              {row.map((cell, cellIndex) =>
+                                cellIndex === 0 ? (
+                                  <th key={cell} scope="row">
+                                    {cell}
+                                  </th>
+                                ) : (
+                                  <td key={`${cell}-${cellIndex}`}>{cell}</td>
+                                ),
+                              )}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </ResponsiveTable>
+                    ) : null}
+                    {section.callout ? (
+                      <Callout
+                        title={section.callout.title}
+                        variant={calloutVariants[section.callout.type]}
+                      >
+                        <p>{section.callout.body}</p>
+                      </Callout>
+                    ) : null}
+                  </section>
+                  {index === 1 ? (
+                    <AdSlot
+                      key={`article-mid:${page.route}`}
+                      pathname={page.route}
+                      placement="article_mid"
+                    />
                   ) : null}
-                  {section.callout ? (
-                    <Callout
-                      title={section.callout.title}
-                      variant={calloutVariants[section.callout.type]}
-                    >
-                      <p>{section.callout.body}</p>
-                    </Callout>
-                  ) : null}
-                </section>
+                </Fragment>
               ))}
 
               {page.faqs.length > 0 ? (
@@ -145,6 +156,11 @@ export function GuidePage({ page }: { page: GuidePageData }) {
           </div>
 
           <RelatedGuides items={page.related} />
+          <AdSlot
+            key={`responsive-banner:${page.route}`}
+            pathname={page.route}
+            placement="responsive_banner"
+          />
         </Container>
       </article>
     </>

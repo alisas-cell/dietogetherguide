@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import { AdSlot } from '../../../components/ads/AdSlot';
 import { Breadcrumbs } from '../../../components/article/Breadcrumbs';
 import { Callout } from '../../../components/article/Callout';
 import { EvidenceBanner } from '../../../components/article/EvidenceBanner';
@@ -103,7 +104,9 @@ export default function CoopTroubleshooterPage() {
               source timeline.
             </p>
           </Callout>
+          <AdSlot pathname={route} placement="article_mid" />
           <SourceList sourceIds={['S01', 'S07', 'S08']} />
+          <AdSlot pathname={route} placement="responsive_banner" />
         </Container>
       </article>
     </>

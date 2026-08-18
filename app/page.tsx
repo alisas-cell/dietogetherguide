@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { AdSlot } from '../components/ads/AdSlot';
 import { FaqList } from '../components/article/FaqList';
 import { MapCard } from '../components/database/MapCard';
 import { MonsterCard } from '../components/database/MonsterCard';
@@ -163,6 +164,8 @@ export default function Home() {
         </Container>
       </section>
 
+      <AdSlot pathname="/" placement="article_mid" />
+
       <section className="home-section" id="early-access-delta">
         <Container className="ea-delta-grid">
           <div>
@@ -197,6 +200,8 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      <AdSlot pathname="/" placement="responsive_banner" />
 
       <section className="crew-strip" id="crew-utility">
         <Container className="crew-strip-grid">

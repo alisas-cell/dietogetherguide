@@ -2,6 +2,11 @@ import { expect, test } from '@playwright/test';
 
 import { publicRoutes } from '../../lib/seo/routes';
 
+const adsterraHosts = [
+  'pl30902793.effectivecpmnetwork.com',
+  'www.highperformanceformat.com',
+];
+
 test('home is coherent, noindex in development, and free of horizontal overflow', async ({
   page,
 }, testInfo) => {
@@ -163,4 +168,81 @@ test('unknown routes use the custom 404', async ({ page }, testInfo) => {
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
     'This route is not in the field guide',
   );
+});
+
+test('every public route has two ad placements while localhost requests no ads', async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop-1440x900');
+  const providerRequests: string[] = [];
+  page.on('request', (request) => {
+    if (adsterraHosts.includes(new URL(request.url()).hostname)) {
+      providerRequests.push(request.url());
+    }
+  });
+
+  for (const route of publicRoutes) {
+    await page.goto(route);
+    await expect(
+      page.locator('[data-ad-placement="article_mid"]'),
+      `${route} Native placement`,
+    ).toHaveCount(1);
+    await expect(
+      page.locator('[data-ad-placement="responsive_banner"]'),
+      `${route} responsive placement`,
+    ).toHaveCount(1);
+  }
+
+  expect(providerRequests).toEqual([]);
+});
+
+test('custom 404 remains ad-free', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop-1440x900');
+  const response = await page.goto('/not-a-monetized-route');
+
+  expect(response?.status()).toBe(404);
+  await expect(page.locator('[data-ad-placement]')).toHaveCount(0);
+});
+
+test('tool ad placements follow the complete interactive flow', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop-1440x900');
+  await page.goto('/tools/coop-troubleshooter');
+
+  const order = await page.evaluate(() => {
+    const tool = document.querySelector('.tool-shell');
+    const native = document.querySelector('[data-ad-placement="article_mid"]');
+    const responsive = document.querySelector(
+      '[data-ad-placement="responsive_banner"]',
+    );
+    if (!tool || !native || !responsive) return null;
+
+    return {
+      nativeAfterTool: Boolean(
+        tool.compareDocumentPosition(native) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ),
+      responsiveAfterTool: Boolean(
+        tool.compareDocumentPosition(responsive) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ),
+    };
+  });
+
+  expect(order).toEqual({ nativeAfterTool: true, responsiveAfterTool: true });
+});
+
+test('ad placements do not widen mobile or desktop pages', async ({ page }, testInfo) => {
+  test.skip(
+    !['mobile-390x844', 'desktop-1440x900'].includes(testInfo.project.name),
+  );
+
+  for (const route of ['/', '/gameplay', '/tools/coop-troubleshooter']) {
+    await page.goto(route);
+    await expect(page.locator('[data-ad-placement]')).toHaveCount(2);
+    const dimensions = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+    expect(dimensions.scrollWidth, `${testInfo.project.name} ${route}`).toBeLessThanOrEqual(
+      dimensions.clientWidth + 1,
+    );
+  }
 });

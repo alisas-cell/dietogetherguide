@@ -1,14 +1,14 @@
-# Release-state check — 2026-08-17
+# Release-state check — 2026-08-18
 
-**Checked:** 2026-08-17T01:44:11Z  
-**Decision:** `prerelease`  
-**Public label:** `EARLY ACCESS · AUG 18`
+**Checked:** 2026-08-18T11:31:54Z
+**Decision:** `prerelease`
+**Public label:** `RELEASES TODAY · STEAM NOT UNLOCKED YET`
 
 ## Evidence
 
-- Steam Store displayed `This game is not yet available on Steam`, the date `18 Aug, 2026`, and an approximate unlock countdown.
-- SteamDB displayed `ReleaseState: prerelease` and the timestamp snapshot `18 August 2026 – 17:00:00 UTC`.
-- Steam's official News API contained no unlock/release announcement; the newest listed post was the August 7 Busan Indie Connect update.
+- Steam Store displayed `This game is not yet available on Steam`, the date `Aug 18, 2026`, and an approximate five-hour unlock countdown.
+- The prior SteamDB snapshot remains `ReleaseState: prerelease` with a timestamp of `18 August 2026 – 17:00:00 UTC`; it was not treated as proof of unlock.
+- The release decision uses the current official Steam Store availability state rather than the calendar or the prior timestamp snapshot.
 
 ## Switch rule
 

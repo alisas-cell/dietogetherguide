@@ -2,6 +2,12 @@ import { gameSnapshot, releaseLabel } from '../../data/game';
 import { Container } from '../ui/Container';
 
 export function StatusStrip() {
+  const checkedDate = new Intl.DateTimeFormat('en-US', {
+    day: 'numeric',
+    month: 'short',
+    timeZone: 'UTC',
+  }).format(new Date(gameSnapshot.lastGlobalCheck));
+
   return (
     <div className="status-strip" role="status" aria-label="Current game status">
       <Container className="status-strip-inner">
@@ -16,7 +22,7 @@ export function StatusStrip() {
         <span className="status-fact">
           {gameSnapshot.demoPlayerMilestone?.value} Demo players
         </span>
-        <span className="status-checked">Checked Aug 17</span>
+        <span className="status-checked">Checked {checkedDate}</span>
       </Container>
     </div>
   );

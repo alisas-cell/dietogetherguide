@@ -39,7 +39,12 @@ test('home is coherent, noindex in development, and free of horizontal overflow'
   await expect(
     page
       .getByLabel('Current game status')
-      .getByText('EARLY ACCESS · AUG 18', { exact: true }),
+      .getByText('RELEASES TODAY · STEAM NOT UNLOCKED YET', { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page
+      .getByLabel('Current game status')
+      .getByText('Checked Aug 18', { exact: true }),
   ).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     'content',

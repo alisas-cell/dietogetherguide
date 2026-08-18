@@ -7,7 +7,7 @@ export const sources = [
     url: 'https://store.steampowered.com/app/4317790/Last_Pirates_Die_Together/',
     publisher: 'Steam',
     sourceType: 'official-store',
-    checkedAt: '2026-08-17T01:44:11Z',
+    checkedAt: '2026-08-18T11:31:54Z',
     notes: 'Primary current source for availability, features, requirements, and Early Access wording.',
   },
   {

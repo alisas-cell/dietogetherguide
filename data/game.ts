@@ -1,11 +1,12 @@
 import type { Evidence, GameSnapshot } from './types';
 
-const checkedAt = '2026-08-17T01:44:11Z';
+const evidenceCheckedAt = '2026-08-17T01:44:11Z';
+const releaseCheckedAt = '2026-08-18T11:31:54Z';
 
 const confirmed = (sourceIds: string[], build: Evidence['build']): Evidence => ({
   confidence: 'confirmed',
   sourceIds,
-  verifiedAt: checkedAt,
+  verifiedAt: evidenceCheckedAt,
   build,
 });
 
@@ -55,10 +56,10 @@ export const gameSnapshot = {
       note: 'Official Steam Next Fest Demo milestone.',
     },
   },
-  lastGlobalCheck: checkedAt,
+  lastGlobalCheck: releaseCheckedAt,
 } satisfies GameSnapshot;
 
 export const releaseLabel =
   gameSnapshot.releaseState === 'prerelease'
-    ? 'EARLY ACCESS · AUG 18'
+    ? 'RELEASES TODAY · STEAM NOT UNLOCKED YET'
     : 'EARLY ACCESS · LIVE';

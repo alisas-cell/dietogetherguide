@@ -87,6 +87,22 @@ export function isMonetizedPublicRoute(pathname: string): boolean {
   return monetizedRouteSet.has(pathname);
 }
 
+export function canInitializeAdsterra({
+  hostname,
+  pathname,
+  privacyAllowsAds,
+}: {
+  hostname: string;
+  pathname: string;
+  privacyAllowsAds: boolean;
+}): boolean {
+  return (
+    privacyAllowsAds &&
+    isAdsterraProductionHost(hostname) &&
+    isMonetizedPublicRoute(pathname)
+  );
+}
+
 export function selectResponsiveUnit(viewportWidth: number): ResponsiveAdUnit {
   return viewportWidth >= ADSTERRA_CONFIG.responsive.breakpoint
     ? ADSTERRA_CONFIG.responsive.desktop

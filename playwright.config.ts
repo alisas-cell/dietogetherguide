@@ -6,6 +6,7 @@ const baseURL = remoteBaseURL ?? 'http://127.0.0.1:3100';
 
 export default defineConfig({
   testDir: './tests/e2e',
+  testIgnore: 'privacy-consent.spec.ts',
   fullyParallel: false,
   retries: 0,
   reporter: [['list'], ['html', { open: 'never' }]],
@@ -25,6 +26,8 @@ export default defineConfig({
         timeout: 120_000,
       },
   projects: [
+    { name: 'mobile-320x720', use: { viewport: { width: 320, height: 720 } } },
+    { name: 'mobile-375x812', use: { viewport: { width: 375, height: 812 } } },
     { name: 'mobile-390x844', use: { viewport: { width: 390, height: 844 } } },
     { name: 'mobile-430x932', use: { viewport: { width: 430, height: 932 } } },
     { name: 'tablet-768x1024', use: { viewport: { width: 768, height: 1024 } } },

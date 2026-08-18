@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { StatusStrip } from '../components/layout/StatusStrip';
+import { ConsentProvider } from '../components/privacy/ConsentProvider';
 import './globals.css';
 
 const geist = Geist({
@@ -64,13 +65,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
       <body>
-        <a className="skip-link" href="#main-content">
-          Skip to content
-        </a>
-        <StatusStrip />
-        <Header />
-        <main id="main-content">{children}</main>
-        <Footer />
+        <ConsentProvider>
+          <a className="skip-link" href="#main-content">
+            Skip to content
+          </a>
+          <StatusStrip />
+          <Header />
+          <main id="main-content" tabIndex={-1}>{children}</main>
+          <Footer />
+        </ConsentProvider>
       </body>
     </html>
   );

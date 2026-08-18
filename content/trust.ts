@@ -336,7 +336,7 @@ export const trustPages = [
       'The privacy policy for Die Together Guide, covering current analytics, storage, external links, public correction reports, and future changes.',
     eyebrow: 'Policy',
     directAnswer: [
-      'Die Together Guide displays third-party advertising supplied by Adsterra on its canonical production pages. The site does not offer account registration or contact forms, and it does not install a separate first-party analytics script or use gameplay-tool localStorage.',
+      'Die Together Guide displays third-party advertising supplied by Adsterra on eligible canonical production pages. Where the site requires an advertising choice, it does not request Adsterra resources before that choice allows advertising. The site does not offer account registration or contact forms, and it does not install a separate first-party analytics script.',
       'Correction reports use an external public GitHub issue tracker and are governed by GitHub’s privacy terms. Do not post sensitive information there.',
     ],
     buildContext: 'Effective Aug 18, 2026',
@@ -355,7 +355,16 @@ export const trustPages = [
         id: 'storage',
         heading: 'Cookies and local storage',
         paragraphs: [
-          'The guide and co-op troubleshooter do not require cookies or localStorage for their own operation. Adsterra and advertising partners may use cookies, pixels, or similar browser storage and identifiers to deliver, measure, protect, or tailor advertising. Visitors can use browser controls or content-blocking settings, and blocking an ad must not prevent the guide or tool from working.',
+          'The site stores one versioned local preference recording whether non-essential advertising was accepted or rejected. It normally uses localStorage and can use a first-party, same-site cookie fallback when a localStorage write is unavailable. This choice lets the site remember the decision on a return visit; guide content and the co-op troubleshooter do not depend on accepting advertising.',
+          'When advertising is allowed, Adsterra and advertising partners may use cookies, pixels, or similar browser storage and identifiers to deliver, measure, protect, or tailor advertising. Blocking or rejecting an ad must not prevent the guide or tool from working.',
+        ],
+      },
+      {
+        id: 'choices',
+        heading: 'Advertising choices',
+        paragraphs: [
+          'Visitors can accept advertising or reject non-essential advertising when the choice panel is shown. The site uses a hosting-provider country signal to decide whether an initial advertising choice is required, but its privacy-region endpoint returns only a yes-or-no requirement and does not return or store the country in the browser.',
+          'Use Privacy Choices in the footer at any time to review or change the stored decision. Rejecting stops future advertising requests; the page may reload after revocation so previously initialized advertising resources are removed cleanly.',
         ],
       },
       {

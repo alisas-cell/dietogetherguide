@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { PrivacyChoices } from '../privacy/PrivacyChoices';
 import { Container } from '../ui/Container';
 import { Brand } from './Brand';
 
@@ -72,6 +73,7 @@ export function Footer() {
           <nav aria-label="Legal links">
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
+            <PrivacyChoices />
           </nav>
         </div>
       </Container>

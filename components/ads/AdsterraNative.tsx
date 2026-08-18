@@ -4,20 +4,24 @@ import { useEffect, useReducer, useRef } from 'react';
 
 import {
   ADSTERRA_CONFIG,
-  isAdsterraProductionHost,
-  isMonetizedPublicRoute,
+  canInitializeAdsterra,
 } from './ad-config';
 import { reduceAdLoadState, watchProviderCreative } from './ad-runtime';
+import { usePrivacyConsent } from '../privacy/ConsentProvider';
 
 export function AdsterraNative({ pathname }: { pathname: string }) {
   const creativeRef = useRef<HTMLDivElement>(null);
   const initializedRef = useRef(false);
   const [state, dispatch] = useReducer(reduceAdLoadState, 'off');
+  const { canLoadAds } = usePrivacyConsent();
 
   useEffect(() => {
     if (
-      !isAdsterraProductionHost(window.location.hostname) ||
-      !isMonetizedPublicRoute(pathname) ||
+      !canInitializeAdsterra({
+        hostname: window.location.hostname,
+        pathname,
+        privacyAllowsAds: canLoadAds,
+      }) ||
       initializedRef.current ||
       !creativeRef.current
     ) {
@@ -52,7 +56,7 @@ export function AdsterraNative({ pathname }: { pathname: string }) {
       creative.replaceChildren();
       initializedRef.current = false;
     };
-  }, [pathname]);
+  }, [canLoadAds, pathname]);
 
   return (
     <aside
@@ -60,7 +64,7 @@ export function AdsterraNative({ pathname }: { pathname: string }) {
       className="ad-slot ad-slot-native"
       data-ad-placement="article_mid"
       data-ad-route={pathname}
-      data-ad-state={state}
+      data-ad-state={canLoadAds ? state : 'off'}
     >
       <span className="ad-slot-label">Advertisement</span>
       <div className="ad-creative ad-native-creative" ref={creativeRef} />

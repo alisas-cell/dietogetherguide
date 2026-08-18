@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import {
   ADSTERRA_CONFIG,
   MONETIZED_PUBLIC_ROUTES,
+  canInitializeAdsterra,
   isAdsterraProductionHost,
   isMonetizedPublicRoute,
   selectResponsiveUnit,
@@ -22,6 +23,38 @@ describe('Adsterra bridge contract', () => {
     ]) {
       expect(isAdsterraProductionHost(hostname), hostname).toBe(false);
     }
+  });
+
+  it('requires host, route, and privacy permission at the single initialization gate', () => {
+    expect(
+      canInitializeAdsterra({
+        hostname: 'dietogetherguide.shop',
+        pathname: '/gameplay',
+        privacyAllowsAds: true,
+      }),
+    ).toBe(true);
+
+    expect(
+      canInitializeAdsterra({
+        hostname: 'dietogetherguide.shop',
+        pathname: '/gameplay',
+        privacyAllowsAds: false,
+      }),
+    ).toBe(false);
+    expect(
+      canInitializeAdsterra({
+        hostname: 'preview.vercel.app',
+        pathname: '/gameplay',
+        privacyAllowsAds: true,
+      }),
+    ).toBe(false);
+    expect(
+      canInitializeAdsterra({
+        hostname: 'dietogetherguide.shop',
+        pathname: '/not-a-route',
+        privacyAllowsAds: true,
+      }),
+    ).toBe(false);
   });
 
   it('monetizes every public route and no unknown route', () => {

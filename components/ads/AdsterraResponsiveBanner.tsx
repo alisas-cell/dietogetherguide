@@ -5,11 +5,11 @@ import { useEffect, useReducer, useRef, useState } from 'react';
 import {
   ADSTERRA_CONFIG,
   type ResponsiveAdUnit,
-  isAdsterraProductionHost,
-  isMonetizedPublicRoute,
+  canInitializeAdsterra,
   selectResponsiveUnit,
 } from './ad-config';
 import { reduceAdLoadState, watchProviderCreative } from './ad-runtime';
+import { usePrivacyConsent } from '../privacy/ConsentProvider';
 
 type AdsterraWindow = Window & {
   atOptions?: Omit<ResponsiveAdUnit, 'scriptUrl'>;
@@ -20,11 +20,15 @@ export function AdsterraResponsiveBanner({ pathname }: { pathname: string }) {
   const initializedRef = useRef(false);
   const [state, dispatch] = useReducer(reduceAdLoadState, 'off');
   const [unit, setUnit] = useState<ResponsiveAdUnit | null>(null);
+  const { canLoadAds } = usePrivacyConsent();
 
   useEffect(() => {
     if (
-      !isAdsterraProductionHost(window.location.hostname) ||
-      !isMonetizedPublicRoute(pathname) ||
+      !canInitializeAdsterra({
+        hostname: window.location.hostname,
+        pathname,
+        privacyAllowsAds: canLoadAds,
+      }) ||
       initializedRef.current ||
       !creativeRef.current
     ) {
@@ -69,7 +73,7 @@ export function AdsterraResponsiveBanner({ pathname }: { pathname: string }) {
       }
       initializedRef.current = false;
     };
-  }, [pathname]);
+  }, [canLoadAds, pathname]);
 
   return (
     <aside
@@ -78,7 +82,7 @@ export function AdsterraResponsiveBanner({ pathname }: { pathname: string }) {
       data-ad-height={unit?.height}
       data-ad-placement="responsive_banner"
       data-ad-route={pathname}
-      data-ad-state={state}
+      data-ad-state={canLoadAds ? state : 'off'}
       data-ad-width={unit?.width}
     >
       <span className="ad-slot-label">Advertisement</span>

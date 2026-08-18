@@ -13,6 +13,15 @@ const bannerScriptUrls = {
   mobile: 'https://www.highperformanceformat.com/1178d923040089031d1739c3b0f07aee/invoke.js',
   desktop: 'https://www.highperformanceformat.com/11f222c98a7f20ac1f26e0182e67c82d/invoke.js',
 } as const;
+const consentStorageKey = 'dietogetherguide:advertising-consent';
+const grantedConsent = JSON.stringify({ policyVersion: 1, advertising: 'granted' });
+
+async function grantAdvertisingBeforeHydration(page: import('@playwright/test').Page) {
+  await page.addInitScript(
+    ({ key, value }) => window.localStorage.setItem(key, value),
+    { key: consentStorageKey, value: grantedConsent },
+  );
+}
 
 test('home is coherent, noindex in development, and free of horizontal overflow', async ({
   page,
@@ -203,6 +212,102 @@ test('every public route has two ad placements while localhost requests no ads',
   expect(providerRequests).toEqual([]);
 });
 
+test('Preview-safe host remains ad-free after acceptance and exposes persistent choices', async ({
+  page,
+}, testInfo) => {
+  const providerRequests: string[] = [];
+  page.on('request', (request) => {
+    if (adsterraHosts.includes(new URL(request.url()).hostname)) {
+      providerRequests.push(request.url());
+    }
+  });
+
+  await page.goto('/');
+  const panel = page.getByRole('region', { name: 'Your advertising choices' });
+  await expect(panel).toBeVisible();
+  await expect(panel.getByRole('button', { name: 'Reject non-essential' })).toBeVisible();
+  const acceptButton = panel.getByRole('button', { name: 'Accept advertising' });
+  await expect(acceptButton).toBeVisible();
+  await acceptButton.focus();
+  await expect(acceptButton).toBeFocused();
+  expect(
+    await acceptButton.evaluate((button) => getComputedStyle(button).outlineStyle),
+  ).not.toBe('none');
+  await page.screenshot({
+    fullPage: false,
+    path: testInfo.outputPath(`privacy-preview-${testInfo.project.name}.png`),
+  });
+  await page.keyboard.press('Enter');
+  await expect(panel).toBeHidden();
+  await expect(page.locator('#main-content')).toBeFocused();
+  await page.waitForTimeout(300);
+  expect(providerRequests).toEqual([]);
+
+  const privacyChoices = page.getByRole('button', { name: 'Privacy Choices' });
+  await privacyChoices.click();
+  await expect(panel).toContainText('Current choice: advertising accepted.');
+  const closeButton = panel.getByRole('button', { name: 'Close privacy choices' });
+  await expect(closeButton).toBeVisible();
+  await closeButton.focus();
+  await page.keyboard.press('Escape');
+  await expect(panel).toBeHidden();
+  await expect(privacyChoices).toBeFocused();
+
+  const layout = await page.evaluate(() => {
+    const privacyPanel = document.querySelector<HTMLElement>('.privacy-panel');
+    return {
+      panelHeight: privacyPanel?.getBoundingClientRect().height ?? 0,
+      viewportHeight: window.innerHeight,
+      pageClientWidth: document.documentElement.clientWidth,
+      pageScrollWidth: document.documentElement.scrollWidth,
+    };
+  });
+  expect(layout.pageScrollWidth).toBeLessThanOrEqual(layout.pageClientWidth + 1);
+  expect(layout.panelHeight).toBeLessThan(layout.viewportHeight);
+
+});
+
+test('stalled privacy-region lookup fails safe into a required choice', async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop-1440x900');
+  await page.route('**/api/privacy-region', () => new Promise(() => undefined));
+
+  await page.goto('/gameplay', { waitUntil: 'domcontentloaded' });
+  await expect(
+    page.getByRole('region', { name: 'Your advertising choices' }),
+  ).toBeVisible({ timeout: 5_000 });
+  await expect(page.locator('[data-ad-state="off"]')).toHaveCount(2);
+  await page.unrouteAll({ behavior: 'ignoreErrors' });
+});
+
+test('privacy rejection synchronizes to another open tab', async ({
+  context,
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop-1440x900');
+  const secondPage = await context.newPage();
+
+  await page.goto('/gameplay');
+  await secondPage.goto('/maps');
+  await page.getByRole('button', { name: 'Accept advertising' }).click();
+  await expect(
+    secondPage.getByRole('region', { name: 'Your advertising choices' }),
+  ).toBeHidden();
+
+  await page.getByRole('button', { name: 'Privacy Choices' }).click();
+  await Promise.all([
+    page.waitForNavigation(),
+    page.getByRole('button', { name: 'Reject non-essential' }).click(),
+  ]);
+  await expect(secondPage.locator('[data-ad-state="off"]')).toHaveCount(2);
+  await secondPage.getByRole('button', { name: 'Privacy Choices' }).click();
+  await expect(
+    secondPage.getByRole('region', { name: 'Your advertising choices' }),
+  ).toContainText('Current choice: non-essential advertising rejected.');
+  await secondPage.close();
+});
+
 test('custom 404 remains ad-free', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop-1440x900');
   const response = await page.goto('/not-a-monetized-route');
@@ -276,6 +381,8 @@ test('production requests one Native and only the matching responsive banner', a
   const oppositeBannerUrl = mobile ? bannerScriptUrls.desktop : bannerScriptUrls.mobile;
   const scriptRequests: string[] = [];
 
+  await grantAdvertisingBeforeHydration(page);
+
   page.on('request', (request) => {
     if (
       request.url() === nativeScriptUrl ||
@@ -316,6 +423,8 @@ test('production ad failures collapse without breaking the troubleshooter', asyn
 }, testInfo) => {
   test.skip(process.env.PLAYWRIGHT_EXPECT_LIVE_ADS !== '1');
   test.skip(testInfo.project.name !== 'desktop-1440x900');
+
+  await grantAdvertisingBeforeHydration(page);
 
   for (const host of adsterraHosts) {
     await page.route(`https://${host}/**`, (route) => route.abort('failed'));

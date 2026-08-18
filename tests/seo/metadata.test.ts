@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { guidePages } from '../../content';
 import { buildGuideMetadata } from '../../lib/seo/metadata';
 import { buildGuideSchemas } from '../../lib/seo/schema';
+import sitemap from '../../app/sitemap';
 
 describe('guide SEO builders', () => {
   it('uses the exact page title and canonical apex route', () => {
@@ -35,5 +36,28 @@ describe('guide SEO builders', () => {
         expect(faqSchema).toBeUndefined();
       }
     }
+  });
+
+  it('locks representative title, H1, canonical, and sitemap identities', () => {
+    const identities = new Map(
+      guidePages.map((page) => [page.route, { title: page.title, h1: page.h1 }]),
+    );
+
+    expect(identities.get('/release-date')).toEqual({
+      title: 'Last Pirates: Die Together Release Date & Early Access Time',
+      h1: 'Last Pirates: Die Together Release Date',
+    });
+    expect(identities.get('/privacy')).toEqual({
+      title: 'Privacy Policy — Die Together Guide',
+      h1: 'Privacy Policy',
+    });
+    expect(sitemap()).toHaveLength(24);
+    expect(sitemap().map((entry) => entry.url)).toEqual(
+      expect.arrayContaining([
+        'https://dietogetherguide.shop',
+        'https://dietogetherguide.shop/privacy',
+        'https://dietogetherguide.shop/tools/coop-troubleshooter',
+      ]),
+    );
   });
 });

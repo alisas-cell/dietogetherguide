@@ -15,13 +15,24 @@ export function reduceAdLoadState(
 }
 
 export function hasProviderCreative(container: HTMLElement): boolean {
-  if (container.querySelector('iframe, img, a[href], object, embed')) return true;
+  if (container.querySelector('a[href], img[src], object[data], embed[src]')) {
+    return true;
+  }
 
-  const hasNonLoaderElement = Array.from(container.children).some(
-    (child) => child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE',
-  );
+  const iframe = container.querySelector('iframe') as HTMLIFrameElement | null;
+  if (!iframe) return false;
 
-  return hasNonLoaderElement || (container.textContent?.trim().length ?? 0) > 0;
+  const src = iframe.getAttribute('src')?.trim();
+  if (src && src !== 'about:blank') return true;
+
+  try {
+    const body = iframe.contentDocument?.body;
+    return Boolean(
+      body && (body.children.length > 0 || (body.textContent?.trim().length ?? 0) > 0),
+    );
+  } catch {
+    return false;
+  }
 }
 
 export interface AdCreativeWatch {
@@ -42,30 +53,37 @@ export function watchProviderCreative({
 }): AdCreativeWatch {
   let settled = false;
 
-  const observer = new MutationObserver(() => {
+  const settleCreative = () => {
     if (settled || !hasProviderCreative(container)) return;
     settled = true;
     window.clearTimeout(timeoutId);
+    window.clearInterval(probeIntervalId);
     observer.disconnect();
     onCreative();
-  });
+  };
+
+  const observer = new MutationObserver(settleCreative);
 
   const fail = () => {
     if (settled) return;
     settled = true;
     window.clearTimeout(timeoutId);
+    window.clearInterval(probeIntervalId);
     observer.disconnect();
     container.replaceChildren();
     onFailure();
   };
 
   const timeoutId = window.setTimeout(fail, timeoutMs);
+  const probeIntervalId = window.setInterval(settleCreative, 100);
   observer.observe(container, { childList: true, subtree: true });
+  settleCreative();
 
   return {
     dispose: () => {
       settled = true;
       window.clearTimeout(timeoutId);
+      window.clearInterval(probeIntervalId);
       observer.disconnect();
     },
     fail,

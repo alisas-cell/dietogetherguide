@@ -48,19 +48,44 @@ describe('Adsterra fail-closed state machine', () => {
     expect(reduceAdLoadState('off', 'creative')).toBe('off');
   });
 
-  it('does not mistake the loader script for a returned creative', () => {
+  it('does not mistake loader or empty iframe shells for returned creative', () => {
     const scriptOnly = {
       children: [{ tagName: 'SCRIPT' }],
       querySelector: () => null,
       textContent: '',
     } as unknown as HTMLElement;
-    const withIframe = {
+    const emptyIframe = {
+      getAttribute: (name: string) => (name === 'src' ? 'about:blank' : null),
+      contentDocument: { body: { children: [], textContent: '' } },
+    };
+    const withEmptyIframe = {
       children: [{ tagName: 'SCRIPT' }, { tagName: 'IFRAME' }],
-      querySelector: (selector: string) => (selector.includes('iframe') ? {} : null),
+      querySelector: (selector: string) => (selector.includes('iframe') ? emptyIframe : null),
       textContent: '',
     } as unknown as HTMLElement;
 
     expect(hasProviderCreative(scriptOnly)).toBe(false);
-    expect(hasProviderCreative(withIframe)).toBe(true);
+    expect(hasProviderCreative(withEmptyIframe)).toBe(false);
+  });
+
+  it('accepts meaningful direct or iframe creative content', () => {
+    const withDirectCreative = {
+      children: [{ tagName: 'A' }],
+      querySelector: (selector: string) =>
+        selector.includes('a[href]') ? { getAttribute: () => 'https://example.com/ad' } : null,
+      textContent: '',
+    } as unknown as HTMLElement;
+    const filledIframe = {
+      getAttribute: (name: string) => (name === 'src' ? 'about:blank' : null),
+      contentDocument: { body: { children: [{}], textContent: '' } },
+    };
+    const withFilledIframe = {
+      children: [{ tagName: 'SCRIPT' }, { tagName: 'IFRAME' }],
+      querySelector: (selector: string) => (selector.includes('iframe') ? filledIframe : null),
+      textContent: '',
+    } as unknown as HTMLElement;
+
+    expect(hasProviderCreative(withDirectCreative)).toBe(true);
+    expect(hasProviderCreative(withFilledIframe)).toBe(true);
   });
 });

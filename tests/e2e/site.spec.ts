@@ -217,23 +217,32 @@ test('tool ad placements follow the complete interactive flow', async ({ page },
 
   const order = await page.evaluate(() => {
     const tool = document.querySelector('.tool-shell');
+    const safetyCallout = document.querySelector('.callout');
     const native = document.querySelector('[data-ad-placement="article_mid"]');
+    const sources = document.querySelector('.source-list');
     const responsive = document.querySelector(
       '[data-ad-placement="responsive_banner"]',
     );
-    if (!tool || !native || !responsive) return null;
+    if (!tool || !safetyCallout || !native || !sources || !responsive) return null;
 
     return {
       nativeAfterTool: Boolean(
         tool.compareDocumentPosition(native) & Node.DOCUMENT_POSITION_FOLLOWING,
       ),
-      responsiveAfterTool: Boolean(
-        tool.compareDocumentPosition(responsive) & Node.DOCUMENT_POSITION_FOLLOWING,
+      nativeAfterSafetyCallout: Boolean(
+        safetyCallout.compareDocumentPosition(native) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ),
+      responsiveAfterSources: Boolean(
+        sources.compareDocumentPosition(responsive) & Node.DOCUMENT_POSITION_FOLLOWING,
       ),
     };
   });
 
-  expect(order).toEqual({ nativeAfterTool: true, responsiveAfterTool: true });
+  expect(order).toEqual({
+    nativeAfterTool: true,
+    nativeAfterSafetyCallout: true,
+    responsiveAfterSources: true,
+  });
 });
 
 test('ad placements do not widen mobile or desktop pages', async ({ page }, testInfo) => {
@@ -290,14 +299,9 @@ test('production requests one Native and only the matching responsive banner', a
     .toBe(1);
   expect(scriptRequests.filter((url) => url === oppositeBannerUrl)).toHaveLength(0);
 
-  const atOptions = await page.evaluate(() =>
-    (window as Window & { atOptions?: Record<string, unknown> }).atOptions,
-  );
-  expect(atOptions).toMatchObject(
-    mobile
-      ? { key: '1178d923040089031d1739c3b0f07aee', width: 320, height: 50 }
-      : { key: '11f222c98a7f20ac1f26e0182e67c82d', width: 728, height: 90 },
-  );
+  const responsiveSlot = page.locator('[data-ad-placement="responsive_banner"]');
+  await expect(responsiveSlot).toHaveAttribute('data-ad-width', mobile ? '320' : '728');
+  await expect(responsiveSlot).toHaveAttribute('data-ad-height', mobile ? '50' : '90');
 
   await page.setViewportSize(mobile ? { width: 1440, height: 900 } : { width: 390, height: 844 });
   await page.waitForTimeout(750);

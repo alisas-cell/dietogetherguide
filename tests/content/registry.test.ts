@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { guidePages, requiredCoreRoutes } from '../../content';
+import { guidePageByRoute, guidePages, requiredCoreRoutes } from '../../content';
 import { homeSectionOrder } from '../../content/home';
 
 const trustRoutes = new Set(['/about', '/contact', '/privacy', '/terms']);
@@ -70,5 +70,27 @@ describe('public content registry', () => {
       'faq',
       'disclaimer',
     ]);
+  });
+
+  it('keeps the Privacy identity stable while accurately disclosing Adsterra', () => {
+    const privacy = guidePageByRoute.get('/privacy');
+
+    expect(privacy).toBeDefined();
+    expect(privacy?.route).toBe('/privacy');
+    expect(privacy?.title).toBe('Privacy Policy — Die Together Guide');
+    expect(privacy?.h1).toBe('Privacy Policy');
+    expect(privacy?.description).toBe(
+      'The privacy policy for Die Together Guide, covering current analytics, storage, external links, public correction reports, and future changes.',
+    );
+
+    const disclosure = JSON.stringify(privacy);
+    expect(disclosure).toMatch(/Adsterra/);
+    expect(disclosure).toMatch(/third-party advertising/i);
+    expect(disclosure).toMatch(/cookies/i);
+    expect(disclosure).toMatch(/device/i);
+    expect(disclosure).toMatch(/browser/i);
+    expect(disclosure).toMatch(/request data/i);
+    expect(disclosure).not.toMatch(/does not currently load third-party advertising/i);
+    expect(disclosure).not.toMatch(/visitor has consented|consent is assumed/i);
   });
 });

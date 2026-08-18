@@ -336,10 +336,10 @@ export const trustPages = [
       'The privacy policy for Die Together Guide, covering current analytics, storage, external links, public correction reports, and future changes.',
     eyebrow: 'Policy',
     directAnswer: [
-      'This V1 does not use advertising, account registration, contact forms, analytics scripts, or gameplay-tool localStorage. Normal hosting infrastructure may process request data needed to deliver and secure the site.',
+      'Die Together Guide displays third-party advertising supplied by Adsterra on its canonical production pages. The site does not offer account registration or contact forms, and it does not install a separate first-party analytics script or use gameplay-tool localStorage.',
       'Correction reports use an external public GitHub issue tracker and are governed by GitHub’s privacy terms. Do not post sensitive information there.',
     ],
-    buildContext: 'Effective Aug 17, 2026',
+    buildContext: 'Effective Aug 18, 2026',
     confidence: 'confirmed',
     breadcrumbs: [{ label: 'Home', href: '/' }, { label: 'Privacy' }],
     sections: [
@@ -347,28 +347,39 @@ export const trustPages = [
         id: 'collection',
         heading: 'Information this site collects',
         paragraphs: [
-          'The site does not ask visitors to create an account or submit personal information. It does not currently load third-party advertising or analytics code. The hosting provider may retain standard request, security, and performance logs under its own terms.',
+          'The site does not ask visitors to create an account or submit personal information. On the canonical production domain, Adsterra advertising resources are requested from third-party advertising servers. Those services may receive request data such as an IP address, browser type, device or operating-system information, referring page, and ad interaction data under their own policies.',
+          'The hosting provider may also retain standard request, security, and performance logs under its own terms. Die Together Guide does not install a separate first-party analytics script.',
         ],
       },
       {
         id: 'storage',
         heading: 'Cookies and local storage',
         paragraphs: [
-          'The current guide and co-op troubleshooter do not require cookies or localStorage for their own operation. If a future tool stores optional preferences, this policy and the tool UI will disclose the key and purpose before release.',
+          'The guide and co-op troubleshooter do not require cookies or localStorage for their own operation. Adsterra and advertising partners may use cookies, pixels, or similar browser storage and identifiers to deliver, measure, protect, or tailor advertising. Visitors can use browser controls or content-blocking settings, and blocking an ad must not prevent the guide or tool from working.',
         ],
       },
       {
         id: 'external',
         heading: 'External links and corrections',
         paragraphs: [
-          'Links to Steam, RetroStyle Games, SteamDB, and GitHub lead to third-party services with separate privacy practices. GitHub issues are public; users are responsible for removing personal or confidential information before posting.',
+          'Links to Steam, RetroStyle Games, SteamDB, GitHub, and Adsterra lead to third-party services with separate privacy practices. GitHub issues are public; users are responsible for removing personal or confidential information before posting.',
+        ],
+        links: [
+          {
+            href: 'https://adsterra.com/privacy-policy-managed/',
+            label: 'Read Adsterra’s privacy policy',
+          },
+          {
+            href: 'https://adsterra.com/cookies/',
+            label: 'Read Adsterra’s cookies policy',
+          },
         ],
       },
       {
         id: 'changes',
         heading: 'Policy changes',
         paragraphs: [
-          'If analytics, ads, forms, accounts, embeds, or local preferences are enabled later, the policy will be revised to match the actual configuration and the effective date will change.',
+          'This policy is revised when the site’s actual advertising, analytics, forms, accounts, embeds, or local-preference configuration changes. The effective date will change with any material update.',
         ],
       },
     ],

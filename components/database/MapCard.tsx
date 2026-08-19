@@ -25,7 +25,11 @@ export function MapCard({ map }: { map: MapEntry }) {
           Open map guide <span aria-hidden="true">→</span>
         </Link>
       ) : (
-        <span className="verification-note">Exact EA map identity pending</span>
+        <span className="verification-note">
+          {map.status === 'ea-live'
+            ? 'Current hub record · detail-page evidence gate not met'
+            : 'Current EA identity not reverified'}
+        </span>
       )}
     </article>
   );

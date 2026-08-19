@@ -57,7 +57,7 @@ export default function OpenGraphImage() {
           </span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', color: '#9db0ac', fontSize: 15 }}>
-          <span>SOURCE-CHECKED · PRE-EA BUILD CONTEXT</span>
+          <span>SOURCE-CHECKED · EARLY ACCESS LIVE</span>
           <span>DIETOGETHERGUIDE.SHOP</span>
         </div>
       </div>

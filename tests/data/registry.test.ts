@@ -9,7 +9,7 @@ import {
 } from '../../lib/evidence/validate';
 import { assets } from '../../data/assets';
 import { effects } from '../../data/effects';
-import { gameSnapshot } from '../../data/game';
+import { gameSnapshot, releaseLabel } from '../../data/game';
 import { items } from '../../data/items';
 import { maps } from '../../data/maps';
 import { monsters } from '../../data/monsters';
@@ -32,7 +32,7 @@ const source: SourceRef = {
 };
 
 describe('evidence registry validation', () => {
-  it('keeps the shipped registries valid and the release state explicitly prerelease', () => {
+  it('keeps the shipped registries valid and exposes the verified Early Access launch state', () => {
     const result = validateRegistries({
       sources,
       monsters,
@@ -40,14 +40,95 @@ describe('evidence registry validation', () => {
       items,
       effects,
       assets,
-      now: new Date('2026-08-17T03:00:00Z'),
+      now: new Date('2026-08-19T06:00:00Z'),
     });
 
     expect(result.errors).toEqual([]);
-    expect(gameSnapshot.releaseState).toBe('prerelease');
+    expect(gameSnapshot.releaseState).toBe('early-access-live');
+    expect(releaseLabel).toBe('EARLY ACCESS · LIVE');
     expect(gameSnapshot.releaseTimestampUtc?.value).toBe(
-      '2026-08-18T17:00:00Z',
+      '2026-08-18T17:01:40Z',
     );
+  });
+
+  it('requires current launch evidence before an entity is promoted to EA-confirmed', () => {
+    const result = validateRegistries({
+      sources: [source],
+      monsters: [
+        {
+          id: 'mimic',
+          slug: 'mimic',
+          name: 'Mimic',
+          status: 'ea-confirmed',
+          summary: {
+            value: 'A historical Mimic reference.',
+            evidence: confirmedEvidence,
+          },
+          pageReady: false,
+          lastVerifiedAt: '2026-08-17T01:44:11Z',
+        },
+      ],
+      maps: [
+        {
+          id: 'ship',
+          slug: 'ship',
+          name: 'Ship',
+          status: 'ea-live',
+          overview: {
+            value: 'A location announced before launch.',
+            evidence: confirmedEvidence,
+          },
+          pageReady: false,
+          lastVerifiedAt: '2026-08-17T01:44:11Z',
+        },
+      ],
+      items: [],
+      effects: [],
+      assets: [],
+      now: new Date('2026-08-19T06:00:00Z'),
+    });
+
+    expect(result.errors).toContain(
+      'EA-confirmed monster mimic has no current EA evidence',
+    );
+    expect(result.errors).toContain(
+      'EA-live map ship has no current EA evidence',
+    );
+  });
+
+  it('keeps launch-promoted monsters and maps current-evidence-backed and hub-only', () => {
+    const currentMonsters = monsters.filter(
+      (monster) => monster.status === 'ea-confirmed',
+    );
+    const currentMaps = maps.filter((map) => map.status === 'ea-live');
+
+    expect(currentMonsters.map((monster) => monster.name)).toEqual(
+      expect.arrayContaining([
+        'Ear',
+        'Anchorer',
+        'Snake',
+        'Crab',
+        'Parrot',
+        'Sleeper',
+        'Mimic',
+        'Rat',
+      ]),
+    );
+    expect(currentMaps.map((map) => map.name)).toEqual(
+      expect.arrayContaining(['Ship', 'Castle']),
+    );
+
+    for (const monster of currentMonsters) {
+      expect(monster.summary?.evidence.build).toBe('ea-launch');
+      expect(monster.summary?.evidence.sourceIds).toContain('S11');
+      expect(monster.pageReady).toBe(false);
+    }
+
+    for (const map of currentMaps) {
+      expect(map.overview?.evidence.build).toBe('ea-launch');
+      expect(map.overview?.evidence.sourceIds).toContain('S11');
+      expect(map.pageReady).toBe(false);
+    }
   });
 
   it('ships a traced local official-media set with no missing files', () => {

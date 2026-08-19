@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 
 import type { GuidePageData } from '../../content';
+import { formatLastModified } from '../../lib/seo/routes';
 import { buildGuideSchemas } from '../../lib/seo/schema';
 import { AdSlot } from '../ads/AdSlot';
 import { JsonLd } from '../seo/JsonLd';
@@ -52,7 +53,11 @@ export function GuidePage({ page }: { page: GuidePageData }) {
             ) : null}
           </header>
 
-          <EvidenceBanner confidence={page.confidence} context={page.buildContext}>
+          <EvidenceBanner
+            confidence={page.confidence}
+            context={page.buildContext}
+            date={formatLastModified(page.route)}
+          >
             Build-sensitive details are labeled. Pending fields are not rendered as affirmative answers.
           </EvidenceBanner>
 

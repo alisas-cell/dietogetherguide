@@ -60,4 +60,24 @@ describe('guide SEO builders', () => {
       ]),
     );
   });
+
+  it('publishes truthful route-level last-modified dates', () => {
+    const entries = new Map(
+      sitemap().map((entry) => [
+        new URL(entry.url).pathname,
+        entry.lastModified instanceof Date
+          ? entry.lastModified.toISOString()
+          : entry.lastModified,
+      ]),
+    );
+
+    expect(entries.get('/')).toBe('2026-08-19T00:00:00.000Z');
+    expect(entries.get('/release-date')).toBe('2026-08-19T00:00:00.000Z');
+    expect(entries.get('/troubleshooting')).toBe('2026-08-19T00:00:00.000Z');
+    expect(entries.get('/tools/coop-troubleshooter')).toBe(
+      '2026-08-19T00:00:00.000Z',
+    );
+    expect(entries.get('/privacy')).toBe('2026-08-18T00:00:00.000Z');
+    expect(entries.get('/terms')).toBe('2026-08-17T00:00:00.000Z');
+  });
 });

@@ -1,5 +1,12 @@
 import { sourceById } from '../../data/sources';
 
+const checkedDateFormatter = new Intl.DateTimeFormat('en-US', {
+  day: 'numeric',
+  month: 'short',
+  timeZone: 'UTC',
+  year: 'numeric',
+});
+
 export function SourceList({ sourceIds }: { sourceIds: string[] }) {
   const listedSources = sourceIds
     .map((sourceId) => sourceById.get(sourceId))
@@ -14,7 +21,9 @@ export function SourceList({ sourceIds }: { sourceIds: string[] }) {
             <a href={source.url} rel="noopener noreferrer">
               {source.title}
             </a>
-            <span>{source.publisher} · checked Aug 17, 2026</span>
+            <span>
+              {source.publisher} · checked {checkedDateFormatter.format(new Date(source.checkedAt))}
+            </span>
           </li>
         ))}
       </ul>

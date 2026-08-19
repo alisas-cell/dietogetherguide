@@ -1,6 +1,7 @@
 import type { ItemCategory, ItemEntry, VersionedField } from './types';
 
-const checkedAt = '2026-08-17T00:00:00Z';
+const historicalCheckedAt = '2026-08-17T00:00:00Z';
+const launchCheckedAt = '2026-08-19T05:33:14Z';
 
 const preEaReference = (
   name: string,
@@ -10,7 +11,7 @@ const preEaReference = (
   evidence: {
     confidence: 'preview-build',
     sourceIds,
-    verifiedAt: checkedAt,
+    verifiedAt: historicalCheckedAt,
     build: 'demo',
   },
 });
@@ -25,7 +26,7 @@ const entries: Array<[string, string, ItemCategory, string[]]> = [
   ['flashlight', 'Flashlight', 'utility', ['S08']],
 ];
 
-export const items = entries.map(([id, name, category, sourceIds]) => ({
+const historicalItems = entries.map(([id, name, category, sourceIds]) => ({
   id,
   slug: id,
   name,
@@ -33,5 +34,48 @@ export const items = entries.map(([id, name, category, sourceIds]) => ({
   status: 'demo-evidenced',
   purpose: preEaReference(name, sourceIds),
   pageReady: false,
-  lastVerifiedAt: checkedAt,
+  lastVerifiedAt: historicalCheckedAt,
 })) satisfies ItemEntry[];
+
+const currentItems = [
+  {
+    id: 'piano',
+    slug: 'piano',
+    name: 'Piano',
+    category: 'utility',
+    purpose: 'Piano is named as a playable activity in the official Early Access launch announcement.',
+  },
+  {
+    id: 'flute',
+    slug: 'flute',
+    name: 'Flute',
+    category: 'utility',
+    purpose: 'Flute is named as a playable activity in the official Early Access launch announcement.',
+  },
+  {
+    id: 'guitar',
+    slug: 'guitar',
+    name: 'Guitar',
+    category: 'utility',
+    purpose: 'Guitar is named as a playable activity in the official Early Access launch announcement.',
+  },
+] satisfies Array<{ id: string; slug: string; name: string; category: ItemCategory; purpose: string }>;
+
+export const items = [
+  ...currentItems.map((item) => ({
+    ...item,
+    status: 'ea-confirmed' as const,
+    purpose: {
+      value: item.purpose,
+      evidence: {
+        confidence: 'confirmed' as const,
+        sourceIds: ['S11'],
+        verifiedAt: launchCheckedAt,
+        build: 'ea-launch' as const,
+      },
+    },
+    pageReady: false,
+    lastVerifiedAt: launchCheckedAt,
+  })),
+  ...historicalItems,
+] satisfies ItemEntry[];

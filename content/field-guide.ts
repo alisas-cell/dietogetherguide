@@ -7,14 +7,14 @@ export const fieldGuidePages = [
     title: 'Last Pirates: Die Together Monsters — Enemy Guide',
     h1: 'Last Pirates: Die Together Monsters',
     description:
-      'A source-checked monster evidence hub for Last Pirates: Die Together, separating Demo names and behaviors from the unverified Early Access roster.',
+      'A source-checked Last Pirates: Die Together monster hub with current Early Access threats, official behavior notes, and a separate Demo archive.',
     eyebrow: 'Threat ledger',
     directAnswer: [
-      'The official Demo advertised nine unique monsters that could react to sound, movement, and player behavior. Nine names also appear across official Demo or pre-Early-Access patch contexts, but this is not presented as the final Early Access roster.',
-      'Exact health, damage, spawn rates, current locations, and reliable counterplay remain absent until the live build supports them.',
+      'The official Early Access launch announcement identifies Ear, Anchorer, Snake, Crab, Parrot, Sleeper, Mimic, and rats, including a rat king. It gives broad behavior for each, but does not call this a complete roster.',
+      'Exact health, damage, spawn rates, full location placement, and reliable combat statistics remain unpublished because the current evidence does not support them.',
     ],
-    buildContext: 'Demo evidence · EA roster pending',
-    confidence: 'preview-build',
+    buildContext: 'Early Access launch · Checked Aug 19',
+    confidence: 'confirmed',
     breadcrumbs: [{ label: 'Home', href: '/' }, { label: 'Monsters' }],
     heroImage: {
       src: '/images/game/steam-page-background.jpg',
@@ -24,10 +24,10 @@ export const fieldGuidePages = [
     sections: [
       {
         id: 'known',
-        heading: 'What we know before Early Access',
+        heading: 'What is confirmed in Early Access',
         paragraphs: [
-          'Official material establishes that monsters are a central source of pressure and that their reactions can depend on what players do. Patch notes also show enemies changing repeatedly before launch, which makes build labels essential.',
-          'A name in patch notes proves that a referenced entity existed in that build. It does not prove a current model, detection radius, attack value, spawn rule, or even inclusion in the opening roster.',
+          'The Aug 18 launch announcement names eight current threat records and describes how each creates pressure. Ear reacts to sound, Anchorer hides among loot, Snake responds to movement, Crab gathers treasure, Parrot imitates sounds, Sleeper wakes when disturbed, Mimic disguises itself, and rats can be led by a rat king.',
+          'Those are official launch-level descriptions. They establish identity and broad behavior, not health, damage, detection distance, spawn rules, or exhaustive map placement.',
         ],
       },
       {
@@ -35,36 +35,36 @@ export const fieldGuidePages = [
         heading: 'The Demo advertised nine unique monsters',
         paragraphs: [
           'The separate Steam Demo page described nine unique monsters inside the Demo experience. This is a sourced historical quantity tied to Silent Cove, not a promise that Early Access contains exactly nine.',
-          'Early Access is advertised with fresh monsters, so the live roster could add, remove, rename, or rework entries. The hub will change only after each identity is visible in current evidence.',
+          'Early Access now has its own named set in the official launch announcement. The historical quantity remains useful Demo context, but it cannot be used to declare the live roster complete.',
         ],
       },
       {
         id: 'detection',
         heading: 'How detection is described',
         paragraphs: [
-          'Official Demo copy says threats react to sounds, movement, and player behavior. Those categories are useful for organizing observations, but they should not be copied onto every monster card by default.',
-          'A future card needs an entity-specific trigger or meaningful behavior before it can offer counterplay. “All monsters hear sound” would be an unjustified generalization.',
+          'Current evidence supports entity-specific triggers for some threats: Ear is tied to sound, Snake to movement, Sleeper to being disturbed, and Mimic to visual disguise. The launch post describes other behaviors without converting them into a single detection rule.',
+          'The guide therefore does not copy “sound” or “movement” onto every card. Behavior stays attached to the entity and the source that actually describes it.',
         ],
       },
       {
         id: 'names',
-        heading: 'Names evidenced in pre-EA sources',
+        heading: 'Names confirmed at Early Access launch',
         paragraphs: [
-          'Official patches or posts reference Howler, Misha, Mimic, Screamer, Monkey Screamer, Rat, Pirate, Shark, and Pirate Head. Some notes mention fixes or interactions without describing the full behavior.',
-          'These records stay at Demo or pre-EA confidence until current identity, location, trigger, and counterplay can be checked. No individual detail page passes the publication gate yet.',
+          'The live launch set is Ear, Anchorer, Snake, Crab, Parrot, Sleeper, Mimic, and Rat. Rats are grouped as one record because the announcement discusses rats and their rat king together rather than defining separate full enemy records.',
+          'Howler, Misha, Screamer, Monkey Screamer, Pirate, Shark, and Pirate Head remain in the historical registry. They are not silently carried into the current list without current evidence.',
         ],
       },
       {
         id: 'not-final',
         heading: 'Why this is not the final Early Access list',
         paragraphs: [
-          'The official launch announcement says fresh monsters are coming, and the store says the build is bigger than the Demo. Neither source enumerates the opening roster at this check.',
-          'Publishing a confident “all monsters” list now would collapse announced, historical, and live evidence into one misleading answer. This hub instead exposes what each source actually supports.',
+          'The launch announcement supplies a useful current set, but it does not say “all monsters” or give a roster total. The store also says the Early Access build is bigger than the Demo.',
+          'Publishing these eight as a complete list would add a claim the source never makes. This hub labels them launch-confirmed and leaves completeness open.',
         ],
         callout: {
           type: 'build-check',
           title: 'No invented roster',
-          body: 'Names remain Demo/pre-EA references until the Early Access build verifies their current identity and behavior.',
+          body: 'Eight records are current and launch-confirmed; none is presented as proof of a complete roster or undocumented combat values.',
         },
       },
       {
@@ -76,23 +76,22 @@ export const fieldGuidePages = [
         table: {
           headers: ['Name', 'Source/build', 'Safely known', 'EA status'],
           rows: [
-            ['Howler', 'Jul 7 pre-EA patch', 'Named in an official patch', 'Pending verification'],
-            ['Misha', 'Official pre-EA news', 'Named reference', 'Pending verification'],
-            ['Mimic', 'Jun 19 Demo patch', 'Named in patch context', 'Pending verification'],
-            ['Screamer', 'Jun 19 Demo patch', 'Named in patch context', 'Pending verification'],
-            ['Monkey Screamer', 'Official pre-EA news', 'Named reference', 'Pending verification'],
-            ['Rat', 'Jun/Jul pre-EA patches', 'Named in multiple patches', 'Pending verification'],
-            ['Pirate', 'Jun 19 Demo patch', 'Named reference', 'Pending verification'],
-            ['Shark', 'Official pre-EA news', 'Named reference', 'Pending verification'],
-            ['Pirate Head', 'Official pre-EA news', 'Named reference', 'Pending verification'],
+            ['Ear', 'Aug 18 launch announcement', 'Uses sound to find pirates', 'Launch-confirmed'],
+            ['Anchorer', 'Aug 18 launch announcement', 'Hides among loot', 'Launch-confirmed'],
+            ['Snake', 'Aug 18 launch announcement', 'Reacts to movement', 'Launch-confirmed'],
+            ['Crab', 'Aug 18 launch announcement', 'Gathers treasure', 'Launch-confirmed'],
+            ['Parrot', 'Aug 18 launch announcement', 'Imitates sounds', 'Launch-confirmed'],
+            ['Sleeper', 'Aug 18 launch announcement', 'Wakes when disturbed', 'Launch-confirmed'],
+            ['Mimic', 'Aug 18 launch announcement', 'Uses disguise', 'Launch-confirmed'],
+            ['Rat', 'Aug 18 launch announcement', 'Group includes a rat king', 'Launch-confirmed'],
           ],
         },
       },
       {
         id: 'launch-verification',
-        heading: 'What we will verify at launch',
+        heading: 'What still needs direct build verification',
         paragraphs: [
-          'For each visible monster, the checklist covers current name, visual identity, map, detection or behavior, threat pattern, at least one defensible warning or counterplay note, and build version.',
+          'The next evidence gate covers visual identity, location placement, repeatable triggers, threat pattern, and at least one defensible warning or counterplay note tied to a current build.',
           'A detail page appears only after enough fields are useful together. Until then, the hub is the honest place for partial evidence.',
         ],
       },
@@ -101,7 +100,7 @@ export const fieldGuidePages = [
       {
         question: 'How many monsters are in Last Pirates: Die Together?',
         answer:
-          'The Demo officially advertised nine unique monsters. The exact Early Access roster is not yet verified.',
+          'Eight current threat records are named in the official launch announcement, but the source does not say that list is complete. The Demo historically advertised nine unique monsters.',
       },
       {
         question: 'Why are there no monster health or damage values?',
@@ -114,12 +113,12 @@ export const fieldGuidePages = [
           'Official Demo copy says monsters may react to sound, movement, and player behavior, but entity-specific triggers must be verified individually.',
       },
     ],
-    sourceIds: ['S01', 'S02', 'S04', 'S07', 'S08'],
+    sourceIds: ['S01', 'S04', 'S11'],
     related: [
       related('/maps', 'Maps', 'Connect verified threats to current locations.'),
       related('/maps/silent-cove', 'Silent Cove', 'See the Demo location context.'),
       related('/beginner-guide', 'Beginner guide', 'Use safe threat-awareness habits.'),
-      related('/early-access', 'Early Access', 'Understand why the live roster is pending.'),
+      related('/early-access', 'Early Access', 'See the launch evidence and historical split.'),
     ],
   },
   {
@@ -127,13 +126,13 @@ export const fieldGuidePages = [
     title: 'Last Pirates: Die Together Maps — Locations & Guides',
     h1: 'Last Pirates: Die Together Maps',
     description:
-      'Last Pirates: Die Together map status: Silent Cove in the Demo, a new map announced for Early Access, and the evidence required for full guides.',
+      'Current Last Pirates: Die Together location status for the Early Access Ship and Castle, with Silent Cove preserved as a separate Demo record.',
     eyebrow: 'Location charts',
     directAnswer: [
-      'Silent Cove is the only map named and documented for the public Demo in the current source ledger. Official Early Access announcements promise a brand-new map but do not confirm its name on the sources checked before unlock.',
-      'No guessed location title, room list, landmark map, or monster route is published as fact.',
+      'The official Early Access launch announcement names two current locations: the Ship and the Castle. Silent Cove remains a documented Demo location, not an automatic third live-map claim.',
+      'No guessed room list, landmark route, exact monster placement, or unofficial floor plan is published as fact.',
     ],
-    buildContext: 'Demo map confirmed · EA map announced',
+    buildContext: 'Early Access Ship + Castle · Checked Aug 19',
     confidence: 'confirmed',
     breadcrumbs: [{ label: 'Home', href: '/' }, { label: 'Maps' }],
     heroImage: {
@@ -146,8 +145,8 @@ export const fieldGuidePages = [
         id: 'status',
         heading: 'Current map and location status',
         paragraphs: [
-          'The source-backed map registry has two records: Silent Cove as a Demo location and an internal unnamed record for the announced Early Access map. The unnamed record is not exposed as a made-up destination.',
-          'This structure lets a verified live name replace the internal record without allowing pre-release guesses into titles, links, or schema.',
+          'The source-backed registry now has Ship and Castle as current Early Access location records. Silent Cove stays separate as a Demo archive because current official evidence does not directly name it as a live location.',
+          'The hub can state the current names and broad settings. It still withholds detail routes until each location has enough verified structure, landmarks, hazards, and useful guidance.',
         ],
       },
       {
@@ -160,10 +159,10 @@ export const fieldGuidePages = [
       },
       {
         id: 'ea-map',
-        heading: 'A new Early Access map is announced',
+        heading: 'Ship and Castle in Early Access',
         paragraphs: [
-          'The July Early Access announcement promises a brand-new map. The store also describes the opening build as containing more locations than the Demo.',
-          'The current official pages we checked do not establish a public name, layout, hazards, or monster roster for that location. Those fields remain unrendered.',
+          'The Aug 18 launch announcement directly names the Ship and Castle. It presents both as playable Early Access locations and frames them as distinct expedition settings.',
+          'That evidence does not supply layouts, safe routes, hazard tables, or a complete monster-to-location mapping. Those fields remain unrendered instead of being inferred from promotional media.',
         ],
       },
       {
@@ -175,8 +174,9 @@ export const fieldGuidePages = [
         table: {
           headers: ['Location', 'Build status', 'Verified setting', 'Guide status'],
           rows: [
-            ['Silent Cove', 'Public Demo', 'Cursed location / abandoned manor', 'Demo-context guide available'],
-            ['New EA map', 'Officially announced', 'Name and setting unverified', 'No public detail page'],
+            ['Ship', 'Early Access live', 'Pirate ship expedition setting', 'Current hub record'],
+            ['Castle', 'Early Access live', 'Castle expedition setting', 'Current hub record'],
+            ['Silent Cove', 'Public Demo archive', 'Cursed location / abandoned manor', 'Demo-context guide available'],
           ],
         },
       },
@@ -192,8 +192,8 @@ export const fieldGuidePages = [
         id: 'linking',
         heading: 'Map-specific monsters and loot',
         paragraphs: [
-          'Once live evidence is available, each map record will connect to monsters actually observed there and to item or extraction guidance that materially applies. Relationships come from evidence fields, not a random related-post widget.',
-          'Until then, Silent Cove links to the general monster and loot hubs so readers can understand the Demo context without seeing false placement claims.',
+          'Current location records will connect to monsters only when official or repeatable build evidence places them there. Relationships come from evidence fields, not a generic related-post widget.',
+          'For now, Ship and Castle link to the general monster and loot hubs. Silent Cove does the same as a clearly historical record, avoiding false placement claims in either direction.',
         ],
       },
     ],
@@ -201,20 +201,20 @@ export const fieldGuidePages = [
       {
         question: 'What maps are in Last Pirates: Die Together?',
         answer:
-          'Silent Cove is confirmed for the Demo. A brand-new Early Access map is announced, but its current name and details are not verified here.',
+          'Ship and Castle are named as current locations in the official Early Access launch announcement. Silent Cove is separately confirmed for the Demo.',
       },
       {
         question: 'Is Silent Cove in Early Access?',
         answer:
-          'The store says Early Access contains everything seen in the Demo, but the accessible live map list still requires launch verification.',
+          'The store says Early Access is bigger than the Demo, but the current launch announcement does not directly name Silent Cove. This guide therefore keeps it labeled as Demo evidence.',
       },
     ],
-    sourceIds: ['S01', 'S02', 'S03', 'S04'],
+    sourceIds: ['S01', 'S03', 'S04', 'S11'],
     related: [
       related('/maps/silent-cove', 'Silent Cove guide', 'Read the source-bounded Demo map guide.'),
       related('/monsters', 'Monsters', 'See the current threat evidence.'),
       related('/loot-and-extraction', 'Loot and extraction', 'Understand the loop a location supports.'),
-      related('/early-access', 'Early Access', 'Track the announced new-map delta.'),
+      related('/early-access', 'Early Access', 'Review the current launch delta.'),
     ],
   },
   {
@@ -296,10 +296,10 @@ export const fieldGuidePages = [
       },
       {
         id: 'ea-change',
-        heading: 'What may change in Early Access',
+        heading: 'How this record relates to Early Access',
         paragraphs: [
-          'Enemy behavior, item interactions, progression, geometry, visual feedback, and lobby-to-run flow may change. Official statements make clear that feedback has already reshaped key systems and will continue to do so.',
-          'After unlock, this page will either be reverified as a current location guide or remain explicitly archived as Demo intelligence. It will not blur the two states.',
+          'Enemy behavior, item interactions, progression, geometry, visual feedback, and lobby-to-run flow can differ from the Demo. The launch announcement currently names Ship and Castle, while this page remains explicitly archived as Silent Cove Demo intelligence.',
+          'If later first-party evidence names Silent Cove in a current build, the record will receive a new verification date and live evidence. Historical wording will not be silently relabeled.',
         ],
       },
     ],
@@ -318,7 +318,7 @@ export const fieldGuidePages = [
     sourceIds: ['S03', 'S04'],
     related: [
       related('/maps', 'Maps hub', 'See current location status.'),
-      related('/monsters', 'Monster evidence', 'Read the Demo/pre-EA threat ledger.'),
+      related('/monsters', 'Monster evidence', 'Compare current threats with the Demo archive.'),
       related('/loot-and-extraction', 'Loot and extraction', 'Understand the full return loop.'),
       related('/gameplay', 'Gameplay explained', 'Place the map inside the overall mission.'),
     ],
@@ -332,9 +332,9 @@ export const fieldGuidePages = [
     eyebrow: 'Haul protocol',
     directAnswer: [
       'The core objective is to find valuables inside a dangerous location and bring them back for the captain. Elastic arms and physics make hauling part of the challenge, while monsters and crew condition turn every extra object into a risk decision.',
-      'No Early Access value, rarity, weight, or spawn table is presented before the live build verifies it.',
+      'The launch announcement confirms broader and break-apart loot, but no official value, rarity, weight, or spawn table is available, so those numbers remain absent.',
     ],
-    buildContext: 'Official loop · Live economics pending',
+    buildContext: 'Early Access launch · Economics unverified',
     confidence: 'confirmed',
     breadcrumbs: [{ label: 'Home', href: '/' }, { label: 'Loot & Extraction' }],
     heroImage: {
@@ -355,7 +355,7 @@ export const fieldGuidePages = [
         id: 'finding',
         heading: 'Finding valuables',
         paragraphs: [
-          'Official copy encourages players to collect booty and explore deeper, but it does not publish current spawn rules or a stable economy. Search advice should therefore focus on observation and return planning rather than unverified tier lists.',
+          'Current launch copy says loot is broader and that some valuables can break apart, but it does not publish spawn rules or a stable economy. Search advice therefore focuses on observation and return planning rather than unverified tier lists.',
           'Before moving a difficult object, look at the path back and the crew’s available hands. Discovery has no value if the object cannot be transported safely.',
         ],
       },
@@ -379,7 +379,7 @@ export const fieldGuidePages = [
         id: 'bringing-back',
         heading: 'Bringing valuables back',
         paragraphs: [
-          'Official descriptions emphasize making it back to the ship and suggest that at least one surviving crewmember carrying the gold can preserve the expedition’s purpose. Exact scoring and persistence still need current-build verification.',
+          'Official descriptions emphasize making it back to the ship and preserving the haul. Exact scoring and persistence still need direct build verification, even though the broader extraction goal is current.',
           'On the return, assign the awkward object, protect the carrier’s path, and be willing to abandon the least useful burden. The haul is a crew task even if one pirate is physically holding it.',
         ],
       },
@@ -388,7 +388,7 @@ export const fieldGuidePages = [
         heading: 'How monsters complicate extraction',
         paragraphs: [
           'Monsters may react to sounds, movement, and player behavior, so hauling can create new exposure. An encounter that is manageable while empty-handed may become dangerous when the crew is occupied by treasure.',
-          'Do not apply one counterplay rule to every threat. Current monster-specific responses belong in evidence-gated entity records after launch.',
+          'Do not apply one counterplay rule to every threat. The current monster hub separates launch-described behavior from statistics and counterplay that still need direct verification.',
         ],
       },
       {
@@ -401,10 +401,10 @@ export const fieldGuidePages = [
       },
       {
         id: 'database',
-        heading: 'Why there is no live value database yet',
+        heading: 'Why there is no numeric value database yet',
         paragraphs: [
           'A useful database requires observed names, values, acquisition context, build identity, and evidence timestamps. Guessing values from footage would make the planner look detailed while making it unreliable.',
-          'If live economics are stable, this hub can add comparisons. If not, the better tool will be a non-numeric crew extraction checklist.',
+          'If current economics prove stable and visible, this hub can add comparisons. Until then, a non-numeric crew extraction checklist is more useful than fabricated precision.',
         ],
       },
     ],
@@ -420,7 +420,7 @@ export const fieldGuidePages = [
           'No verified Early Access value table exists in the current source set, so this guide does not rank items by invented numbers.',
       },
     ],
-    sourceIds: ['S01', 'S03', 'S04'],
+    sourceIds: ['S01', 'S03', 'S04', 'S11'],
     related: [
       related('/gameplay', 'Gameplay loop', 'See where extraction fits in a run.'),
       related('/beginner-guide', 'Beginner guide', 'Make safer early haul decisions.'),
@@ -433,14 +433,14 @@ export const fieldGuidePages = [
     title: 'Last Pirates: Die Together Items & Weapons Guide',
     h1: 'Items and Weapons in Last Pirates: Die Together',
     description:
-      'Official pre-EA item and weapon references for Last Pirates: Die Together, with live stats and acquisition details withheld until verified.',
+      'Current Early Access equipment signals and historical item references for Last Pirates: Die Together, with unsupported stats and acquisition details withheld.',
     eyebrow: 'Equipment locker',
     directAnswer: [
-      'Official pre-Early-Access sources name the Magnet, Rupor, Bell, knives, guillotine, bomb, and flashlight. They establish that these items appeared in particular patch contexts, not that every item is unchanged or present at launch.',
+      'The Early Access launch announcement confirms Piano, Flute, and Guitar activities, a reworked upgradable cart, and a Monkey Assistant. Earlier patches separately name Magnet, Rupor, Bell, knives, guillotine, bomb, and flashlight.',
       'Damage, ammo, durability, price, rarity, and acquisition locations remain unpublished until current-build evidence supports them.',
     ],
-    buildContext: 'Named in Demo/pre-EA patches',
-    confidence: 'preview-build',
+    buildContext: 'Early Access launch + historical patch ledger',
+    confidence: 'confirmed',
     breadcrumbs: [{ label: 'Home', href: '/' }, { label: 'Items & Weapons' }],
     heroImage: {
       src: '/images/game/steam-header.jpg',
@@ -450,10 +450,18 @@ export const fieldGuidePages = [
     sections: [
       {
         id: 'official-names',
-        heading: 'What official patches have named',
+        heading: 'What current and historical sources name',
         paragraphs: [
-          'Patch history provides a cautious starting list: Magnet, Rupor, Bell, knives, guillotine, bomb, and flashlight. Some appeared in fix notes or rework descriptions rather than a formal inventory catalog.',
+          'The launch announcement provides current signals for Piano, Flute, Guitar, cart upgrades, and the Monkey Assistant. Historical patches provide a separate list: Magnet, Rupor, Bell, knives, guillotine, bomb, and flashlight.',
           'The registry records each name, category, source, build, and last-checked date. Unknown numeric fields are absent rather than shown as zero or question marks.',
+        ],
+      },
+      {
+        id: 'launch-equipment',
+        heading: 'Current launch equipment and activities',
+        paragraphs: [
+          'Piano, Flute, and Guitar are named as playable activities in the Early Access announcement. The same source describes a reworked cart that can be upgraded and a Monkey Assistant that can help the crew.',
+          'Those statements confirm presence and broad purpose only. They do not provide acquisition routes, prices, upgrade costs, durability, or complete interaction rules, so no detail page passes the evidence gate yet.',
         ],
       },
       {
@@ -461,7 +469,7 @@ export const fieldGuidePages = [
         heading: 'Weapons referenced before Early Access',
         paragraphs: [
           'Knives, a bomb, and a guillotine are named in official pre-EA material. A name alone does not tell us whether an object is carried, placed, environmental, consumable, or changed for launch.',
-          'The guide therefore does not assign damage classes, ammunition, or a best-weapon rank. Those require direct live context.',
+          'The guide therefore does not assign current damage classes, ammunition, or a best-weapon rank. Those require direct live context.',
         ],
       },
       {
@@ -477,7 +485,7 @@ export const fieldGuidePages = [
         heading: 'Consumables and rum effects',
         paragraphs: [
           'An official devlog discussed rum that could provide positive and negative effects. It is kept in a separate effects registry because a status system is not the same thing as a weapon or general utility item.',
-          'No complete drink list, duration table, stacking rule, or acquisition route is claimed for Early Access.',
+          'The launch announcement confirms rum-related bar and tutorial activity, but no complete drink list, duration table, stacking rule, or acquisition route is claimed.',
         ],
       },
       {
@@ -490,26 +498,25 @@ export const fieldGuidePages = [
         callout: {
           type: 'build-check',
           title: 'Name does not equal current stats',
-          body: 'Each reference is evidence that an item existed in a pre-EA context, not a complete launch specification.',
+          body: 'Current launch references and historical patch names are shown separately; neither supplies a complete stat block.',
         },
       },
       {
         id: 'database-plan',
-        heading: 'Launch-day item database plan',
+        heading: 'Current item database gate',
         paragraphs: [
-          'The first pass will verify current names, visible categories, purpose, acquisition context, interactions, and any numbers the game clearly exposes. Records with only a name and one sentence will remain on this hub.',
+          'Current records need a verified name, visible category, purpose, acquisition context, interactions, and any numbers the game clearly exposes. Records with only a name and one sentence remain on this hub.',
           'Individual item pages require enough information to answer how to obtain, use, limit, and combine the item without copying a generic paragraph.',
         ],
         table: {
-          headers: ['Item', 'Pre-EA class', 'Current safe statement'],
+          headers: ['Item/system', 'Evidence state', 'Current safe statement'],
           rows: [
-            ['Magnet', 'Utility', 'Named in an official patch'],
-            ['Rupor', 'Utility', 'Named in an official patch'],
-            ['Bell', 'Utility', 'Named in official news'],
-            ['Knives', 'Weapon', 'Named in a pre-EA patch'],
-            ['Guillotine', 'Weapon', 'Named in official news'],
-            ['Bomb', 'Weapon', 'Named in official news'],
-            ['Flashlight', 'Utility', 'Rework referenced in a Demo patch'],
+            ['Piano / Flute / Guitar', 'EA launch', 'Named playable activities'],
+            ['Cart', 'EA launch', 'Reworked and upgradeable'],
+            ['Monkey Assistant', 'EA launch', 'Named crew helper'],
+            ['Magnet / Rupor / Bell', 'Historical', 'Named in official patches/news'],
+            ['Knives / Guillotine / Bomb', 'Historical', 'Weapon references only'],
+            ['Flashlight', 'Historical', 'Rework referenced in a Demo patch'],
           ],
         },
       },
@@ -518,7 +525,7 @@ export const fieldGuidePages = [
       {
         question: 'What weapons are in the game?',
         answer:
-          'Official pre-EA sources name knives, a bomb, and a guillotine, but the current Early Access inventory and behavior still need verification.',
+          'Historical official sources name knives, a bomb, and a guillotine. The current launch announcement does not provide a complete live weapon inventory or combat statistics.',
       },
       {
         question: 'Why are there no damage values?',
@@ -526,7 +533,7 @@ export const fieldGuidePages = [
           'The current evidence does not verify live damage, ammo, durability, or price, so those fields are intentionally omitted.',
       },
     ],
-    sourceIds: ['S02', 'S07', 'S08', 'S09'],
+    sourceIds: ['S02', 'S07', 'S08', 'S09', 'S11'],
     related: [
       related('/loot-and-extraction', 'Loot and extraction', 'Understand valuables and carrying.'),
       related('/rum-buffs-and-perks', 'Rum and perks', 'See effects kept separate from equipment.'),
@@ -543,9 +550,9 @@ export const fieldGuidePages = [
     eyebrow: 'Effects ledger',
     directAnswer: [
       'A May official devlog described rum with positive examples such as faster running and longer arms, alongside possible negative side effects. It also introduced Booty Stats as an upgrade context.',
-      'Rum, cards, perks, and Booty Stats are kept as separate labels until the Early Access build verifies how the systems relate.',
+      'The launch announcement confirms that rum remains present through bar activity and the tutorial, but it does not establish current effect values or merge rum, cards, perks, and Booty Stats into one system.',
     ],
-    buildContext: 'Demo-era devlog · EA mechanics pending',
+    buildContext: 'EA rum presence · Demo-era effect details',
     confidence: 'preview-build',
     breadcrumbs: [{ label: 'Home', href: '/' }, { label: 'Rum Buffs & Perks' }],
     heroImage: {
@@ -558,7 +565,7 @@ export const fieldGuidePages = [
         id: 'rum-description',
         heading: 'How rum and status effects were described',
         paragraphs: [
-          'The official May devlog discussed drinks that can change a pirate’s capabilities and can also carry negative side effects. This establishes a Demo-era effect concept, not a complete live consumable system.',
+          'The official May devlog discussed drinks that can change a pirate’s capabilities and can also carry negative side effects. The Aug 18 launch announcement confirms current rum presence through bar activity and the tutorial, but not the old effect values.',
           'The current registry treats the examples as preview-build evidence and records no duration, stacking, drop location, price, or exact magnitude.',
         ],
       },
@@ -575,7 +582,7 @@ export const fieldGuidePages = [
         heading: 'Negative side effects',
         paragraphs: [
           'The same source warns that drinks can produce negative effects. It does not provide enough current information to rank risks, define exact penalties, or calculate whether a drink is worth using.',
-          'A launch-day guide will describe the tradeoff only after the game exposes the consequence clearly. Unknown penalties remain unknown rather than being guessed from animation or footage.',
+          'A current guide can describe the tradeoff only after the game exposes the consequence clearly. Unknown penalties remain unknown rather than being guessed from animation or footage.',
         ],
       },
       {
@@ -596,9 +603,9 @@ export const fieldGuidePages = [
       },
       {
         id: 'reverify',
-        heading: 'What must be reverified for Early Access',
+        heading: 'What still needs current-build verification',
         paragraphs: [
-          'The launch check covers system names, where each effect comes from, positive and negative outcomes, duration, stacking, persistence, and whether Booty Stats, cards, and perks are independent systems.',
+          'The current-build check covers system names, where each effect comes from, positive and negative outcomes, duration, stacking, persistence, and whether Booty Stats, cards, and perks are independent systems.',
           'Only visible and stable mechanics will become public database entries. A full-list claim will wait until coverage is actually complete.',
         ],
         table: {
@@ -624,7 +631,7 @@ export const fieldGuidePages = [
           'That relationship is not verified, so this guide deliberately keeps the labels separate.',
       },
     ],
-    sourceIds: ['S01', 'S09'],
+    sourceIds: ['S01', 'S09', 'S11'],
     related: [
       related('/items-and-weapons', 'Items and weapons', 'See physical equipment separately.'),
       related('/gameplay', 'Gameplay explained', 'Place effects in the broader run loop.'),

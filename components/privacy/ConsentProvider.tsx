@@ -123,6 +123,7 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
   const [requiresConsent, setRequiresConsent] = useState(true);
   const [managementOpen, setManagementOpen] = useState(false);
   const [persistenceError, setPersistenceError] = useState<string | null>(null);
+  const externalReloadScheduledRef = useRef(false);
   const returnFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -230,7 +231,10 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
       setPersistenceError(null);
 
       if (nextConsent === 'rejected' && canLoadAds) {
-        window.location.reload();
+        if (!externalReloadScheduledRef.current) {
+          externalReloadScheduledRef.current = true;
+          window.location.reload();
+        }
         return;
       }
 

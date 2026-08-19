@@ -44,16 +44,16 @@ export const problemOptions: Array<{ value: ProblemType; label: string }> = [
 const official = (sourceIds: string[]): Evidence => ({
   confidence: 'confirmed',
   sourceIds,
-  verifiedAt: '2026-08-17T01:44:11Z',
+  verifiedAt: '2026-08-19T05:33:14Z',
   build: 'pre-ea',
 });
 
 type StepSeed = Omit<TroubleshooterStep, 'order'>;
 
 const releaseCheck: StepSeed = {
-  title: 'Confirm the current release state',
+  title: 'Confirm the full game and current client state',
   instruction:
-    'Open the Steam store page and confirm that the game is available in your client. Before unlock, a missing session or play control is not a networking failure.',
+    'Early Access is live. Confirm the full game rather than the separate Demo is selected, finish Steam updates, and refresh the library state before treating a missing control as a networking failure.',
   basis: 'official',
   evidence: official(['S01', 'S05']),
   risk: 'none',
@@ -321,6 +321,6 @@ export function getTroubleshooterResult(
     diagnosisScope: `${seed.scope} Context: ${context}.`,
     steps: seed.steps.map((step, index) => ({ ...step, order: index + 1 })),
     relatedGuides: seed.related,
-    lastChecked: 'Aug 17, 2026',
+    lastChecked: 'Aug 19, 2026',
   };
 }

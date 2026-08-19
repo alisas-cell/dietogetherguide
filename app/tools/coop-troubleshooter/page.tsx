@@ -10,6 +10,7 @@ import { JsonLd } from '../../../components/seo/JsonLd';
 import { CoopTroubleshooter } from '../../../components/tools/CoopTroubleshooter';
 import { Container } from '../../../components/ui/Container';
 import { canonicalOrigin } from '../../../lib/seo/metadata';
+import { formatLastModified, getLastModified } from '../../../lib/seo/routes';
 
 const route = '/tools/coop-troubleshooter';
 const url = `${canonicalOrigin}${route}`;
@@ -38,7 +39,7 @@ const schemas = [
     description:
       'A source-backed interactive checklist for Quick Join, reconnect, host, desync, window, and controller symptoms.',
     isPartOf: { '@id': `${canonicalOrigin}/#website` },
-    dateModified: '2026-08-17',
+    dateModified: getLastModified(route),
     inLanguage: 'en',
   },
   {
@@ -70,9 +71,12 @@ export default function CoopTroubleshooterPage() {
             </p>
           </header>
 
-          <EvidenceBanner context="Pre-EA official patch context">
-            The current Steam unlock state is checked first. Exact live menu paths stay
-            qualified until the opening build is verified.
+          <EvidenceBanner
+            context="Early Access live · official patch context"
+            date={formatLastModified(route)}
+          >
+            The tool uses current availability plus documented feature history. Exact menu
+            paths stay qualified until they are directly verified in the current client.
           </EvidenceBanner>
 
           <CoopTroubleshooter />
@@ -97,15 +101,15 @@ export default function CoopTroubleshooterPage() {
             </section>
           </div>
 
-          <Callout variant="build" title="Live-build verification">
+          <Callout variant="build" title="Current evidence boundary">
             <p>
               Quick Join and session-resilience work are documented in June and July
-              pre-EA patches. Visit the <Link href="/updates">updates hub</Link> for the
+              historical patches. Visit the <Link href="/updates">updates hub</Link> for the
               source timeline.
             </p>
           </Callout>
           <AdSlot pathname={route} placement="article_mid" />
-          <SourceList sourceIds={['S01', 'S07', 'S08']} />
+          <SourceList sourceIds={['S01', 'S07', 'S08', 'S10']} />
           <AdSlot pathname={route} placement="responsive_banner" />
         </Container>
       </article>

@@ -15,9 +15,9 @@ export const homeSectionOrder = [
 
 export const homeFaqs = [
   {
-    question: 'When does Last Pirates: Die Together enter Early Access?',
+    question: 'Is Last Pirates: Die Together out now?',
     answer:
-      'Steam lists August 18, 2026. A pre-release SteamDB snapshot points to 17:00 UTC, but we treat that as a timestamp snapshot until the store actually unlocks.',
+      'Yes. Last Pirates: Die Together entered Steam Early Access on August 18, 2026. Steam now lists the game as released and available to buy.',
   },
   {
     question: 'How many players can play together?',
@@ -30,18 +30,18 @@ export const homeFaqs = [
       'No. Die Together Guide is an independent fan-made field guide. We cite official sources and separate Demo evidence from facts verified for Early Access.',
   },
   {
-    question: 'Will the Demo guides still be useful?',
+    question: 'Is this the full 1.0 release?',
     answer:
-      'They remain useful for the documented extraction loop, Silent Cove context, and pre-EA feature history, but every build-sensitive detail is labeled and queued for a launch-day recheck.',
+      'No. This is the Early Access release. The developers target six months or more in EA and plan more content and systems on the road to 1.0.',
   },
   {
-    question: 'Does Early Access add maps and monsters?',
+    question: 'Does the game support Steam Cloud?',
     answer:
-      'The official store promises a new map, fresh monsters, and more content than the Demo. Exact live names and quantities remain unconfirmed before unlock.',
+      'Steam currently lists Steam Cloud. That does not define every saved field or confirm that Demo progress transfers to Early Access.',
   },
   {
-    question: 'How long is Early Access expected to last?',
+    question: 'Which maps and monsters are live?',
     answer:
-      'The developers currently say they are aiming for six months or more and will keep the game in Early Access until it is ready for 1.0.',
+      'The launch post names Ship, Castle, and several current monsters. The evidence hubs keep those confirmations separate from Demo references and do not claim the roster is complete.',
   },
 ] as const;

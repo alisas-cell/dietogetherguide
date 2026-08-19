@@ -1,5 +1,6 @@
 import type { GuidePageData } from '../../content';
 import { canonicalOrigin, canonicalUrl } from './metadata';
+import { getLastModified } from './routes';
 
 export type JsonLdObject = Record<string, unknown>;
 
@@ -20,7 +21,7 @@ export function buildGuideSchemas(page: GuidePageData): JsonLdObject[] {
         url: canonicalOrigin,
         name: 'Die Together Guide',
       },
-      dateModified: '2026-08-17',
+      dateModified: getLastModified(page.route),
       inLanguage: 'en',
     },
     {
@@ -85,7 +86,7 @@ export function buildHomeSchemas(
       description:
         'Source-checked Last Pirates: Die Together guides for monsters, maps, loot, co-op, Early Access updates and troubleshooting.',
       isPartOf: { '@id': `${canonicalOrigin}/#website` },
-      dateModified: '2026-08-17',
+      dateModified: getLastModified('/'),
       inLanguage: 'en',
     },
     {

@@ -43,7 +43,11 @@ export function MonsterCard({ monster }: { monster: MonsterEntry }) {
           Open threat record <span aria-hidden="true">→</span>
         </Link>
       ) : (
-        <span className="verification-note">EA identity check pending</span>
+        <span className="verification-note">
+          {monster.status === 'ea-confirmed'
+            ? 'Current hub record · detail-page evidence gate not met'
+            : 'Current EA identity not reverified'}
+        </span>
       )}
     </article>
   );

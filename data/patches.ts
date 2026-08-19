@@ -2,6 +2,22 @@ import type { PatchEntry } from './types';
 
 export const patches = [
   {
+    id: 'ea-launch-2026-08-18',
+    slug: 'early-access-is-live',
+    title: 'Early Access is live',
+    date: '2026-08-18',
+    sourceIds: ['S01', 'S05', 'S11'],
+    build: 'EA launch',
+    summary: 'Steam now lists the game as released in Early Access, and the official launch post documents the opening content without presenting it as a numbered patch changelog.',
+    changes: [
+      { category: 'maps', text: 'Ship and Castle are identified as two brand-new launch locations.', affectedEntityIds: ['ship', 'castle'] },
+      { category: 'monsters', text: 'The launch post names and describes a new group of current enemies.', affectedEntityIds: ['ear', 'anchorer', 'snake', 'crab', 'parrot', 'sleeper', 'mimic', 'rat'] },
+      { category: 'items', text: 'Loot, cart upgrades, a Monkey Assistant, instruments, rum, and other launch activities are described at a high level.' },
+      { category: 'other', text: 'The current store lists solo play, online co-op for up to four, and Steam Cloud.' },
+    ],
+    affectedRoutes: ['/', '/release-date', '/early-access', '/beginner-guide', '/monsters', '/maps', '/loot-and-extraction', '/coop', '/save-and-reconnect', '/troubleshooting'],
+  },
+  {
     id: '2026-07-21-early-access-date',
     slug: 'early-access-sets-sail-august-18',
     title: 'Early Access Sets Sail on August 18',

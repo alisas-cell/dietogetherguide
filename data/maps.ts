@@ -1,4 +1,16 @@
-import type { MapEntry } from './types';
+import type { MapEntry, VersionedField } from './types';
+
+const launchCheckedAt = '2026-08-19T05:33:14Z';
+
+const launchField = <T>(value: T): VersionedField<T> => ({
+  value,
+  evidence: {
+    confidence: 'confirmed',
+    sourceIds: ['S11'],
+    verifiedAt: launchCheckedAt,
+    build: 'ea-launch',
+  },
+});
 
 const demoEvidence = {
   confidence: 'preview-build' as const,
@@ -9,6 +21,28 @@ const demoEvidence = {
 
 export const maps = [
   {
+    id: 'ship',
+    slug: 'ship',
+    name: 'Ship',
+    status: 'ea-live',
+    setting: launchField('A launch-build location set across tight decks and creaking rigging.'),
+    overview: launchField('The official launch announcement identifies Ship as one of two brand-new Early Access locations.'),
+    landmarks: launchField(['Tight decks', 'Rigging', 'Dark corners', 'Bar and deck activities']),
+    pageReady: false,
+    lastVerifiedAt: launchCheckedAt,
+  },
+  {
+    id: 'castle',
+    slug: 'castle',
+    name: 'Castle',
+    status: 'ea-live',
+    setting: launchField('A larger, colder launch-build location with heavy loot.'),
+    overview: launchField('The official launch announcement identifies Castle as one of two brand-new Early Access locations.'),
+    landmarks: launchField(['Elevators', 'Funiculars', 'Large spaces', 'Heavy-loot areas']),
+    pageReady: false,
+    lastVerifiedAt: launchCheckedAt,
+  },
+  {
     id: 'silent-cove',
     slug: 'silent-cove',
     name: 'Silent Cove',
@@ -18,7 +52,7 @@ export const maps = [
       evidence: demoEvidence,
     },
     overview: {
-      value: 'Silent Cove was the only named map available in the public Demo and supported the full arrival-to-extraction loop.',
+      value: 'Silent Cove was the named public Demo location. Current launch evidence does not directly identify it as an EA location.',
       evidence: demoEvidence,
     },
     extractionNotes: {
@@ -27,22 +61,5 @@ export const maps = [
     },
     pageReady: true,
     lastVerifiedAt: '2026-08-17T00:00:00Z',
-  },
-  {
-    id: 'ea-map-unannounced',
-    slug: 'ea-map-unannounced',
-    name: 'Unannounced Early Access map',
-    status: 'announced',
-    overview: {
-      value: 'Official July 21 news says Early Access adds a brand-new map; its name was not confirmed in the pre-release source pass.',
-      evidence: {
-        confidence: 'confirmed',
-        sourceIds: ['S02'],
-        verifiedAt: '2026-08-17T01:44:11Z',
-        build: 'pre-ea',
-      },
-    },
-    pageReady: false,
-    lastVerifiedAt: '2026-08-17T01:44:11Z',
   },
 ] satisfies MapEntry[];

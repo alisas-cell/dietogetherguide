@@ -84,6 +84,16 @@ function validateVersionedEntity(
   }
 }
 
+function hasCurrentEaEvidence(entity: VersionedEntity): boolean {
+  return Object.values(entity).some(
+    (value) =>
+      isVersionedField(value) &&
+      value.evidence.confidence === 'confirmed' &&
+      value.evidence.build.startsWith('ea-') &&
+      value.evidence.sourceIds.length > 0,
+  );
+}
+
 export function filterPublicVersionedField<T>(
   field: VersionedField<T> | undefined,
 ): T | undefined {
@@ -125,6 +135,15 @@ export function validateRegistries(registries: RegistrySet): ValidationResult {
   }
 
   for (const monster of registries.monsters) {
+    if (
+      monster.status === 'ea-confirmed' &&
+      !hasCurrentEaEvidence(monster as unknown as VersionedEntity)
+    ) {
+      errors.push(
+        `EA-confirmed monster ${monster.id} has no current EA evidence`,
+      );
+    }
+
     if (!monster.pageReady) continue;
     if (!monster.behavior && !monster.detection) {
       errors.push(
@@ -136,6 +155,33 @@ export function validateRegistries(registries: RegistrySet): ValidationResult {
     }
     if (!monster.mapIds) {
       errors.push(`Page-ready monster ${monster.id} is missing map context`);
+    }
+  }
+
+  for (const map of registries.maps) {
+    if (
+      map.status === 'ea-live' &&
+      !hasCurrentEaEvidence(map as unknown as VersionedEntity)
+    ) {
+      errors.push(`EA-live map ${map.id} has no current EA evidence`);
+    }
+  }
+
+  for (const item of registries.items) {
+    if (
+      item.status === 'ea-confirmed' &&
+      !hasCurrentEaEvidence(item as unknown as VersionedEntity)
+    ) {
+      errors.push(`EA-confirmed item ${item.id} has no current EA evidence`);
+    }
+  }
+
+  for (const effect of registries.effects) {
+    if (
+      effect.status === 'ea-confirmed' &&
+      !hasCurrentEaEvidence(effect as unknown as VersionedEntity)
+    ) {
+      errors.push(`EA-confirmed effect ${effect.id} has no current EA evidence`);
     }
   }
 

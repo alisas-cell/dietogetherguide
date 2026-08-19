@@ -10,10 +10,10 @@ export const trustPages = [
       'A concise official update timeline for Last Pirates: Die Together, with patch summaries connected to the guides and systems they affect.',
     eyebrow: 'Build log',
     directAnswer: [
-      'The current public state is still pre-Early Access. The most important recent official milestones are the Aug 18 date announcement, July’s Quick Join and networking rework, and June’s save/reconnect patch.',
+      'Last Pirates: Die Together is live in Early Access. The latest official milestone is the Aug 18 launch announcement, followed by July’s Quick Join and networking rework and June’s save/reconnect patch.',
       'This page summarizes changes rather than copying complete patch notes. Each entry links to the durable guide that needs rechecking.',
     ],
-    buildContext: 'Official updates · Checked Aug 17',
+    buildContext: 'Early Access live · Checked Aug 19',
     confidence: 'confirmed',
     breadcrumbs: [{ label: 'Home', href: '/' }, { label: 'Updates' }],
     heroImage: {
@@ -26,8 +26,8 @@ export const trustPages = [
         id: 'status',
         heading: 'Current build and release status',
         paragraphs: [
-          'Steam still labels the game unavailable at the Aug 17 check and plans Early Access for Aug 18. SteamDB also reports a prerelease state. No launch patch is presented as shipped before the store actually unlocks.',
-          'The central release snapshot controls this wording across the site. A news post alone will not flip the live badge if players still cannot purchase, install, or play.',
+          'Steam now lists the game as released and available in Early Access. The verified third-party release timestamp is Aug 18 at 17:01:40 UTC, and the official launch announcement followed at 17:04:55 UTC.',
+          'The central release snapshot controls this wording across the site. Availability, release metadata, and the official announcement now agree on the live state.',
         ],
       },
       {
@@ -35,7 +35,7 @@ export const trustPages = [
         heading: 'Jul 21: Early Access date and content promise',
         paragraphs: [
           'RetroStyle announced Aug 18 for Early Access, a brand-new map, fresh monsters, and major Demo milestones including more than 205,000 Demo players and more than 100,000 wishlists.',
-          'The announcement updates release, Early Access, map, and monster hubs. It does not identify a live map name or complete monster roster.',
+          'This announcement set the planned date. The later launch post supplies the current Ship and Castle names and current threat records, so historical plans and shipped content remain separate entries.',
         ],
         bullets: [
           'Affected guides: release date, Early Access, maps, monsters.',
@@ -47,7 +47,7 @@ export const trustPages = [
         heading: 'Jul 7: Quick Join and networking rework',
         paragraphs: [
           'The July update added Quick Join for public lobbies and described substantial work on reconnect, host migration, and session synchronization. It also mentioned Steam Deck support, FOV, and invert-Y improvements.',
-          'That patch is the authoritative history for Quick Join’s existence. The opening-build menu flow and remaining issues still need a fresh check.',
+          'That patch is the authoritative history for Quick Join’s existence. The exact current menu flow and remaining issues still need direct build evidence.',
         ],
         bullets: [
           'Affected guides: co-op, Quick Join, save/reconnect, troubleshooting, requirements.',
@@ -71,20 +71,20 @@ export const trustPages = [
         heading: 'May 28: rum effects and Booty Stats context',
         paragraphs: [
           'An official devlog described rum effects, including positive examples and possible negative side effects, and introduced Booty Stats as an upgrade context.',
-          'These concepts remain separated in the effects hub until the live game verifies their names, persistence, relationship, and current values.',
+          'The launch announcement confirms current rum presence but not the Demo-era effect values. The effects hub therefore keeps current presence and historical mechanics visibly separate.',
         ],
       },
       {
         id: 'release-day',
-        heading: 'Release-day patch section',
+        heading: 'Aug 18: Early Access launch',
         paragraphs: [
-          'No release-day patch is recorded as shipped yet. Once the store unlocks, official notes will be summarized here with their affected systems and evidence timestamp.',
-          'The update workflow flags connected monster, map, co-op, save, item, and progression records for review instead of silently assuming that older advice survives a patch.',
+          'The official launch post identifies Ship and Castle; Ear, Anchorer, Snake, Crab, Parrot, Sleeper, Mimic, and rats; broader and break-apart loot; cart upgrades; a Monkey Assistant; bar and rum activities; Piano, Flute, and Guitar; skins; lighting work; and an overhauled tutorial.',
+          'The post is a launch overview rather than a numbered technical changelog. It confirms current entities and systems at the level stated, without supplying hidden values, a complete roster, or exhaustive issue notes.',
         ],
         callout: {
           type: 'build-check',
-          title: 'Launch entry pending real unlock',
-          body: 'The timeline will add a shipped Early Access event only after official availability is independently confirmed.',
+          title: 'Launch independently confirmed',
+          body: 'Steam availability, third-party release metadata, and the official launch announcement align on the Early Access release.',
         },
       },
       {
@@ -98,9 +98,9 @@ export const trustPages = [
     ],
     faqs: [
       {
-        question: 'Is there a launch patch yet?',
+        question: 'Is Early Access live?',
         answer:
-          'Not in the verified ledger at the Aug 17 pre-release check. A launch entry will wait for actual Steam availability and an official build signal.',
+          'Yes. Steam shows the game released, and the official Aug 18 launch announcement documents the Early Access opening content.',
       },
       {
         question: 'Are full patch notes copied here?',
@@ -108,7 +108,7 @@ export const trustPages = [
           'No. The page provides concise summaries and links to official sources and affected field-guide pages.',
       },
     ],
-    sourceIds: ['S02', 'S07', 'S08', 'S09'],
+    sourceIds: ['S01', 'S02', 'S05', 'S07', 'S08', 'S09', 'S11'],
     related: [
       related('/release-date', 'Release date', 'Track the actual availability state.'),
       related('/roadmap', 'Roadmap', 'Separate shipped changes from plans.'),
@@ -124,10 +124,10 @@ export const trustPages = [
       'Direct, source-checked answers about the Last Pirates: Die Together release date, Early Access, co-op, Demo, saves, Quick Join, and Steam Deck.',
     eyebrow: 'Fast answers',
     directAnswer: [
-      'Last Pirates: Die Together is planned to enter Early Access on Aug 18, 2026 for one to four players. At the Aug 17 check, Steam still says the game is not yet available.',
-      'The answers below distinguish official Demo and pre-EA history from details that still need verification in the opening build.',
+      'Last Pirates: Die Together entered Steam Early Access on Aug 18, 2026. It supports one to four players through single-player and online co-op.',
+      'The answers below distinguish current launch facts from official Demo and pre-EA history, and leave unsupported build details unclaimed.',
     ],
-    buildContext: 'Pre-EA FAQ · Checked Aug 17',
+    buildContext: 'Early Access FAQ · Checked Aug 19',
     confidence: 'confirmed',
     breadcrumbs: [{ label: 'Home', href: '/' }, { label: 'FAQ' }],
     sections: [
@@ -135,7 +135,7 @@ export const trustPages = [
         id: 'release',
         heading: 'Release and Early Access',
         paragraphs: [
-          'Steam lists Aug 18, 2026. A SteamDB snapshot points to 17:00 UTC, but that minute remains metadata until the store unlocks. The opening is Early Access, not 1.0.',
+          'Steam lists Aug 18, 2026 and now shows the game as released. SteamDB records the release state at 17:01:40 UTC. The opening is Early Access, not 1.0.',
           'The developers aim for six months or more in Early Access and say readiness will matter more than a fixed final-release date.',
         ],
       },
@@ -144,14 +144,14 @@ export const trustPages = [
         heading: 'Players, solo, and public crews',
         paragraphs: [
           'Official Steam information supports one to four players, with both single-player and online co-op listed. A July patch added Quick Join for public lobbies.',
-          'The exact live region options, lobby screens, and voice-chat behavior still need opening-build verification.',
+          'The developer FAQ confirms in-game voice chat and recommends the same region for friends. Exact current lobby screens and voice controls still need direct build evidence.',
         ],
       },
       {
         id: 'demo',
         heading: 'Demo and map context',
         paragraphs: [
-          'The Demo centered on Silent Cove and advertised nine unique monsters. Early Access is promised to include a new map, fresh monsters, and more content and polish.',
+          'The Demo centered on Silent Cove and advertised nine unique monsters. The Early Access launch post now names Ship and Castle plus eight current threat records without claiming a complete roster.',
           'The current sources do not confirm how long the Demo remains available or whether Demo saves transfer.',
         ],
       },
@@ -168,7 +168,7 @@ export const trustPages = [
         heading: 'Steam Deck and requirements',
         paragraphs: [
           'A July patch mentions Steam Deck support fixes, but this guide does not claim Valve Verified status without a current Steam badge. The minimum PC listing currently calls for 8 GB RAM, a GTX 1050 equivalent, and 5 GB storage.',
-          'Requirements and compatibility are rechecked at launch because store listings can change.',
+          'Requirements were rechecked on Aug 19 and can still change during Early Access.',
         ],
       },
       {
@@ -176,7 +176,7 @@ export const trustPages = [
         heading: 'How these answers stay accurate',
         paragraphs: [
           'Version-sensitive answers use a build label, checked date, confidence state, and source IDs. Pending-verification fields are never rendered as affirmative answers.',
-          'After unlock, hubs are updated before detail pages. This avoids a fast but false “complete wiki” built from Demo assumptions.',
+          'Hubs are updated before detail pages. This avoids a fast but false “complete wiki” built from Demo assumptions or thin launch references.',
         ],
       },
     ],
@@ -184,11 +184,11 @@ export const trustPages = [
       {
         question: 'When does Last Pirates: Die Together release?',
         answer:
-          'Steam lists Aug 18, 2026 for Early Access. The game remained unavailable at our Aug 17 check.',
+          'The game entered Steam Early Access on Aug 18, 2026 and is available now.',
       },
       {
         question: 'Is it Early Access?',
-        answer: 'Yes. Aug 18 is described as the planned Early Access opening, not 1.0.',
+        answer: 'Yes. The Aug 18 release is the live Early Access opening, not 1.0.',
       },
       {
         question: 'How many players can play together?',
@@ -206,7 +206,7 @@ export const trustPages = [
       {
         question: 'Does Early Access have new maps and monsters?',
         answer:
-          'Official announcements promise a brand-new map and fresh monsters; exact live names and quantities remain pending before unlock.',
+          'The launch announcement names Ship, Castle, and eight current threat records. It does not claim that the monster list is complete.',
       },
       {
         question: 'How long will Early Access last?',
@@ -214,12 +214,12 @@ export const trustPages = [
       },
       {
         question: 'Does the game have Quick Join?',
-        answer: 'An official July pre-EA patch added Quick Join for public lobbies.',
+        answer: 'An official July patch added Quick Join for public lobbies; the current developer FAQ also advises friends to use the same region.',
       },
       {
         question: 'Does progress save?',
         answer:
-          'A June Demo patch documented chapter progress saving. Exact Early Access persistence and Demo transfer remain unconfirmed.',
+          'A June Demo patch documented chapter progress saving, and the current Steam page lists Steam Cloud. Exact run persistence and Demo transfer remain unconfirmed.',
       },
       {
         question: 'Is Steam Deck supported?',
@@ -227,7 +227,7 @@ export const trustPages = [
           'Official patches mention Steam Deck support fixes, but this guide does not claim Valve Verified status without a current store badge.',
       },
     ],
-    sourceIds: ['S01', 'S02', 'S04', 'S05', 'S07', 'S08'],
+    sourceIds: ['S01', 'S02', 'S04', 'S05', 'S07', 'S08', 'S10', 'S11'],
     related: [
       related('/release-date', 'Release date', 'See the timestamp conversion and status gate.'),
       related('/early-access', 'Early Access', 'Compare confirmed plans with open questions.'),

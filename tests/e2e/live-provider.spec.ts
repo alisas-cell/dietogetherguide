@@ -33,11 +33,14 @@ test('one cookie-free production route requests the Native and desktop providers
       }
     });
 
-    await Promise.all([
-      page.waitForRequest(ADSTERRA_CONFIG.native.scriptUrl),
-      page.waitForRequest(ADSTERRA_CONFIG.responsive.desktop.scriptUrl),
+    const [nativeResponse, desktopResponse] = await Promise.all([
+      page.waitForResponse(ADSTERRA_CONFIG.native.scriptUrl),
+      page.waitForResponse(ADSTERRA_CONFIG.responsive.desktop.scriptUrl),
       page.goto('/gameplay', { waitUntil: 'domcontentloaded' }),
     ]);
+
+    expect(nativeResponse.ok(), `Native HTTP ${nativeResponse.status()}`).toBe(true);
+    expect(desktopResponse.ok(), `desktop banner HTTP ${desktopResponse.status()}`).toBe(true);
 
     await expect
       .poll(

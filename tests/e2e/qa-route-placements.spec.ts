@@ -3,14 +3,11 @@ import { expect, test } from './qa-fixture';
 import { ADSTERRA_CONFIG } from '../../components/ads/ad-config';
 import { publicRoutes } from '../../lib/seo/routes';
 
-const providerHosts = new Set([
-  'pl30902793.effectivecpmnetwork.com',
-  'www.highperformanceformat.com',
-]);
 const nativePlacementId = ADSTERRA_CONFIG.native.containerId.replace('container-', '');
 const excludedRoute = '/not-a-real-chart';
 
 test('every registered route has exactly two QA ad opportunities at the intended breakpoint', async ({
+  baseURL,
   page,
 }, testInfo) => {
   test.skip(
@@ -24,12 +21,15 @@ test('every registered route has exactly two QA ad opportunities at the intended
   const oppositeUnit = desktop
     ? ADSTERRA_CONFIG.responsive.mobile
     : ADSTERRA_CONFIG.responsive.desktop;
-  const providerRequests: string[] = [];
+  if (!baseURL) throw new Error('The route audit requires a first-party baseURL.');
+  const firstPartyOrigin = new URL(baseURL).origin;
+  const thirdPartyRequests: string[] = [];
   const results: Array<Record<string, string | number | boolean>> = [];
 
   page.on('request', (request) => {
-    if (providerHosts.has(new URL(request.url()).hostname)) {
-      providerRequests.push(request.url());
+    const url = new URL(request.url());
+    if (['http:', 'https:'].includes(url.protocol) && url.origin !== firstPartyOrigin) {
+      thirdPartyRequests.push(request.url());
     }
   });
 
@@ -84,7 +84,7 @@ test('every registered route has exactly two QA ad opportunities at the intended
   });
   expect(excludedResponse?.status(), excludedRoute).toBe(404);
   await expect(page.locator('[data-ad-placement]'), `${excludedRoute} placements`).toHaveCount(0);
-  expect(providerRequests).toEqual([]);
+  expect(thirdPartyRequests).toEqual([]);
 
   results.push({
     route: `${excludedRoute} (representative unmatched/error route)`,

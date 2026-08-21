@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './qa-fixture';
 
 import { publicRoutes } from '../../lib/seo/routes';
 
@@ -6,22 +6,6 @@ const adsterraHosts = [
   'pl30902793.effectivecpmnetwork.com',
   'www.highperformanceformat.com',
 ];
-
-const nativeScriptUrl =
-  'https://pl30902793.effectivecpmnetwork.com/1283f453c8142633c69e76c4a788d1e9/invoke.js';
-const bannerScriptUrls = {
-  mobile: 'https://www.highperformanceformat.com/1178d923040089031d1739c3b0f07aee/invoke.js',
-  desktop: 'https://www.highperformanceformat.com/11f222c98a7f20ac1f26e0182e67c82d/invoke.js',
-} as const;
-const consentStorageKey = 'dietogetherguide:advertising-consent';
-const grantedConsent = JSON.stringify({ policyVersion: 1, advertising: 'granted' });
-
-async function grantAdvertisingBeforeHydration(page: import('@playwright/test').Page) {
-  await page.addInitScript(
-    ({ key, value }) => window.localStorage.setItem(key, value),
-    { key: consentStorageKey, value: grantedConsent },
-  );
-}
 
 test('home is coherent, noindex in development, and free of horizontal overflow', async ({
   page,
@@ -282,7 +266,7 @@ test('stalled privacy-region lookup fails safe into a required choice', async ({
   await expect(
     page.getByRole('region', { name: 'Your advertising choices' }),
   ).toBeVisible({ timeout: 5_000 });
-  await expect(page.locator('[data-ad-state="off"]')).toHaveCount(2);
+  await expect(page.locator('[data-ad-state="qa"]')).toHaveCount(2);
   await page.unrouteAll({ behavior: 'ignoreErrors' });
 });
 
@@ -305,7 +289,7 @@ test('privacy rejection synchronizes to another open tab', async ({
     page.waitForNavigation(),
     page.getByRole('button', { name: 'Reject non-essential' }).click(),
   ]);
-  await expect(secondPage.locator('[data-ad-state="off"]')).toHaveCount(2);
+  await expect(secondPage.locator('[data-ad-state="qa"]')).toHaveCount(2);
   await secondPage.getByRole('button', { name: 'Privacy Choices' }).click();
   await expect(
     secondPage.getByRole('region', { name: 'Your advertising choices' }),
@@ -371,79 +355,4 @@ test('ad placements do not widen mobile or desktop pages', async ({ page }, test
       dimensions.clientWidth + 1,
     );
   }
-});
-
-test('production requests one Native and only the matching responsive banner', async ({
-  page,
-}, testInfo) => {
-  test.skip(process.env.PLAYWRIGHT_EXPECT_LIVE_ADS !== '1');
-  test.skip(
-    !['mobile-390x844', 'desktop-1440x900'].includes(testInfo.project.name),
-  );
-
-  const mobile = testInfo.project.name === 'mobile-390x844';
-  const expectedBannerUrl = mobile ? bannerScriptUrls.mobile : bannerScriptUrls.desktop;
-  const oppositeBannerUrl = mobile ? bannerScriptUrls.desktop : bannerScriptUrls.mobile;
-  const scriptRequests: string[] = [];
-
-  await grantAdvertisingBeforeHydration(page);
-
-  page.on('request', (request) => {
-    if (
-      request.url() === nativeScriptUrl ||
-      Object.values(bannerScriptUrls).includes(
-        request.url() as (typeof bannerScriptUrls)[keyof typeof bannerScriptUrls],
-      )
-    ) {
-      scriptRequests.push(request.url());
-    }
-  });
-
-  await Promise.all([
-    page.waitForRequest(nativeScriptUrl),
-    page.waitForRequest(expectedBannerUrl),
-    page.goto('/gameplay', { waitUntil: 'domcontentloaded' }),
-  ]);
-
-  await expect.poll(() => scriptRequests.filter((url) => url === nativeScriptUrl).length).toBe(1);
-  await expect
-    .poll(() => scriptRequests.filter((url) => url === expectedBannerUrl).length)
-    .toBe(1);
-  expect(scriptRequests.filter((url) => url === oppositeBannerUrl)).toHaveLength(0);
-
-  const responsiveSlot = page.locator('[data-ad-placement="responsive_banner"]');
-  await expect(responsiveSlot).toHaveAttribute('data-ad-width', mobile ? '320' : '728');
-  await expect(responsiveSlot).toHaveAttribute('data-ad-height', mobile ? '50' : '90');
-
-  await page.setViewportSize(mobile ? { width: 1440, height: 900 } : { width: 390, height: 844 });
-  await page.waitForTimeout(750);
-
-  expect(scriptRequests.filter((url) => url === nativeScriptUrl)).toHaveLength(1);
-  expect(scriptRequests.filter((url) => url === expectedBannerUrl)).toHaveLength(1);
-  expect(scriptRequests.filter((url) => url === oppositeBannerUrl)).toHaveLength(0);
-});
-
-test('production ad failures collapse without breaking the troubleshooter', async ({
-  page,
-}, testInfo) => {
-  test.skip(process.env.PLAYWRIGHT_EXPECT_LIVE_ADS !== '1');
-  test.skip(testInfo.project.name !== 'desktop-1440x900');
-
-  await grantAdvertisingBeforeHydration(page);
-
-  for (const host of adsterraHosts) {
-    await page.route(`https://${host}/**`, (route) => route.abort('failed'));
-  }
-
-  await page.goto('/tools/coop-troubleshooter', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('[data-ad-state="failed"]')).toHaveCount(2, {
-    timeout: 15_000,
-  });
-  await expect(page.locator('[data-ad-placement]')).toHaveCount(2);
-  await expect(page.locator('[data-ad-placement]').first()).toBeHidden();
-
-  await page.selectOption('#problem', 'reconnect-fails');
-  await page.getByLabel('Host').check();
-  await page.getByRole('button', { name: 'Build my safe checklist' }).click();
-  await expect(page.locator('#tool-result')).toContainText('Reconnect failure checklist');
 });

@@ -12,6 +12,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "test:e2e:production:qa": "PLAYWRIGHT_BASE_URL=https://dietogetherguide.shop playwright test",
+    "test:e2e:live-provider": "playwright test --config=playwright.live-provider.config.ts",
     "test:e2e:privacy": "npm run build && playwright test --config=playwright.production-equivalent.config.ts",
     "test:e2e:all": "npm run test:e2e && npm run test:e2e:privacy"
   },

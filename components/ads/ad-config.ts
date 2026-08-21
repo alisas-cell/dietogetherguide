@@ -7,6 +7,46 @@ export interface ResponsiveAdUnit {
   readonly scriptUrl: string;
 }
 
+export const AD_QA_COOKIE = {
+  name: 'gsf_ad_qa',
+  value: 'layout-v1',
+} as const;
+
+export type AdQaSessionCookie = {
+  readonly name: typeof AD_QA_COOKIE.name;
+  readonly value: typeof AD_QA_COOKIE.value;
+  readonly domain: string;
+  readonly path: '/';
+  readonly httpOnly: false;
+  readonly secure: boolean;
+  readonly sameSite: 'Strict';
+};
+
+export function createAdQaSessionCookie(baseURL: string): AdQaSessionCookie {
+  const url = new URL(baseURL);
+
+  return {
+    ...AD_QA_COOKIE,
+    domain: url.hostname,
+    path: '/',
+    httpOnly: false,
+    secure: url.protocol === 'https:',
+    sameSite: 'Strict',
+  };
+}
+
+export function isIntentionalAdQaSession(cookieHeader: string): boolean {
+  return cookieHeader.split(';').some((cookie) => {
+    const separator = cookie.indexOf('=');
+    if (separator < 0) return false;
+
+    return (
+      cookie.slice(0, separator).trim() === AD_QA_COOKIE.name &&
+      cookie.slice(separator + 1).trim() === AD_QA_COOKIE.value
+    );
+  });
+}
+
 export const MONETIZED_PUBLIC_ROUTES = [
   '/',
   '/release-date',
@@ -79,6 +119,10 @@ export const ADSTERRA_CONFIG = {
   };
 };
 
+export const ADSTERRA_NATIVE_PLACEMENT_ID =
+  '1283f453c8142633c69e76c4a788d1e9' as const;
+export const ADSTERRA_NATIVE_MIN_HEIGHT = 180 as const;
+
 export function isAdsterraProductionHost(hostname: string): boolean {
   return hostname === ADSTERRA_CONFIG.productionHostname;
 }
@@ -91,12 +135,15 @@ export function canInitializeAdsterra({
   hostname,
   pathname,
   privacyAllowsAds,
+  cookieHeader = '',
 }: {
   hostname: string;
   pathname: string;
   privacyAllowsAds: boolean;
+  cookieHeader?: string;
 }): boolean {
   return (
+    !isIntentionalAdQaSession(cookieHeader) &&
     privacyAllowsAds &&
     isAdsterraProductionHost(hostname) &&
     isMonetizedPublicRoute(pathname)

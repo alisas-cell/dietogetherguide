@@ -8,6 +8,7 @@ import {
   canInitializeAdsterra,
   selectResponsiveUnit,
 } from './ad-config';
+import { useIntentionalAdQaSession } from './ad-qa-runtime';
 import { reduceAdLoadState, watchProviderCreative } from './ad-runtime';
 import { usePrivacyConsent } from '../privacy/ConsentProvider';
 
@@ -20,14 +21,20 @@ export function AdsterraResponsiveBanner({ pathname }: { pathname: string }) {
   const initializedRef = useRef(false);
   const [state, dispatch] = useReducer(reduceAdLoadState, 'off');
   const [unit, setUnit] = useState<ResponsiveAdUnit | null>(null);
+  const qaMode = useIntentionalAdQaSession(pathname);
   const { canLoadAds } = usePrivacyConsent();
+  const renderedUnit = qaMode ? selectResponsiveUnit(window.innerWidth) : unit;
 
   useEffect(() => {
+    const cookieHeader = document.cookie;
+    if (qaMode) return;
+
     if (
       !canInitializeAdsterra({
         hostname: window.location.hostname,
         pathname,
         privacyAllowsAds: canLoadAds,
+        cookieHeader,
       }) ||
       initializedRef.current ||
       !creativeRef.current
@@ -73,20 +80,33 @@ export function AdsterraResponsiveBanner({ pathname }: { pathname: string }) {
       }
       initializedRef.current = false;
     };
-  }, [canLoadAds, pathname]);
+  }, [canLoadAds, pathname, qaMode]);
 
   return (
     <aside
       aria-label="Advertisement"
       className="ad-slot ad-slot-responsive"
-      data-ad-height={unit?.height}
+      data-ad-height={renderedUnit?.height}
+      data-ad-mode={qaMode ? 'qa' : undefined}
       data-ad-placement="responsive_banner"
+      data-ad-placement-id={qaMode ? renderedUnit?.key : undefined}
       data-ad-route={pathname}
-      data-ad-state={canLoadAds ? state : 'off'}
-      data-ad-width={unit?.width}
+      data-ad-state={qaMode ? 'qa' : canLoadAds ? state : 'off'}
+      data-responsive-variant={
+        renderedUnit
+          ? renderedUnit.key === ADSTERRA_CONFIG.responsive.desktop.key
+            ? 'desktop'
+            : 'mobile'
+          : undefined
+      }
+      data-ad-width={renderedUnit?.width}
     >
       <span className="ad-slot-label">Advertisement</span>
-      <div className="ad-creative ad-responsive-creative" ref={creativeRef} />
+      <div
+        className="ad-creative ad-responsive-creative"
+        data-ad-qa-placeholder={qaMode ? '' : undefined}
+        ref={creativeRef}
+      />
     </aside>
   );
 }

@@ -1530,7 +1530,8 @@ main {
 }
 
 .ad-slot[data-ad-state='loading'],
-.ad-slot[data-ad-state='ready'] {
+.ad-slot[data-ad-state='ready'],
+.ad-slot[data-ad-state='qa'] {
   display: grid;
 }
 
@@ -1548,7 +1549,8 @@ main {
   overflow: hidden;
 }
 
-.ad-slot-native[data-ad-state='loading'] .ad-native-creative {
+.ad-slot-native[data-ad-state='loading'] .ad-native-creative,
+.ad-slot-native[data-ad-state='qa'] .ad-native-creative {
   width: 100%;
   min-height: 180px;
 }

@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
+import * as adConfig from '../../components/ads/ad-config';
+
 import {
   ADSTERRA_CONFIG,
   MONETIZED_PUBLIC_ROUTES,
@@ -11,6 +13,35 @@ import {
 import { publicRoutes } from '../../lib/seo/routes';
 
 describe('Adsterra bridge contract', () => {
+  it('builds a session-only first-party QA cookie with strict scope', () => {
+    const buildCookie = Reflect.get(adConfig, 'createAdQaSessionCookie') as
+      | ((baseURL: string) => Record<string, unknown>)
+      | undefined;
+
+    expect(buildCookie).toBeTypeOf('function');
+    if (!buildCookie) return;
+
+    const productionCookie = buildCookie('https://dietogetherguide.shop');
+    expect(productionCookie).toEqual({
+      name: 'gsf_ad_qa',
+      value: 'layout-v1',
+      domain: 'dietogetherguide.shop',
+      path: '/',
+      httpOnly: false,
+      secure: true,
+      sameSite: 'Strict',
+    });
+    expect(productionCookie).not.toHaveProperty('expires');
+    expect(productionCookie).not.toHaveProperty('maxAge');
+
+    expect(buildCookie('http://127.0.0.1:3100')).toMatchObject({
+      domain: '127.0.0.1',
+      path: '/',
+      secure: false,
+      sameSite: 'Strict',
+    });
+  });
+
   it('allows only the canonical Production hostname', () => {
     expect(isAdsterraProductionHost('dietogetherguide.shop')).toBe(true);
 
@@ -55,6 +86,66 @@ describe('Adsterra bridge contract', () => {
         privacyAllowsAds: true,
       }),
     ).toBe(false);
+  });
+
+  it('suppresses live initialization only for the exact intentional QA session cookie', () => {
+    const production = {
+      hostname: 'dietogetherguide.shop',
+      pathname: '/gameplay',
+      privacyAllowsAds: true,
+    } as const;
+
+    expect(
+      canInitializeAdsterra({
+        ...production,
+        cookieHeader: 'gsf_ad_qa=layout-v1',
+      }),
+    ).toBe(false);
+
+    for (const cookieHeader of [
+      '',
+      'gsf_ad_qa=layout',
+      'gsf_ad_qa=LAYOUT-V1',
+      'other=layout-v1',
+    ]) {
+      expect(
+        canInitializeAdsterra({
+          ...production,
+          cookieHeader,
+        }),
+        cookieHeader,
+      ).toBe(true);
+    }
+  });
+
+  it.each([
+    ['normal browser', 'Mozilla/5.0 Chrome/140.0 Safari/537.36'],
+    ['Googlebot', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'],
+    ['Bingbot', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)'],
+    ['Playwright-like', 'Mozilla/5.0 HeadlessChrome/140.0.0.0 Safari/537.36'],
+  ])('keeps %s live when the QA cookie is absent', (_label, userAgent) => {
+    const originalNavigator = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
+    Object.defineProperty(globalThis, 'navigator', {
+      configurable: true,
+      value: { userAgent },
+    });
+
+    try {
+      expect(
+        canInitializeAdsterra({
+          hostname: 'dietogetherguide.shop',
+          pathname: '/gameplay',
+          privacyAllowsAds: true,
+          cookieHeader: '',
+        }),
+      ).toBe(true);
+    } finally {
+      if (originalNavigator) {
+        Object.defineProperty(globalThis, 'navigator', originalNavigator);
+      } else {
+        Reflect.deleteProperty(globalThis, 'navigator');
+      }
+    }
   });
 
   it('monetizes every public route and no unknown route', () => {

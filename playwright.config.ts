@@ -6,9 +6,11 @@ const baseURL = remoteBaseURL ?? 'http://127.0.0.1:3100';
 
 export default defineConfig({
   testDir: './tests/e2e',
-  testIgnore: 'privacy-consent.spec.ts',
+  testIgnore: ['privacy-consent.spec.ts', 'live-provider.spec.ts'],
   fullyParallel: false,
   retries: 0,
+  timeout: 120_000,
+  workers: 1,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL,

@@ -30,6 +30,7 @@ export default defineConfig({
     { name: 'canonical-320x720', use: { viewport: { width: 320, height: 720 } } },
     { name: 'canonical-375x812', use: { viewport: { width: 375, height: 812 } } },
     { name: 'canonical-390x844', use: { viewport: { width: 390, height: 844 } } },
+    { name: 'canonical-768x1024', use: { viewport: { width: 768, height: 1024 } } },
     { name: 'canonical-1440x900', use: { viewport: { width: 1440, height: 900 } } },
   ],
 });

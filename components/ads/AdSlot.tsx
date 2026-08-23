@@ -1,7 +1,7 @@
+import { isBannerPlacement, type AdPlacement } from './ad-config';
+import { AdsterraBanner } from './AdsterraBanner';
 import { AdsterraNative } from './AdsterraNative';
-import { AdsterraResponsiveBanner } from './AdsterraResponsiveBanner';
-
-export type AdPlacement = 'article_mid' | 'responsive_banner';
+import { SponsoredSmartlink } from './SponsoredSmartlink';
 
 export function AdSlot({
   pathname,
@@ -10,9 +10,14 @@ export function AdSlot({
   pathname: string;
   placement: AdPlacement;
 }) {
-  return placement === 'article_mid' ? (
-    <AdsterraNative pathname={pathname} />
-  ) : (
-    <AdsterraResponsiveBanner pathname={pathname} />
-  );
+  if (placement === 'native_primary') {
+    return <AdsterraNative pathname={pathname} />;
+  }
+  if (placement === 'smartlink_primary') {
+    return <SponsoredSmartlink pathname={pathname} />;
+  }
+  if (isBannerPlacement(placement)) {
+    return <AdsterraBanner pathname={pathname} placement={placement} />;
+  }
+  return null;
 }

@@ -137,6 +137,8 @@ export default function Home() {
         </Container>
       </section>
 
+      <AdSlot pathname="/" placement="early_responsive" />
+
       <section className="home-section" id="start-here">
         <Container>
           <div className="section-heading">
@@ -153,6 +155,8 @@ export default function Home() {
         </Container>
       </section>
 
+      <AdSlot pathname="/" placement="native_primary" />
+
       <section className="home-section home-section-alt" id="field-guide">
         <Container>
           <div className="section-heading"><div><p className="section-kicker">Field guide · Codex</p><h2>Choose the problem, not the lore shelf</h2></div><p>Every hub owns one player intent and carries its own evidence state.</p></div>
@@ -164,7 +168,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <AdSlot pathname="/" placement="article_mid" />
+      <AdSlot pathname="/" placement="smartlink_primary" />
 
       <section className="home-section" id="early-access-delta">
         <Container className="ea-delta-grid">
@@ -182,6 +186,8 @@ export default function Home() {
         </Container>
       </section>
 
+      <AdSlot pathname="/" placement="rectangle_300" />
+
       <section className="home-section split-teaser" id="monsters-teaser">
         <Container>
           <div className="section-heading"><div><p className="section-kicker">Early Access threat snapshot</p><h2>Current names. No fake stat blocks.</h2></div><p>The launch announcement identifies these threats and their broad behavior. It does not establish a complete roster or hidden statistics.</p></div>
@@ -192,6 +198,8 @@ export default function Home() {
         </Container>
       </section>
 
+      <AdSlot pathname="/" placement="horizontal_468" />
+
       <section className="home-section home-section-alt" id="maps-teaser">
         <Container>
           <div className="section-heading"><div><p className="section-kicker">Location charts</p><h2>Ship and Castle are live</h2></div><p>Those two launch locations are current. Silent Cove remains a clearly labeled Demo-era record until direct current evidence connects it to the live build.</p></div>
@@ -200,8 +208,6 @@ export default function Home() {
           </div>
         </Container>
       </section>
-
-      <AdSlot pathname="/" placement="responsive_banner" />
 
       <section className="crew-strip" id="crew-utility">
         <Container className="crew-strip-grid">

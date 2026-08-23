@@ -79,7 +79,11 @@ export default function CoopTroubleshooterPage() {
             paths stay qualified until they are directly verified in the current client.
           </EvidenceBanner>
 
+          <AdSlot pathname={route} placement="early_responsive" />
+
           <CoopTroubleshooter />
+
+          <AdSlot pathname={route} placement="native_primary" />
 
           <div className="tool-explainer">
             <section>
@@ -101,6 +105,8 @@ export default function CoopTroubleshooterPage() {
             </section>
           </div>
 
+          <AdSlot pathname={route} placement="rectangle_300" />
+
           <Callout variant="build" title="Current evidence boundary">
             <p>
               Quick Join and session-resilience work are documented in June and July
@@ -108,9 +114,9 @@ export default function CoopTroubleshooterPage() {
               source timeline.
             </p>
           </Callout>
-          <AdSlot pathname={route} placement="article_mid" />
+          <AdSlot pathname={route} placement="smartlink_primary" />
           <SourceList sourceIds={['S01', 'S07', 'S08', 'S10']} />
-          <AdSlot pathname={route} placement="responsive_banner" />
+          <AdSlot pathname={route} placement="horizontal_468" />
         </Container>
       </article>
     </>

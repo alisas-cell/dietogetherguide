@@ -19,6 +19,25 @@ export type AdPlacement =
   | 'sidebar_160x300'
   | 'sidebar_160x600';
 
+export type BannerPlacement = Exclude<
+  AdPlacement,
+  'native_primary' | 'smartlink_primary'
+>;
+
+const bannerPlacementSet = new Set<AdPlacement>([
+  'early_responsive',
+  'rectangle_300',
+  'horizontal_468',
+  'sidebar_160x300',
+  'sidebar_160x600',
+]);
+
+export function isBannerPlacement(
+  placement: AdPlacement,
+): placement is BannerPlacement {
+  return bannerPlacementSet.has(placement);
+}
+
 export type PageClass =
   | 'homepage'
   | 'guide-hub'
@@ -40,8 +59,6 @@ export interface BannerAdUnit {
   readonly params: Readonly<Record<string, never>>;
   readonly scriptUrl: string;
 }
-
-export type ResponsiveAdUnit = BannerAdUnit;
 
 export interface RouteMonetizationPlan {
   readonly eligible: boolean;
@@ -138,13 +155,6 @@ export const ADSTERRA_CONFIG = {
   smartlink: {
     label: 'Sponsored Resource',
     url: 'https://www.profitableratecpmnetwork.com/gxyrbuc5?key=78768be66352f70f3e8f9d17f48f7dac',
-  },
-  // Kept as a compatibility view while the original responsive component is
-  // replaced by the generic Banner runtime in the next TDD task.
-  responsive: {
-    breakpoint: 800,
-    mobile: mobile320,
-    desktop: desktop728,
   },
 } as const;
 
@@ -327,10 +337,4 @@ export function selectBannerUnit(
       : null;
   }
   return null;
-}
-
-export function selectResponsiveUnit(viewportWidth: number): ResponsiveAdUnit {
-  return viewportWidth >= ADSTERRA_CONFIG.breakpoints.responsiveDesktop
-    ? ADSTERRA_CONFIG.banners.desktop728
-    : ADSTERRA_CONFIG.banners.mobile320;
 }

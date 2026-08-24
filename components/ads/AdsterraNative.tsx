@@ -5,6 +5,8 @@ import { useEffect, useReducer, useRef } from 'react';
 import {
   ADSTERRA_CONFIG,
   canInitializeAdsterra,
+  isAdDebugSearch,
+  routeHasPlacement,
 } from './ad-config';
 import { reduceAdLoadState, watchProviderCreative } from './ad-runtime';
 import { usePrivacyConsent } from '../privacy/ConsentProvider';
@@ -16,8 +18,15 @@ export function AdsterraNative({ pathname }: { pathname: string }) {
   const { canLoadAds } = usePrivacyConsent();
 
   useEffect(() => {
+    dispatch('reset');
+    const debugMode = isAdDebugSearch(window.location.search);
+    if (debugMode && routeHasPlacement(pathname, 'native_primary')) {
+      dispatch('debug');
+      return;
+    }
     if (
       !canInitializeAdsterra({
+        debugMode,
         hostname: window.location.hostname,
         pathname,
         privacyAllowsAds: canLoadAds,
@@ -32,6 +41,10 @@ export function AdsterraNative({ pathname }: { pathname: string }) {
     dispatch('activate');
 
     const creative = creativeRef.current;
+    if (document.getElementById(ADSTERRA_CONFIG.native.containerId)) {
+      dispatch('fail');
+      return;
+    }
     const providerContainer = document.createElement('div');
     providerContainer.id = ADSTERRA_CONFIG.native.containerId;
     creative.append(providerContainer);
@@ -44,8 +57,8 @@ export function AdsterraNative({ pathname }: { pathname: string }) {
     });
 
     const script = document.createElement('script');
-    script.async = true;
-    script.setAttribute('data-cfasync', 'false');
+    script.async = ADSTERRA_CONFIG.native.async;
+    script.setAttribute('data-cfasync', ADSTERRA_CONFIG.native.dataCfasync);
     script.src = ADSTERRA_CONFIG.native.scriptUrl;
     script.onerror = watch.fail;
     creative.append(script);
@@ -62,7 +75,8 @@ export function AdsterraNative({ pathname }: { pathname: string }) {
     <aside
       aria-label="Advertisement"
       className="ad-slot ad-slot-native"
-      data-ad-placement="article_mid"
+      data-ad-format="native"
+      data-ad-placement="native_primary"
       data-ad-route={pathname}
       data-ad-state={canLoadAds ? state : 'off'}
     >

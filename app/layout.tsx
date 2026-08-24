@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
+import { MonetizationRuntime } from '../components/ads/MonetizationRuntime';
 import { Footer } from '../components/layout/Footer';
 import { Header } from '../components/layout/Header';
 import { StatusStrip } from '../components/layout/StatusStrip';
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
       <body>
         <ConsentProvider>
+          <MonetizationRuntime />
           <a className="skip-link" href="#main-content">
             Skip to content
           </a>

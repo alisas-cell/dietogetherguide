@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import type { GuidePageData } from '../../content';
 import { formatLastModified } from '../../lib/seo/routes';
 import { buildGuideSchemas } from '../../lib/seo/schema';
+import { routeHasPlacement, type AdPlacement } from '../ads/ad-config';
 import { AdSlot } from '../ads/AdSlot';
 import { JsonLd } from '../seo/JsonLd';
 import { Container } from '../ui/Container';
@@ -22,7 +23,17 @@ const calloutVariants = {
   danger: 'danger',
 } as const;
 
+const inlinePlacementBySection: Partial<Record<number, AdPlacement>> = {
+  0: 'native_primary',
+  1: 'smartlink_primary',
+  2: 'rectangle_300',
+  3: 'horizontal_468',
+};
+
 export function GuidePage({ page }: { page: GuidePageData }) {
+  const hasLongSidebar = routeHasPlacement(page.route, 'sidebar_160x600');
+  const hasShortSidebar = routeHasPlacement(page.route, 'sidebar_160x300');
+
   return (
     <>
       <JsonLd schemas={buildGuideSchemas(page)} />
@@ -61,11 +72,17 @@ export function GuidePage({ page }: { page: GuidePageData }) {
             Build-sensitive details are labeled. Pending fields are not rendered as affirmative answers.
           </EvidenceBanner>
 
+          {routeHasPlacement(page.route, 'early_responsive') ? (
+            <AdSlot pathname={page.route} placement="early_responsive" />
+          ) : null}
+
           <div className="article-layout">
             <div className="article-body">
-              {page.sections.map((section, index) => (
-                <Fragment key={section.id}>
-                  <section id={section.id}>
+              {page.sections.map((section, index) => {
+                const inlinePlacement = inlinePlacementBySection[index];
+                return (
+                  <Fragment key={section.id}>
+                    <section id={section.id}>
                     <h2>{section.heading}</h2>
                     {section.paragraphs.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
@@ -122,16 +139,17 @@ export function GuidePage({ page }: { page: GuidePageData }) {
                         <p>{section.callout.body}</p>
                       </Callout>
                     ) : null}
-                  </section>
-                  {index === 1 ? (
-                    <AdSlot
-                      key={`article-mid:${page.route}`}
-                      pathname={page.route}
-                      placement="article_mid"
-                    />
-                  ) : null}
-                </Fragment>
-              ))}
+                    </section>
+                    {inlinePlacement && routeHasPlacement(page.route, inlinePlacement) ? (
+                      <AdSlot
+                        key={`${inlinePlacement}:${page.route}`}
+                        pathname={page.route}
+                        placement={inlinePlacement}
+                      />
+                    ) : null}
+                  </Fragment>
+                );
+              })}
 
               {page.faqs.length > 0 ? (
                 <section id="faq">
@@ -145,7 +163,12 @@ export function GuidePage({ page }: { page: GuidePageData }) {
             </div>
 
             <aside className="article-sidebar" aria-label="Page contents">
-              <div>
+              {hasLongSidebar ? (
+                <AdSlot pathname={page.route} placement="sidebar_160x600" />
+              ) : hasShortSidebar ? (
+                <AdSlot pathname={page.route} placement="sidebar_160x300" />
+              ) : null}
+              <div className="article-toc">
                 <p className="section-kicker">On this page</p>
                 <nav>
                   {page.sections.map((section, index) => (
@@ -157,15 +180,13 @@ export function GuidePage({ page }: { page: GuidePageData }) {
                   {page.faqs.length > 0 ? <Link href="#faq">FAQ</Link> : null}
                 </nav>
               </div>
+              {hasLongSidebar && hasShortSidebar ? (
+                <AdSlot pathname={page.route} placement="sidebar_160x300" />
+              ) : null}
             </aside>
           </div>
 
           <RelatedGuides items={page.related} />
-          <AdSlot
-            key={`responsive-banner:${page.route}`}
-            pathname={page.route}
-            placement="responsive_banner"
-          />
         </Container>
       </article>
     </>

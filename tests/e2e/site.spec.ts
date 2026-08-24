@@ -1,18 +1,24 @@
 import { expect, test } from '@playwright/test';
 
+import {
+  ADSTERRA_CONFIG,
+  getRouteMonetization,
+  selectBannerUnit,
+} from '../../components/ads/ad-config';
 import { publicRoutes } from '../../lib/seo/routes';
 
-const adsterraHosts = [
-  'pl30902793.effectivecpmnetwork.com',
-  'www.highperformanceformat.com',
+const providerScriptUrls: string[] = [
+  ADSTERRA_CONFIG.globals.popunder.scriptUrl,
+  ADSTERRA_CONFIG.globals.socialBar.scriptUrl,
+  ADSTERRA_CONFIG.native.scriptUrl,
+  ...Object.values(ADSTERRA_CONFIG.banners).map((unit) => unit.scriptUrl),
 ];
-
-const nativeScriptUrl =
-  'https://pl30902793.effectivecpmnetwork.com/1283f453c8142633c69e76c4a788d1e9/invoke.js';
-const bannerScriptUrls = {
-  mobile: 'https://www.highperformanceformat.com/1178d923040089031d1739c3b0f07aee/invoke.js',
-  desktop: 'https://www.highperformanceformat.com/11f222c98a7f20ac1f26e0182e67c82d/invoke.js',
-} as const;
+const adsterraHosts = [
+  ...new Set([
+    ...providerScriptUrls,
+    ADSTERRA_CONFIG.smartlink.url,
+  ].map((url) => new URL(url).hostname)),
+];
 const consentStorageKey = 'dietogetherguide:advertising-consent';
 const grantedConsent = JSON.stringify({ policyVersion: 1, advertising: 'granted' });
 
@@ -191,7 +197,7 @@ test('unknown routes use the custom 404', async ({ page }, testInfo) => {
   );
 });
 
-test('every public route has two ad placements while localhost requests no ads', async ({
+test('every public route matches its registered placement tree while localhost requests no ads', async ({
   page,
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop-1440x900');
@@ -204,14 +210,16 @@ test('every public route has two ad placements while localhost requests no ads',
 
   for (const route of publicRoutes) {
     await page.goto(route);
-    await expect(
-      page.locator('[data-ad-placement="article_mid"]'),
-      `${route} Native placement`,
-    ).toHaveCount(1);
-    await expect(
-      page.locator('[data-ad-placement="responsive_banner"]'),
-      `${route} responsive placement`,
-    ).toHaveCount(1);
+    const expectedPlacements = getRouteMonetization(route)?.placements ?? [];
+    await expect(page.locator('[data-ad-placement]'), route).toHaveCount(
+      expectedPlacements.length,
+    );
+    expect(
+      await page.locator('[data-ad-placement]').evaluateAll((slots) =>
+        slots.map((slot) => slot.getAttribute('data-ad-placement')),
+      ),
+      route,
+    ).toEqual(expect.arrayContaining([...expectedPlacements]));
   }
 
   expect(providerRequests).toEqual([]);
@@ -282,7 +290,9 @@ test('stalled privacy-region lookup fails safe into a required choice', async ({
   await expect(
     page.getByRole('region', { name: 'Your advertising choices' }),
   ).toBeVisible({ timeout: 5_000 });
-  await expect(page.locator('[data-ad-state="off"]')).toHaveCount(2);
+  await expect(page.locator('[data-ad-state="off"]')).toHaveCount(
+    getRouteMonetization('/gameplay')?.placements.length ?? 0,
+  );
   await page.unrouteAll({ behavior: 'ignoreErrors' });
 });
 
@@ -305,7 +315,9 @@ test('privacy rejection synchronizes to another open tab', async ({
     page.waitForNavigation(),
     page.getByRole('button', { name: 'Reject non-essential' }).click(),
   ]);
-  await expect(secondPage.locator('[data-ad-state="off"]')).toHaveCount(2);
+  await expect(secondPage.locator('[data-ad-state="off"]')).toHaveCount(
+    getRouteMonetization('/maps')?.placements.length ?? 0,
+  );
   await secondPage.getByRole('button', { name: 'Privacy Choices' }).click();
   await expect(
     secondPage.getByRole('region', { name: 'Your advertising choices' }),
@@ -326,33 +338,36 @@ test('tool ad placements follow the complete interactive flow', async ({ page },
   await page.goto('/tools/coop-troubleshooter');
 
   const order = await page.evaluate(() => {
+    const evidence = document.querySelector('.evidence-banner');
+    const early = document.querySelector('[data-ad-placement="early_responsive"]');
     const tool = document.querySelector('.tool-shell');
+    const native = document.querySelector('[data-ad-placement="native_primary"]');
+    const explainer = document.querySelector('.tool-explainer');
+    const rectangle = document.querySelector('[data-ad-placement="rectangle_300"]');
     const safetyCallout = document.querySelector('.callout');
-    const native = document.querySelector('[data-ad-placement="article_mid"]');
+    const smartlink = document.querySelector('[data-ad-placement="smartlink_primary"]');
     const sources = document.querySelector('.source-list');
-    const responsive = document.querySelector(
-      '[data-ad-placement="responsive_banner"]',
+    const horizontal = document.querySelector('[data-ad-placement="horizontal_468"]');
+    const nodes = [
+      evidence,
+      early,
+      tool,
+      native,
+      explainer,
+      rectangle,
+      safetyCallout,
+      smartlink,
+      sources,
+      horizontal,
+    ];
+    if (nodes.some((node) => !node)) return null;
+
+    return nodes.slice(0, -1).every((node, index) =>
+      Boolean(node!.compareDocumentPosition(nodes[index + 1]!) & Node.DOCUMENT_POSITION_FOLLOWING),
     );
-    if (!tool || !safetyCallout || !native || !sources || !responsive) return null;
-
-    return {
-      nativeAfterTool: Boolean(
-        tool.compareDocumentPosition(native) & Node.DOCUMENT_POSITION_FOLLOWING,
-      ),
-      nativeAfterSafetyCallout: Boolean(
-        safetyCallout.compareDocumentPosition(native) & Node.DOCUMENT_POSITION_FOLLOWING,
-      ),
-      responsiveAfterSources: Boolean(
-        sources.compareDocumentPosition(responsive) & Node.DOCUMENT_POSITION_FOLLOWING,
-      ),
-    };
   });
 
-  expect(order).toEqual({
-    nativeAfterTool: true,
-    nativeAfterSafetyCallout: true,
-    responsiveAfterSources: true,
-  });
+  expect(order).toBe(true);
 });
 
 test('ad placements do not widen mobile or desktop pages', async ({ page }, testInfo) => {
@@ -362,7 +377,9 @@ test('ad placements do not widen mobile or desktop pages', async ({ page }, test
 
   for (const route of ['/', '/gameplay', '/tools/coop-troubleshooter']) {
     await page.goto(route);
-    await expect(page.locator('[data-ad-placement]')).toHaveCount(2);
+    await expect(page.locator('[data-ad-placement]')).toHaveCount(
+      getRouteMonetization(route)?.placements.length ?? 0,
+    );
     const dimensions = await page.evaluate(() => ({
       clientWidth: document.documentElement.clientWidth,
       scrollWidth: document.documentElement.scrollWidth,
@@ -373,7 +390,7 @@ test('ad placements do not widen mobile or desktop pages', async ({ page }, test
   }
 });
 
-test('production requests one Native and only the matching responsive banner', async ({
+test('production requests every supported unit once and never loads the opposite responsive unit', async ({
   page,
 }, testInfo) => {
   test.skip(process.env.PLAYWRIGHT_EXPECT_LIVE_ADS !== '1');
@@ -381,46 +398,45 @@ test('production requests one Native and only the matching responsive banner', a
     !['mobile-390x844', 'desktop-1440x900'].includes(testInfo.project.name),
   );
 
-  const mobile = testInfo.project.name === 'mobile-390x844';
-  const expectedBannerUrl = mobile ? bannerScriptUrls.mobile : bannerScriptUrls.desktop;
-  const oppositeBannerUrl = mobile ? bannerScriptUrls.desktop : bannerScriptUrls.mobile;
+  const width = testInfo.project.use.viewport?.width ?? 0;
+  const plan = getRouteMonetization('/gameplay');
+  const expectedProviderUrls = [
+    ADSTERRA_CONFIG.globals.popunder.scriptUrl,
+    ADSTERRA_CONFIG.globals.socialBar.scriptUrl,
+    ...(plan?.placements.flatMap((placement) => {
+      if (placement === 'native_primary') return [ADSTERRA_CONFIG.native.scriptUrl];
+      if (placement === 'smartlink_primary') return [];
+      const unit = selectBannerUnit(placement, width);
+      return unit ? [unit.scriptUrl] : [];
+    }) ?? []),
+  ];
   const scriptRequests: string[] = [];
 
   await grantAdvertisingBeforeHydration(page);
 
   page.on('request', (request) => {
-    if (
-      request.url() === nativeScriptUrl ||
-      Object.values(bannerScriptUrls).includes(
-        request.url() as (typeof bannerScriptUrls)[keyof typeof bannerScriptUrls],
-      )
-    ) {
+    if (providerScriptUrls.includes(request.url())) {
       scriptRequests.push(request.url());
     }
   });
 
-  await Promise.all([
-    page.waitForRequest(nativeScriptUrl),
-    page.waitForRequest(expectedBannerUrl),
-    page.goto('/gameplay', { waitUntil: 'domcontentloaded' }),
-  ]);
+  await page.goto('/gameplay', { waitUntil: 'domcontentloaded' });
+  await expect.poll(() => scriptRequests.length).toBe(expectedProviderUrls.length);
+  for (const url of providerScriptUrls) {
+    expect(scriptRequests.filter((requestUrl) => requestUrl === url), url).toHaveLength(
+      expectedProviderUrls.includes(url) ? 1 : 0,
+    );
+  }
 
-  await expect.poll(() => scriptRequests.filter((url) => url === nativeScriptUrl).length).toBe(1);
-  await expect
-    .poll(() => scriptRequests.filter((url) => url === expectedBannerUrl).length)
-    .toBe(1);
-  expect(scriptRequests.filter((url) => url === oppositeBannerUrl)).toHaveLength(0);
-
-  const responsiveSlot = page.locator('[data-ad-placement="responsive_banner"]');
+  const responsiveSlot = page.locator('[data-ad-placement="early_responsive"]');
+  const mobile = width < ADSTERRA_CONFIG.breakpoints.responsiveDesktop;
   await expect(responsiveSlot).toHaveAttribute('data-ad-width', mobile ? '320' : '728');
   await expect(responsiveSlot).toHaveAttribute('data-ad-height', mobile ? '50' : '90');
 
   await page.setViewportSize(mobile ? { width: 1440, height: 900 } : { width: 390, height: 844 });
   await page.waitForTimeout(750);
 
-  expect(scriptRequests.filter((url) => url === nativeScriptUrl)).toHaveLength(1);
-  expect(scriptRequests.filter((url) => url === expectedBannerUrl)).toHaveLength(1);
-  expect(scriptRequests.filter((url) => url === oppositeBannerUrl)).toHaveLength(0);
+  expect(scriptRequests).toHaveLength(expectedProviderUrls.length);
 });
 
 test('production ad failures collapse without breaking the troubleshooter', async ({
@@ -436,10 +452,12 @@ test('production ad failures collapse without breaking the troubleshooter', asyn
   }
 
   await page.goto('/tools/coop-troubleshooter', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('[data-ad-state="failed"]')).toHaveCount(2, {
+  await expect(page.locator('[data-ad-state="failed"]')).toHaveCount(4, {
     timeout: 15_000,
   });
-  await expect(page.locator('[data-ad-placement]')).toHaveCount(2);
+  await expect(page.locator('[data-ad-placement]')).toHaveCount(
+    getRouteMonetization('/tools/coop-troubleshooter')?.placements.length ?? 0,
+  );
   await expect(page.locator('[data-ad-placement]').first()).toBeHidden();
 
   await page.selectOption('#problem', 'reconnect-fails');

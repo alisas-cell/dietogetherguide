@@ -11,18 +11,18 @@ function wordCount(value: string): number {
 
 describe('public content registry', () => {
   it('covers every required non-home route exactly once', () => {
-    expect(requiredCoreRoutes).toHaveLength(23);
+    expect(requiredCoreRoutes).toHaveLength(36);
     expect(requiredCoreRoutes[0]).toBe('/');
-    expect(guidePages).toHaveLength(22);
+    expect(guidePages).toHaveLength(35);
     expect(new Set(guidePages.map((page) => page.route))).toEqual(
       new Set(requiredCoreRoutes.slice(1)),
     );
   });
 
   it('keeps titles, H1s, and descriptions unique with a direct answer', () => {
-    expect(new Set(guidePages.map((page) => page.title)).size).toBe(22);
-    expect(new Set(guidePages.map((page) => page.h1)).size).toBe(22);
-    expect(new Set(guidePages.map((page) => page.description)).size).toBe(22);
+    expect(new Set(guidePages.map((page) => page.title)).size).toBe(35);
+    expect(new Set(guidePages.map((page) => page.h1)).size).toBe(35);
+    expect(new Set(guidePages.map((page) => page.description)).size).toBe(35);
 
     for (const page of guidePages) {
       expect(page.directAnswer.length, page.route).toBeGreaterThanOrEqual(2);

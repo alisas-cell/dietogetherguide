@@ -12,5 +12,6 @@ export const utilityNavigation = [
   { href: '/release-date', label: 'Release' },
   { href: '/roadmap', label: 'Roadmap' },
   { href: '/troubleshooting', label: 'Fixes' },
+  { href: '/tools', label: 'Tools' },
   { href: '/faq', label: 'FAQ' },
 ] as const;

@@ -78,10 +78,21 @@ const guideCards = [
 ] as const;
 
 const problems = [
-  ['/coop/quick-join', 'Quick Join returns nothing', 'Check the client, Steam connection, and region before risky network changes.'],
+  ['/coop/no-game-found', 'No Game Found', 'Compare versions, Steam state, lobby intent, codes, invites, and Quick Join safely.'],
   ['/save-and-reconnect', 'Disconnected mid-run', 'Use the in-game recovery flow and protect local progress.'],
-  ['/coop', 'Can I play solo?', 'Yes—Steam lists single-player and online co-op for up to four.'],
-  ['/troubleshooting', 'Game runs with no window', 'Recover the window and verify files before unsupported launch flags.'],
+  ['/performance', 'Low FPS or stutter', 'Use patch, preset, resolution, driver, file, and scene checks without random flags.'],
+  ['/revive-guide', 'Downed friend recovery', 'Separate official 25/15-second timers from player-reported stamina pressure.'],
+] as const;
+
+const priorityLinks = [
+  ['/solo-guide', 'Solo Guide', 'Separate balance, 25-second floor time, shop, hauling, and threats.'],
+  ['/golden-weapons', 'Golden Weapons', 'Golden Sword and Hand Cannon with exact unknowns kept visible.'],
+  ['/tools/monster-finder', 'Monster Finder', 'Identify a threat using transparent behavior rules.'],
+  ['/coop/no-game-found', 'No Game Found', 'Fix codes, invites, and Quick Join in a safe order.'],
+  ['/maps/ship', 'Ship', 'Titanic, hauling, and current Ship changes.'],
+  ['/maps/castle', 'Castle', 'Heavy loot, transport, and evidence boundaries.'],
+  ['/performance', 'Performance', 'Current official fixes and reversible diagnostics.'],
+  ['/revive-guide', 'Revive Guide', 'Current floor timers and recovery planning.'],
 ] as const;
 
 export default function Home() {
@@ -111,7 +122,7 @@ export default function Home() {
               </Link>
             </div>
             <p className="hero-source-note">
-              Early Access is live · evidence updated Aug 19, 2026
+              Early Access is live · evidence revalidated Aug 26, 2026
             </p>
           </div>
           <figure className="home-hero-visual">
@@ -175,13 +186,20 @@ export default function Home() {
           <div>
             <p className="section-kicker">{releaseLabel}</p>
             <h2>What Early Access includes now</h2>
-            <p>The launch build names the Ship and Castle locations, eight current threat records, wider and break-apart loot, cart upgrades, activities, instruments, skins, and an overhauled tutorial.</p>
+            <p>The live build now includes Ship and Castle, separate solo/team tuning, daily and chapter saves, public-default lobbies, Golden Weapons, and official fixes through Aug 26.</p>
             <Link className="button button-secondary" href="/early-access">Read the evidence split</Link>
           </div>
           <div className="delta-list">
-            <div><span>LIVE</span><strong>Ship + Castle locations</strong><p>Named in the official Early Access launch announcement.</p></div>
-            <div><span>CURRENT</span><strong>Fresh monsters + broader loot</strong><p>Eight launch-confirmed threat records, without claiming a complete roster.</p></div>
-            <div><span>EA DIRECTION</span><strong>Free major updates on the road to 1.0</strong><p>The store describes the plan but gives no fixed full-release date.</p></div>
+            <div><span>LIVE BUILD</span><strong>Golden Weapons</strong><p>Golden Sword and Golden Hand Cannon landed Aug 26.</p></div>
+            <div><span>BALANCE</span><strong>Solo and team split</strong><p>Quota, shop, item counts, and enemy spawns tune independently.</p></div>
+            <div><span>PROGRESS</span><strong>Daily + chapter saves</strong><p>The Aug 21 patch confirms both save checkpoints.</p></div>
+            <div><span>LOBBIES</span><strong>Public by default</strong><p>Quick Join now sits in a live public-lobby context.</p></div>
+            <div><span>LATEST</span><strong>Aug 26 balance pass</strong><p>Monster, floor-time, hauling, store, respawn, and voice changes.</p></div>
+          </div>
+        </Container>
+        <Container>
+          <div className="live-priority-grid" aria-label="Current priority guides">
+            {priorityLinks.map(([href, title, description]) => <Link href={href} key={href}><strong>{title}</strong><span>{description}</span><b aria-hidden="true">→</b></Link>)}
           </div>
         </Container>
       </section>
@@ -211,8 +229,8 @@ export default function Home() {
 
       <section className="crew-strip" id="crew-utility">
         <Container className="crew-strip-grid">
-          <div><p className="section-kicker">Crew utility</p><h2>Public crew? Keep the recovery plan close.</h2><p>The game is live for solo and online co-op. Use current Steam and region checks first; reconnect and session-sync details remain labeled by their supporting build history.</p></div>
-          <div className="button-row"><Link className="button button-primary" href="/coop/quick-join">Quick Join guide</Link><Link className="button button-secondary" href="/tools/coop-troubleshooter">Open troubleshooter</Link></div>
+          <div><p className="section-kicker">Crew utility</p><h2>Public crew? Keep the recovery plan close.</h2><p>Public lobbies are enabled by default. Use Quick Join for the feature path, No Game Found for failed discovery, and the contextual troubleshooter for codes, invites, voice, version, lobby, disconnect, or reconnect symptoms.</p></div>
+          <div className="button-row"><Link className="button button-primary" href="/coop/no-game-found">No Game Found</Link><Link className="button button-secondary" href="/tools/coop-troubleshooter">Open troubleshooter</Link></div>
         </Container>
       </section>
 
@@ -242,7 +260,7 @@ export default function Home() {
       <section className="disclaimer-section" id="disclaimer">
         <Container className="disclaimer-grid">
           <div><p className="section-kicker">Source & fan disclaimer</p><h2>An independent logbook, not an official ship’s order.</h2></div>
-          <div><p>Die Together Guide is not affiliated with RetroStyle Games, Judatone Studios, Elegoose Games, Valve, or Steam. Official media is locally hosted with provenance; trademarks and artwork belong to their owners.</p><p>Checked Aug 19, 2026. Current Early Access evidence and historical Demo evidence stay visibly separated.</p><div className="inline-links"><Link href="/about">Editorial method</Link><Link href="/contact">Corrections</Link><a href="https://store.steampowered.com/app/4317790/Last_Pirates_Die_Together/" rel="noopener noreferrer">Official Steam page</a></div></div>
+          <div><p>Die Together Guide is not affiliated with RetroStyle Games, Judatone Studios, Elegoose Games, Valve, or Steam. Official media is locally hosted with provenance; trademarks and artwork belong to their owners.</p><p>Checked Aug 26, 2026. Current Early Access evidence and historical Demo evidence stay visibly separated.</p><div className="inline-links"><Link href="/about">Editorial method</Link><Link href="/contact">Corrections</Link><Link href="/tools">All tools</Link><a href="https://store.steampowered.com/app/4317790/Last_Pirates_Die_Together/" rel="noopener noreferrer">Official Steam page</a></div></div>
         </Container>
       </section>
     </>

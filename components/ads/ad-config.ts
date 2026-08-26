@@ -247,6 +247,21 @@ export const ROUTE_MONETIZATION = {
   '/privacy': legalPlan,
   '/terms': legalPlan,
   '/tools/coop-troubleshooter': enabled('tool', toolPlacements),
+  '/solo-guide': enabled('long-guide', hubAndLongPlacements),
+  '/golden-weapons': enabled('medium-guide', mediumPlacements),
+  '/monsters/ear': enabled('database-item', shortAndDatabasePlacements),
+  '/monsters/anchorer': enabled('database-item', shortAndDatabasePlacements),
+  '/monsters/siren': enabled('database-item', shortAndDatabasePlacements),
+  '/monsters/mimic': enabled('database-item', shortAndDatabasePlacements),
+  '/coop/no-game-found': enabled('medium-guide', mediumPlacements),
+  '/maps/ship': enabled('medium-guide', mediumPlacements),
+  '/maps/castle': enabled('medium-guide', mediumPlacements),
+  '/monkey-cart': enabled('medium-guide', mediumPlacements),
+  '/performance': enabled('long-guide', hubAndLongPlacements),
+  '/revive-guide': enabled('medium-guide', mediumPlacements),
+  '/tools': enabled('guide-hub', hubAndLongPlacements),
+  '/tools/monster-finder': enabled('tool', toolPlacements),
+  '/tools/run-chapter-tracker': enabled('tool', toolPlacements),
 } as const satisfies Record<string, RouteMonetizationPlan>;
 
 type RegisteredRoute = keyof typeof ROUTE_MONETIZATION;

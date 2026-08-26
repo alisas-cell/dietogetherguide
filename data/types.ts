@@ -66,6 +66,22 @@ export type DetectionTrigger =
   | 'item'
   | 'unknown';
 
+export type MonsterBehaviorTag =
+  | 'sound'
+  | 'movement'
+  | 'loot-hiding'
+  | 'disguise'
+  | 'disturbed'
+  | 'pull-sound'
+  | 'knockback'
+  | 'rat-group';
+
+export interface MonsterPatchChange {
+  date: string;
+  text: string;
+  sourceIds: string[];
+}
+
 export interface EntityImage {
   src: string;
   alt: string;
@@ -87,6 +103,9 @@ export interface MonsterEntry {
   mapIds?: VersionedField<string[]>;
   itemInteractions?: VersionedField<string[]>;
   notes?: VersionedField<string[]>;
+  behaviorTags?: MonsterBehaviorTag[];
+  patchChanges?: MonsterPatchChange[];
+  detailRoute?: string;
   pageReady: boolean;
   lastVerifiedAt: string;
 }
@@ -184,6 +203,8 @@ export interface AssetSource {
   fetchedAt: string;
   role: 'hero' | 'article' | 'map' | 'monster' | 'update' | 'brand';
   description: string;
+  alt?: string;
+  routeUsage?: string[];
   rightsNote?: string;
 }
 

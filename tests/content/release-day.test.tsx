@@ -52,7 +52,7 @@ describe('release-day public content', () => {
     expect(monstersPage).toBeDefined();
 
     const html = renderToStaticMarkup(<GuidePage page={monstersPage!} />);
-    expect(html).toContain('Last checked Aug 19, 2026');
-    expect(html).toContain('Steam · checked Aug 19, 2026');
+    expect(html).toContain('Last checked Aug 26, 2026');
+    expect(html).toContain('Steam · checked Aug 26, 2026');
   });
 });

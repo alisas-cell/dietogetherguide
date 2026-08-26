@@ -40,7 +40,7 @@ describe('evidence registry validation', () => {
       items,
       effects,
       assets,
-      now: new Date('2026-08-19T06:00:00Z'),
+      now: new Date('2026-08-26T13:00:00Z'),
     });
 
     expect(result.errors).toEqual([]);
@@ -119,20 +119,23 @@ describe('evidence registry validation', () => {
     );
 
     for (const monster of currentMonsters) {
-      expect(monster.summary?.evidence.build).toBe('ea-launch');
-      expect(monster.summary?.evidence.sourceIds).toContain('S11');
-      expect(monster.pageReady).toBe(false);
+      expect(monster.summary?.evidence.build.startsWith('ea-')).toBe(true);
+      expect(monster.summary?.evidence.sourceIds.length).toBeGreaterThan(0);
+      if (['ear', 'anchorer', 'siren', 'mimic'].includes(monster.id)) {
+        expect(monster.pageReady).toBe(true);
+        expect(monster.detailRoute).toBe(`/monsters/${monster.id}`);
+      }
     }
 
     for (const map of currentMaps) {
       expect(map.overview?.evidence.build).toBe('ea-launch');
       expect(map.overview?.evidence.sourceIds).toContain('S11');
-      expect(map.pageReady).toBe(false);
+      expect(map.pageReady).toBe(true);
     }
   });
 
   it('ships a traced local official-media set with no missing files', () => {
-    expect(assets).toHaveLength(10);
+    expect(assets).toHaveLength(20);
 
     for (const asset of assets) {
       expect(asset.publisher).not.toBe('Site Original');
@@ -141,7 +144,7 @@ describe('evidence registry validation', () => {
         existsSync(join(process.cwd(), 'public', asset.localPath)),
         `Missing local file for ${asset.id}`,
       ).toBe(true);
-      expect(asset.sourcePage).toContain('steampowered.com');
+      expect(asset.sourcePage).toMatch(/steampowered\.com|steamstore-a\.akamaihd\.net/);
       expect(asset.rightsNote).toContain('Official');
     }
   });

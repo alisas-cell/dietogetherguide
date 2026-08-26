@@ -4,12 +4,13 @@ import { guidePages, requiredCoreRoutes } from '../../content';
 import { publicRoutes } from '../../lib/seo/routes';
 
 describe('public route and internal-link graph', () => {
-  it('publishes 23 core routes plus the accepted co-op tool', () => {
-    expect(publicRoutes).toHaveLength(24);
+  it('publishes 36 core routes plus all three accepted tools', () => {
+    expect(publicRoutes).toHaveLength(39);
     expect(new Set(publicRoutes)).toEqual(
-      new Set([...requiredCoreRoutes, '/tools/coop-troubleshooter']),
+      new Set([...requiredCoreRoutes, '/tools/coop-troubleshooter', '/tools/monster-finder', '/tools/run-chapter-tracker']),
     );
-    expect(publicRoutes).not.toContain('/tools/monster-finder');
+    expect(publicRoutes).toContain('/tools/monster-finder');
+    expect(publicRoutes).toContain('/tools/run-chapter-tracker');
     expect(publicRoutes).not.toContain('/tools/loot-planner');
   });
 

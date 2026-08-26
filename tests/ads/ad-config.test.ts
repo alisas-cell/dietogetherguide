@@ -96,7 +96,7 @@ describe('top-heavy Adsterra source-of-truth registry', () => {
   });
 
   it('classifies all public routes and excludes only the two legal routes', () => {
-    expect(Object.keys(ROUTE_MONETIZATION)).toHaveLength(24);
+    expect(Object.keys(ROUTE_MONETIZATION)).toHaveLength(39);
     expect(new Set(Object.keys(ROUTE_MONETIZATION))).toEqual(new Set(publicRoutes));
     expect(new Set(MONETIZED_PUBLIC_ROUTES)).toEqual(
       new Set(publicRoutes.filter((route) => !['/privacy', '/terms'].includes(route))),
@@ -113,6 +113,13 @@ describe('top-heavy Adsterra source-of-truth registry', () => {
     expect(getRouteMonetization('/troubleshooting')?.pageClass).toBe('long-guide');
     expect(getRouteMonetization('/maps/silent-cove')?.pageClass).toBe('database-item');
     expect(getRouteMonetization('/tools/coop-troubleshooter')?.pageClass).toBe('tool');
+    expect(getRouteMonetization('/solo-guide')?.pageClass).toBe('long-guide');
+    expect(getRouteMonetization('/golden-weapons')?.pageClass).toBe('medium-guide');
+    expect(getRouteMonetization('/monsters/ear')?.pageClass).toBe('database-item');
+    expect(getRouteMonetization('/performance')?.pageClass).toBe('long-guide');
+    expect(getRouteMonetization('/tools')?.pageClass).toBe('guide-hub');
+    expect(getRouteMonetization('/tools/monster-finder')?.pageClass).toBe('tool');
+    expect(getRouteMonetization('/tools/run-chapter-tracker')?.pageClass).toBe('tool');
     expect(getRouteMonetization('/about')).toMatchObject({
       pageClass: 'trust',
       mode: 'light',

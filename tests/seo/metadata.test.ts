@@ -51,7 +51,7 @@ describe('guide SEO builders', () => {
       title: 'Privacy Policy — Die Together Guide',
       h1: 'Privacy Policy',
     });
-    expect(sitemap()).toHaveLength(24);
+    expect(sitemap()).toHaveLength(39);
     expect(sitemap().map((entry) => entry.url)).toEqual(
       expect.arrayContaining([
         'https://dietogetherguide.shop',
@@ -71,11 +71,11 @@ describe('guide SEO builders', () => {
       ]),
     );
 
-    expect(entries.get('/')).toBe('2026-08-19T00:00:00.000Z');
-    expect(entries.get('/release-date')).toBe('2026-08-19T00:00:00.000Z');
-    expect(entries.get('/troubleshooting')).toBe('2026-08-19T00:00:00.000Z');
+    expect(entries.get('/')).toBe('2026-08-26T00:00:00.000Z');
+    expect(entries.get('/release-date')).toBe('2026-08-26T00:00:00.000Z');
+    expect(entries.get('/troubleshooting')).toBe('2026-08-26T00:00:00.000Z');
     expect(entries.get('/tools/coop-troubleshooter')).toBe(
-      '2026-08-19T00:00:00.000Z',
+      '2026-08-26T00:00:00.000Z',
     );
     expect(entries.get('/privacy')).toBe('2026-08-18T00:00:00.000Z');
     expect(entries.get('/terms')).toBe('2026-08-17T00:00:00.000Z');

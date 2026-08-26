@@ -28,8 +28,9 @@ export const maps = [
     setting: launchField('A launch-build location set across tight decks and creaking rigging.'),
     overview: launchField('The official launch announcement identifies Ship as one of two brand-new Early Access locations.'),
     landmarks: launchField(['Tight decks', 'Rigging', 'Dark corners', 'Bar and deck activities']),
-    pageReady: false,
-    lastVerifiedAt: launchCheckedAt,
+    image: { src: '/images/maps/ship-official.jpg', alt: 'Pirate crew hauling a cart through the Ship', sourceId: 'S11' },
+    pageReady: true,
+    lastVerifiedAt: '2026-08-26T12:36:29Z',
   },
   {
     id: 'castle',
@@ -39,8 +40,9 @@ export const maps = [
     setting: launchField('A larger, colder launch-build location with heavy loot.'),
     overview: launchField('The official launch announcement identifies Castle as one of two brand-new Early Access locations.'),
     landmarks: launchField(['Elevators', 'Funiculars', 'Large spaces', 'Heavy-loot areas']),
-    pageReady: false,
-    lastVerifiedAt: launchCheckedAt,
+    image: { src: '/images/maps/castle-official.jpg', alt: 'Pirate crew exploring the Castle interior', sourceId: 'S11' },
+    pageReady: true,
+    lastVerifiedAt: '2026-08-26T12:36:29Z',
   },
   {
     id: 'silent-cove',

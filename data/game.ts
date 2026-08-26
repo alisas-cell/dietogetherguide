@@ -1,7 +1,7 @@
 import type { Evidence, GameSnapshot } from './types';
 
 const historicalCheckedAt = '2026-08-17T01:44:11Z';
-const releaseCheckedAt = '2026-08-19T05:33:14Z';
+const releaseCheckedAt = '2026-08-26T12:36:29Z';
 
 const confirmed = (
   sourceIds: string[],

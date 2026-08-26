@@ -18,7 +18,7 @@ const url = `${canonicalOrigin}${route}`;
 export const metadata: Metadata = {
   title: { absolute: 'Last Pirates: Die Together Co-op Troubleshooter' },
   description:
-    'Choose a Quick Join, reconnect, host, desync, window, or controller symptom and get the safest source-backed checks first.',
+    'Choose a No Game Found, Quick Join, code, invite, voice, version, lobby, disconnect, or reconnect symptom and get the safest source-backed checks first.',
   alternates: { canonical: url },
   openGraph: {
     type: 'website',
@@ -65,9 +65,9 @@ export default function CoopTroubleshooterPage() {
             <p className="section-kicker">Interactive crew support</p>
             <h1>Co-op Troubleshooter</h1>
             <p>
-              Tell us what is happening and get the safest source-backed steps first.
-              The tool uses official Quick Join, reconnect, save, and host-migration
-              history plus standard reversible Steam and Windows checks.
+              Tell us the symptom, role, connection method, lobby visibility, version
+              state, and Steam state. The tool returns source-backed or standard
+              reversible checks without destructive network or save advice.
             </p>
           </header>
 
@@ -115,7 +115,7 @@ export default function CoopTroubleshooterPage() {
             </p>
           </Callout>
           <AdSlot pathname={route} placement="smartlink_primary" />
-          <SourceList sourceIds={['S01', 'S07', 'S08', 'S10']} />
+          <SourceList sourceIds={['S01', 'S07', 'S08', 'S10', 'S16', 'S17']} />
           <AdSlot pathname={route} placement="horizontal_468" />
         </Container>
       </article>

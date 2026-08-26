@@ -15,6 +15,11 @@ export interface ContentSection {
     title: string;
     body: string;
   };
+  image?: {
+    src: string;
+    alt: string;
+    caption: string;
+  };
 }
 
 export interface ContentFaq {

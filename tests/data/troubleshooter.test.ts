@@ -11,7 +11,19 @@ const prohibited =
 
 describe('co-op troubleshooter gate', () => {
   it('covers every selectable problem with useful safe results', () => {
-    expect(problemOptions.length).toBeGreaterThanOrEqual(8);
+    expect(problemOptions.map((option) => option.value)).toEqual(
+      expect.arrayContaining([
+        'no-public-lobby',
+        'quick-join-fails',
+        'join-code-fails',
+        'steam-invite-fails',
+        'disconnected',
+        'reconnect-fails',
+        'voice-open-deck',
+        'version-mismatch',
+        'lobby-visibility',
+      ]),
+    );
 
     for (const option of problemOptions) {
       const result = getTroubleshooterResult(option.value as ProblemType, 'joining', 'windows');

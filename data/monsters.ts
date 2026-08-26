@@ -5,6 +5,7 @@ import type {
 } from './types';
 
 const launchCheckedAt = '2026-08-19T05:33:14Z';
+const currentCheckedAt = '2026-08-26T12:36:29Z';
 const historicalCheckedAt = '2026-08-17T00:00:00Z';
 
 const launchField = <T>(value: T): VersionedField<T> => ({
@@ -39,8 +40,13 @@ const currentMonsters: MonsterEntry[] = [
     summary: launchField('A blind launch-build monster that hunts by sound.'),
     detection: launchField<DetectionTrigger[]>(['sound']),
     behavior: launchField(['It cannot see; the launch post says noise sends it swinging.']),
-    pageReady: false,
-    lastVerifiedAt: launchCheckedAt,
+    counterplay: launchField(['Reduce avoidable sound and give the creature room; no exact hearing distance is officially published.']),
+    mapIds: launchField(['ship', 'castle']),
+    behaviorTags: ['sound'],
+    patchChanges: [{ date: '2026-08-19', text: 'Attack range and hearing range were reduced.', sourceIds: ['S13'] }],
+    detailRoute: '/monsters/ear',
+    pageReady: true,
+    lastVerifiedAt: currentCheckedAt,
   },
   {
     id: 'anchorer',
@@ -50,8 +56,13 @@ const currentMonsters: MonsterEntry[] = [
     summary: launchField('A deaf but sharp-eyed launch-build monster.'),
     detection: launchField<DetectionTrigger[]>(['sight']),
     behavior: launchField(['It hooks from range, reels players in, and throws them; the launch post warns about mid distance.']),
-    pageReady: false,
-    lastVerifiedAt: launchCheckedAt,
+    counterplay: launchField(['Break sightlines and avoid lingering at the mid-distance described in the official launch notes.']),
+    mapIds: launchField(['ship', 'castle']),
+    behaviorTags: ['loot-hiding'],
+    patchChanges: [{ date: '2026-08-20', text: 'Attack speed was reduced.', sourceIds: ['S15'] }],
+    detailRoute: '/monsters/anchorer',
+    pageReady: true,
+    lastVerifiedAt: currentCheckedAt,
   },
   {
     id: 'snake',
@@ -61,6 +72,7 @@ const currentMonsters: MonsterEntry[] = [
     summary: launchField('A launch-build monster that restrains rather than striking directly.'),
     behavior: launchField(['It wraps around a player and pins them in place.']),
     counterplay: launchField(['A trapped player can struggle free, while a teammate can pull it off faster.']),
+    behaviorTags: ['movement'],
     pageReady: false,
     lastVerifiedAt: launchCheckedAt,
   },
@@ -92,6 +104,7 @@ const currentMonsters: MonsterEntry[] = [
     summary: launchField('A sleeping launch-build monster that becomes persistent when disturbed.'),
     behavior: launchField(['The launch post says that once awakened, it will not lose the player trail.']),
     counterplay: launchField(['Leave it sleeping when possible.']),
+    behaviorTags: ['disturbed'],
     pageReady: false,
     lastVerifiedAt: launchCheckedAt,
   },
@@ -102,8 +115,13 @@ const currentMonsters: MonsterEntry[] = [
     status: 'ea-confirmed',
     summary: launchField('A launch-build impostor designed to resemble a teammate.'),
     behavior: launchField(['It can copy familiar player voices and use them to draw crewmates closer.']),
-    pageReady: false,
-    lastVerifiedAt: launchCheckedAt,
+    counterplay: launchField(['Verify who you are approaching and test suspicious behavior from a safe position; the exact disguise rules are not published.']),
+    mapIds: launchField(['ship', 'castle']),
+    behaviorTags: ['disguise'],
+    patchChanges: [{ date: '2026-06-19', text: 'The Mimic was changed to react when attacked.', sourceIds: ['S08'] }],
+    detailRoute: '/monsters/mimic',
+    pageReady: true,
+    lastVerifiedAt: currentCheckedAt,
   },
   {
     id: 'rat',
@@ -111,10 +129,60 @@ const currentMonsters: MonsterEntry[] = [
     name: 'Rat',
     status: 'ea-confirmed',
     summary: launchField('Rats and their king are explicitly named in the official launch announcement.'),
+    behaviorTags: ['rat-group'],
     pageReady: false,
     lastVerifiedAt: launchCheckedAt,
   },
 ];
+
+currentMonsters.push({
+  id: 'siren',
+  slug: 'siren',
+  name: 'Siren',
+  status: 'ea-confirmed',
+  summary: {
+    value: 'A current Early Access threat with an audible pull cue and restored knockback.',
+    evidence: {
+      confidence: 'confirmed',
+      sourceIds: ['S17'],
+      verifiedAt: currentCheckedAt,
+      build: 'ea-2026-08-26',
+    },
+  },
+  detection: {
+    value: ['sound'],
+    evidence: {
+      confidence: 'confirmed',
+      sourceIds: ['S17'],
+      verifiedAt: currentCheckedAt,
+      build: 'ea-2026-08-26',
+    },
+  },
+  behavior: {
+    value: ['The Aug 26 patch added a pull sound and restored Siren knockback.'],
+    evidence: {
+      confidence: 'confirmed',
+      sourceIds: ['S17'],
+      verifiedAt: currentCheckedAt,
+      build: 'ea-2026-08-26',
+    },
+  },
+  counterplay: {
+    value: ['Use the pull sound as a warning and avoid assuming an unpublished range or cooldown.'],
+    evidence: {
+      confidence: 'confirmed',
+      sourceIds: ['S17'],
+      verifiedAt: currentCheckedAt,
+      build: 'ea-2026-08-26',
+    },
+  },
+  mapIds: launchField(['ship', 'castle']),
+  behaviorTags: ['pull-sound', 'knockback'],
+  patchChanges: [{ date: '2026-08-26', text: 'A pull sound was added and knockback was restored.', sourceIds: ['S17'] }],
+  detailRoute: '/monsters/siren',
+  pageReady: true,
+  lastVerifiedAt: currentCheckedAt,
+});
 
 const historicalEntries: Array<[string, string, string[]]> = [
   ['howler', 'Howler', ['S07']],
@@ -126,7 +194,7 @@ const historicalEntries: Array<[string, string, string[]]> = [
   ['pirate-head', 'Pirate Head', ['S02']],
 ];
 
-export const monsters = [
+export const monsters: MonsterEntry[] = [
   ...currentMonsters,
   ...historicalEntries.map(([id, name, sourceIds]) => ({
     id,
@@ -137,4 +205,4 @@ export const monsters = [
     pageReady: false,
     lastVerifiedAt: historicalCheckedAt,
   })),
-] satisfies MonsterEntry[];
+];

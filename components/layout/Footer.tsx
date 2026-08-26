@@ -21,6 +21,7 @@ const footerGroups = [
       ['/maps', 'Maps'],
       ['/loot-and-extraction', 'Loot & extraction'],
       ['/items-and-weapons', 'Items & weapons'],
+      ['/tools', 'Tools'],
     ],
   },
   {
@@ -28,6 +29,7 @@ const footerGroups = [
     links: [
       ['/coop', 'Co-op'],
       ['/coop/quick-join', 'Quick Join'],
+      ['/coop/no-game-found', 'No Game Found'],
       ['/save-and-reconnect', 'Save & reconnect'],
       ['/troubleshooting', 'Troubleshooting'],
     ],

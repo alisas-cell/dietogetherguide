@@ -3,15 +3,29 @@ import type { Evidence } from './types';
 export type ProblemType =
   | 'no-public-lobby'
   | 'quick-join-fails'
+  | 'join-code-fails'
+  | 'steam-invite-fails'
   | 'disconnected'
   | 'reconnect-fails'
   | 'host-left'
   | 'desync'
   | 'no-window'
-  | 'controller';
+  | 'controller'
+  | 'voice-open-deck'
+  | 'version-mismatch'
+  | 'lobby-visibility';
 
 export type CrewRole = 'solo' | 'host' | 'joining';
 export type TroubleshooterPlatform = 'windows' | 'steam-deck';
+export type ConnectionMethod = 'quick-join' | 'join-code' | 'steam-invite';
+export type LobbyVisibility = 'public' | 'private' | 'not-sure';
+
+export interface TroubleshooterContext {
+  connectionMethod: ConnectionMethod;
+  lobbyVisibility: LobbyVisibility;
+  sameVersion: 'yes' | 'no' | 'not-sure';
+  steamOnline: 'yes' | 'no' | 'not-sure';
+}
 
 export interface TroubleshooterStep {
   order: number;
@@ -33,19 +47,24 @@ export interface TroubleshooterResult {
 export const problemOptions: Array<{ value: ProblemType; label: string }> = [
   { value: 'no-public-lobby', label: 'Cannot find a public lobby' },
   { value: 'quick-join-fails', label: 'Quick Join returns nothing or fails' },
+  { value: 'join-code-fails', label: 'A join code fails' },
+  { value: 'steam-invite-fails', label: 'A Steam invite fails' },
   { value: 'disconnected', label: 'Disconnected during a run' },
   { value: 'reconnect-fails', label: 'Reconnect fails' },
   { value: 'host-left', label: 'The host left or migration failed' },
   { value: 'desync', label: 'The crew appears out of sync' },
   { value: 'no-window', label: 'The game runs but no window appears' },
   { value: 'controller', label: 'Controller or Steam Deck input issue' },
+  { value: 'voice-open-deck', label: 'Voice chat fails on the open deck' },
+  { value: 'version-mismatch', label: 'Crew versions do not match' },
+  { value: 'lobby-visibility', label: 'Public/private lobby confusion' },
 ];
 
 const official = (sourceIds: string[]): Evidence => ({
   confidence: 'confirmed',
   sourceIds,
-  verifiedAt: '2026-08-19T05:33:14Z',
-  build: 'pre-ea',
+  verifiedAt: '2026-08-26T12:36:29Z',
+  build: 'ea-2026-08-26',
 });
 
 type StepSeed = Omit<TroubleshooterStep, 'order'>;
@@ -123,6 +142,55 @@ const resultSeeds: Record<
     ],
     related: [
       { href: '/coop/quick-join', label: 'Quick Join guide' },
+      { href: '/coop', label: 'Co-op guide' },
+    ],
+  },
+  'join-code-fails': {
+    title: 'Join-code recovery checklist',
+    scope: 'Separates a stale code from version, Steam-session, and lobby-visibility problems.',
+    steps: [
+      versionCheck,
+      {
+        title: 'Confirm the host is still in the same lobby',
+        instruction: 'Ask the host to read the current code from the active lobby and enter it once exactly as shown.',
+        basis: 'standard',
+        risk: 'none',
+      },
+      {
+        title: 'Compare one Steam invite',
+        instruction: 'If the code still fails, try one direct Steam invite to learn whether the problem is code-specific or affects the whole session.',
+        basis: 'standard',
+        risk: 'none',
+      },
+      steamRestart,
+    ],
+    related: [
+      { href: '/coop/no-game-found', label: 'No Game Found fixes' },
+      { href: '/coop/quick-join', label: 'Quick Join guide' },
+    ],
+  },
+  'steam-invite-fails': {
+    title: 'Steam-invite recovery checklist',
+    scope: 'Checks the Steam presence, version, and alternate current lobby path without random network changes.',
+    steps: [
+      versionCheck,
+      {
+        title: 'Confirm both Steam accounts are online',
+        instruction: 'Make sure both players are signed in, visible to Steam, and can receive a fresh invite from the current lobby.',
+        basis: 'standard',
+        risk: 'none',
+      },
+      {
+        title: 'Compare the lobby code or Quick Join path',
+        instruction: 'Use one alternate supported connection method to identify whether only the Steam invite handoff is failing.',
+        basis: 'official',
+        evidence: official(['S07', 'S16']),
+        risk: 'none',
+      },
+      steamRestart,
+    ],
+    related: [
+      { href: '/coop/no-game-found', label: 'No Game Found fixes' },
       { href: '/coop', label: 'Co-op guide' },
     ],
   },
@@ -307,20 +375,93 @@ const resultSeeds: Record<
       { href: '/troubleshooting', label: 'General troubleshooting' },
     ],
   },
+  'voice-open-deck': {
+    title: 'Open-deck voice checklist',
+    scope: 'Starts from the Aug 26 open-deck voice fix, then checks reversible voice settings.',
+    steps: [
+      versionCheck,
+      {
+        title: 'Confirm the Aug 26 or newer client is installed',
+        instruction: 'The official Aug 26 notes include an open-deck voice fix, so finish current Steam updates before changing audio configuration.',
+        basis: 'official',
+        evidence: official(['S17']),
+        risk: 'none',
+      },
+      {
+        title: 'Check the selected input device and noise suppression',
+        instruction: 'Use the normal in-game and operating-system input selectors, then test voice with one crewmate.',
+        basis: 'official',
+        evidence: official(['S15']),
+        risk: 'low',
+      },
+    ],
+    related: [
+      { href: '/coop', label: 'Co-op guide' },
+      { href: '/updates', label: 'Current update history' },
+    ],
+  },
+  'version-mismatch': {
+    title: 'Version mismatch checklist',
+    scope: 'Brings every player onto one current Steam build before retesting the lobby.',
+    steps: [
+      versionCheck,
+      releaseCheck,
+      {
+        title: 'Recreate one clean lobby',
+        instruction: 'After every player finishes the update and restarts Steam, have one agreed host create a fresh lobby and invite the crew again.',
+        basis: 'standard',
+        risk: 'none',
+      },
+    ],
+    related: [
+      { href: '/updates', label: 'Current update history' },
+      { href: '/coop/no-game-found', label: 'No Game Found fixes' },
+    ],
+  },
+  'lobby-visibility': {
+    title: 'Lobby visibility checklist',
+    scope: 'Checks whether the host intended a public lobby or a private invite/code flow.',
+    steps: [
+      {
+        title: 'Confirm the intended lobby visibility',
+        instruction: 'Public lobbies are enabled by default in the Aug 21 build; a private crew should use the current invite or code shown by the host.',
+        basis: 'official',
+        evidence: official(['S16']),
+        risk: 'none',
+      },
+      versionCheck,
+      {
+        title: 'Retry one matching connection method',
+        instruction: 'Use Quick Join for a public search, or the host’s current invite/code for a private session. Do not stack several searches at once.',
+        basis: 'standard',
+        risk: 'none',
+      },
+    ],
+    related: [
+      { href: '/coop/quick-join', label: 'Quick Join guide' },
+      { href: '/coop/no-game-found', label: 'No Game Found fixes' },
+    ],
+  },
 };
 
 export function getTroubleshooterResult(
   problem: ProblemType,
   role: CrewRole,
   platform: TroubleshooterPlatform,
+  extra: TroubleshooterContext = {
+    connectionMethod: 'quick-join',
+    lobbyVisibility: 'not-sure',
+    sameVersion: 'not-sure',
+    steamOnline: 'not-sure',
+  },
 ): TroubleshooterResult {
   const seed = resultSeeds[problem];
   const context = `${role === 'joining' ? 'Joining player' : role === 'host' ? 'Host' : 'Solo'} · ${platform === 'steam-deck' ? 'Steam Deck' : 'Windows'}`;
   return {
     title: seed.title,
-    diagnosisScope: `${seed.scope} Context: ${context}.`,
+    diagnosisScope: `${seed.scope} Context: ${context}; ${extra.connectionMethod}; ${extra.lobbyVisibility} lobby; same version: ${extra.sameVersion}; Steam online: ${extra.steamOnline}.`,
     steps: seed.steps.map((step, index) => ({ ...step, order: index + 1 })),
     relatedGuides: seed.related,
-    lastChecked: 'Aug 19, 2026',
+    lastChecked: 'Aug 26, 2026',
   };
 }

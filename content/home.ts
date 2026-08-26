@@ -35,13 +35,21 @@ export const homeFaqs = [
       'No. This is the Early Access release. The developers target six months or more in EA and plan more content and systems on the road to 1.0.',
   },
   {
-    question: 'Does the game support Steam Cloud?',
+    question: 'Does the game save every day and chapter?',
     answer:
-      'Steam currently lists Steam Cloud. That does not define every saved field or confirm that Demo progress transfers to Early Access.',
+      'Yes. The official Aug 21 update says progress now saves every day and every chapter. That does not confirm Demo transfer or publish a save-file path.',
   },
   {
     question: 'Which maps and monsters are live?',
     answer:
       'The launch post names Ship, Castle, and several current monsters. The evidence hubs keep those confirmations separate from Demo references and do not claim the roster is complete.',
+  },
+  {
+    question: 'Does solo use separate balance?',
+    answer: 'Yes. Quota, shop price and stock, item counts, and enemy spawns are now tuned separately for solo and team play.',
+  },
+  {
+    question: 'What are the Golden Weapons?',
+    answer: 'Golden Sword and Golden Hand Cannon arrived Aug 26. They are officially top tier, but exact price, damage, ammo, and durability were not published.',
   },
 ] as const;

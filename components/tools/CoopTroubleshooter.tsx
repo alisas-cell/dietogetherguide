@@ -7,6 +7,8 @@ import {
   getTroubleshooterResult,
   problemOptions,
   type CrewRole,
+  type ConnectionMethod,
+  type LobbyVisibility,
   type ProblemType,
   type TroubleshooterPlatform,
 } from '../../data/troubleshooter';
@@ -16,8 +18,17 @@ export function CoopTroubleshooter() {
   const [problem, setProblem] = useState<ProblemType>('quick-join-fails');
   const [role, setRole] = useState<CrewRole>('joining');
   const [platform, setPlatform] = useState<TroubleshooterPlatform>('windows');
+  const [connectionMethod, setConnectionMethod] = useState<ConnectionMethod>('quick-join');
+  const [lobbyVisibility, setLobbyVisibility] = useState<LobbyVisibility>('not-sure');
+  const [sameVersion, setSameVersion] = useState<'yes' | 'no' | 'not-sure'>('not-sure');
+  const [steamOnline, setSteamOnline] = useState<'yes' | 'no' | 'not-sure'>('not-sure');
   const [submitted, setSubmitted] = useState(false);
-  const result = getTroubleshooterResult(problem, role, platform);
+  const result = getTroubleshooterResult(problem, role, platform, {
+    connectionMethod,
+    lobbyVisibility,
+    sameVersion,
+    steamOnline,
+  });
 
   return (
     <div className="tool-shell">
@@ -72,6 +83,34 @@ export function CoopTroubleshooter() {
               </label>
             ))}
           </div>
+        </fieldset>
+
+        <div className="tool-step">
+          <label htmlFor="connection-method">4 · Connection method</label>
+          <select id="connection-method" onChange={(event) => { setConnectionMethod(event.target.value as ConnectionMethod); setSubmitted(false); }} value={connectionMethod}>
+            <option value="quick-join">Quick Join</option>
+            <option value="join-code">Join code</option>
+            <option value="steam-invite">Steam invite</option>
+          </select>
+        </div>
+
+        <div className="tool-step">
+          <label htmlFor="lobby-visibility">5 · Lobby visibility</label>
+          <select id="lobby-visibility" onChange={(event) => { setLobbyVisibility(event.target.value as LobbyVisibility); setSubmitted(false); }} value={lobbyVisibility}>
+            <option value="not-sure">Not sure</option>
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+        </div>
+
+        <fieldset className="tool-step">
+          <legend>6 · Same current version?</legend>
+          <div className="choice-row">{(['yes', 'no', 'not-sure'] as const).map((value) => <label key={value}><input checked={sameVersion === value} name="same-version" onChange={() => { setSameVersion(value); setSubmitted(false); }} type="radio" /><span>{value === 'not-sure' ? 'Not sure' : value === 'yes' ? 'Yes' : 'No'}</span></label>)}</div>
+        </fieldset>
+
+        <fieldset className="tool-step">
+          <legend>7 · Steam online?</legend>
+          <div className="choice-row">{(['yes', 'no', 'not-sure'] as const).map((value) => <label key={value}><input checked={steamOnline === value} name="steam-online" onChange={() => { setSteamOnline(value); setSubmitted(false); }} type="radio" /><span>{value === 'not-sure' ? 'Not sure' : value === 'yes' ? 'Yes' : 'No'}</span></label>)}</div>
         </fieldset>
 
         <fieldset className="tool-step">

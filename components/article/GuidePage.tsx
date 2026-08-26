@@ -97,9 +97,9 @@ export function GuidePage({ page }: { page: GuidePageData }) {
                     {section.links ? (
                       <div className="article-link-row">
                         {section.links.map((link) => (
-                          <a href={link.href} key={link.href} rel="noopener noreferrer">
+                          <Link href={link.href} key={link.href}>
                             {link.label} <span aria-hidden="true">↗</span>
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     ) : null}
@@ -138,6 +138,19 @@ export function GuidePage({ page }: { page: GuidePageData }) {
                       >
                         <p>{section.callout.body}</p>
                       </Callout>
+                    ) : null}
+                    {section.image ? (
+                      <figure className="article-section-image">
+                        <Image
+                          alt={section.image.alt}
+                          height={900}
+                          loading="lazy"
+                          sizes="(max-width: 900px) 100vw, 760px"
+                          src={section.image.src}
+                          width={1200}
+                        />
+                        <figcaption>{section.image.caption}</figcaption>
+                      </figure>
                     ) : null}
                     </section>
                     {inlinePlacement && routeHasPlacement(page.route, inlinePlacement) ? (

@@ -1,4 +1,5 @@
 import type { Evidence, GameSnapshot } from './types';
+import { REVIEWED_AT } from './current';
 
 const historicalCheckedAt = '2026-08-17T01:44:11Z';
 const releaseCheckedAt = '2026-08-26T12:36:29Z';
@@ -60,7 +61,7 @@ export const gameSnapshot = {
       note: 'Official Steam Next Fest Demo milestone.',
     },
   },
-  lastGlobalCheck: releaseCheckedAt,
+  lastGlobalCheck: REVIEWED_AT,
 } satisfies GameSnapshot;
 
 export const releaseLabel = (() => {

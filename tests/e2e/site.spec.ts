@@ -40,7 +40,7 @@ test('home is coherent, noindex in development, and free of horizontal overflow'
 
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Last Pirates: Die Together Guide',
+    'Last Pirates: Die Together Wiki — Maps, Monsters, Loot, Updates & Co-op Guides',
   );
   await expect(
     page
@@ -50,7 +50,7 @@ test('home is coherent, noindex in development, and free of horizontal overflow'
   await expect(
     page
       .getByLabel('Current game status')
-      .getByText('Checked Aug 19', { exact: true }),
+      .getByText('Checked Sep 25', { exact: true }),
   ).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     'content',
@@ -156,10 +156,15 @@ test('co-op troubleshooter returns an ordered safe checklist', async ({ page }) 
 test('all public routes render one H1 with no broken local images', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop-1440x900');
 
+  test.setTimeout(180_000);
   for (const route of publicRoutes) {
     const response = await page.goto(route);
     expect(response?.status(), route).toBe(200);
     await expect(page.getByRole('heading', { level: 1 }), route).toHaveCount(1);
+    for(const image of await page.locator('img').all()){
+      await image.scrollIntoViewIfNeeded();
+      await expect.poll(()=>image.evaluate(node=>(node as HTMLImageElement).complete&&(node as HTMLImageElement).naturalWidth>0),{message:route+' image should load'}).toBe(true);
+    }
     const brokenImages = await page.locator('img').evaluateAll((images) =>
       images
         .map((image) => image as HTMLImageElement)
@@ -174,7 +179,7 @@ test('article metadata and JSON-LD match the visible release page', async ({ pag
   test.skip(testInfo.project.name !== 'desktop-1440x900');
   await page.goto('/release-date');
   await expect(page).toHaveTitle(
-    'Last Pirates: Die Together Release Date & Early Access Time',
+    'Last Pirates: Die Together Release Date & Early Access Time | Die Together Wiki',
   );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',

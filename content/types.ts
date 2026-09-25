@@ -34,6 +34,10 @@ export interface RelatedGuide {
 }
 
 export interface GuidePageData {
+  checkedAt?: string;
+  lastModified?: string;
+  topics?: string[];
+  evidenceScope?: 'current' | 'historical' | 'evergreen';
   route: string;
   title: string;
   h1: string;

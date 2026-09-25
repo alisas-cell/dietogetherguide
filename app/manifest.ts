@@ -2,8 +2,8 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Die Together Guide',
-    short_name: 'DT Guide',
+    name: 'Die Together Wiki',
+    short_name: 'DT Wiki',
     description:
       'Independent source-checked field guide for Last Pirates: Die Together.',
     start_url: '/',

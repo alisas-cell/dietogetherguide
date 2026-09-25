@@ -1,6 +1,9 @@
 import type { Evidence } from './types';
 
 export type ProblemType =
+  | 'waiting-for-host'
+  | 'copied-code'
+  | 'revive-attachment'
   | 'no-public-lobby'
   | 'quick-join-fails'
   | 'join-code-fails'
@@ -45,6 +48,9 @@ export interface TroubleshooterResult {
 }
 
 export const problemOptions: Array<{ value: ProblemType; label: string }> = [
+  { value:'waiting-for-host',label:'Lobby says Waiting for host' },
+  { value:'copied-code',label:'Code copied but the crew cannot join' },
+  { value:'revive-attachment',label:'Teammate revival or booty attachment fails' },
   { value: 'no-public-lobby', label: 'Cannot find a public lobby' },
   { value: 'quick-join-fails', label: 'Quick Join returns nothing or fails' },
   { value: 'join-code-fails', label: 'A join code fails' },
@@ -63,8 +69,8 @@ export const problemOptions: Array<{ value: ProblemType; label: string }> = [
 const official = (sourceIds: string[]): Evidence => ({
   confidence: 'confirmed',
   sourceIds,
-  verifiedAt: '2026-08-26T12:36:29Z',
-  build: 'ea-2026-08-26',
+  verifiedAt: '2026-09-25T00:00:00Z',
+  build: 'ea-2026-09-18',
 });
 
 type StepSeed = Omit<TroubleshooterStep, 'order'>;
@@ -103,6 +109,18 @@ const resultSeeds: Record<
     related: Array<{ href: string; label: string }>;
   }
 > = {
+ 'waiting-for-host': {title:'Waiting for host checklist',scope:'Distinguishes an expected lobby state from failed discovery.',steps:[
+  {title:'Read the September lobby state',instruction:'September 18 adds previews and explicit Waiting for host feedback. This state is not the same as No Game Found.',basis:'official',evidence:official(['S25']),risk:'none'},
+  {title:'Ask the host to confirm session state',instruction:'Check whether the host is still selecting or starting the chapter. Compare the intended lobby before retrying an invite.',basis:'standard',risk:'none'},versionCheck
+ ],related:[{href:'/lobby',label:'Lobby states'},{href:'/coop/no-game-found',label:'No Game Found'}]},
+ 'copied-code': {title:'Copied code checklist',scope:'A clipboard confirmation is not proof of a reachable lobby.',steps:[
+  {title:'Confirm the host’s current code',instruction:'September 18 puts copy feedback on the code button. A copied value may still refer to an old or different lobby.',basis:'official',evidence:official(['S25']),risk:'none'},
+  versionCheck,{title:'Retry one intended method',instruction:'Confirm Steam is online and use either the current host code or one fresh invite. Avoid parallel search attempts.',basis:'standard',risk:'none'}
+ ],related:[{href:'/lobby',label:'Lobby feedback'},{href:'/coop/no-game-found',label:'Join errors'}]},
+ 'revive-attachment': {title:'Revive and attachment checklist',scope:'Uses the September recovery fixes without inventing stamina costs.',steps:[
+  {title:'Update before testing the recovery interaction',instruction:'September 18 fixed teammate revival and booty attachment and made Anchor/Crab release players during host migration.',basis:'official',evidence:official(['S25']),risk:'none'},
+  {title:'Record the exact failed action',instruction:'Separate attaching, carrying and reviving. Note the level, host role, held objects and whether migration occurred; preserve all save data.',basis:'standard',risk:'none'},versionCheck
+ ],related:[{href:'/revive-guide',label:'Revive guide'},{href:'/host-migration',label:'Host migration'}]},
   'no-public-lobby': {
     title: 'Public lobby search checklist',
     scope: 'Checks availability, version, public-lobby context, and region before deeper escalation.',
@@ -364,9 +382,9 @@ const resultSeeds: Record<
       {
         title: 'Treat Steam Deck support as build-sensitive',
         instruction:
-          'Official pre-EA notes mention Steam Deck support fixes, but current prompts and compatibility status still need verification in the live build.',
+          'Steam Deck Verified was announced September 9 after keyboard and navigation fixes. This does not guarantee an exact FPS or fix every custom Steam Input layout.',
         basis: 'official',
-        evidence: official(['S07']),
+        evidence: official(['S22']),
         risk: 'none',
       },
     ],
@@ -456,12 +474,17 @@ export function getTroubleshooterResult(
   },
 ): TroubleshooterResult {
   const seed = resultSeeds[problem];
+  const contextualSteps:StepSeed[]=[];
+  if(extra.steamOnline==='no')contextualSteps.push({title:'Restore Steam online state first',instruction:'Bring Steam online before retrying an online crew connection. A copied code cannot make an offline client join a session.',basis:'standard',risk:'none'});
+  if(extra.sameVersion==='no')contextualSteps.push(versionCheck);
+  if(extra.connectionMethod==='quick-join'&&extra.lobbyVisibility==='private')contextualSteps.push({title:'Use the intended private connection path',instruction:'Quick Join searches public sessions. Ask the agreed host for the current private invite or code instead of repeating a public search for that crew.',basis:'standard',risk:'none'});
+  if(problem==='host-left')contextualSteps.push({title:'Check the September migration corrections',instruction:'September 10 fixed players getting stuck after migration. September 18 makes Anchor and Crab release captured players. These fixes do not promise every interrupted session recovers.',basis:'official',evidence:official(['S23','S25']),risk:'none'});
   const context = `${role === 'joining' ? 'Joining player' : role === 'host' ? 'Host' : 'Solo'} · ${platform === 'steam-deck' ? 'Steam Deck' : 'Windows'}`;
   return {
     title: seed.title,
     diagnosisScope: `${seed.scope} Context: ${context}; ${extra.connectionMethod}; ${extra.lobbyVisibility} lobby; same version: ${extra.sameVersion}; Steam online: ${extra.steamOnline}.`,
-    steps: seed.steps.map((step, index) => ({ ...step, order: index + 1 })),
+    steps: [...contextualSteps,...seed.steps.filter(step=>!contextualSteps.some(existing=>existing.title===step.title))].map((step, index) => ({ ...step, order: index + 1 })),
     relatedGuides: seed.related,
-    lastChecked: 'Aug 26, 2026',
+    lastChecked: 'Sep 25, 2026',
   };
 }

@@ -19,6 +19,7 @@ const emptyForm: RunRecordInput & { checklistText: string; monstersText: string 
   map: 'Ship',
   currentDay: 1,
   currentChapter: 1,
+  currentLevel: 1,
   crewNotes: '',
   monstersEncountered: [],
   monstersText: '',
@@ -73,6 +74,7 @@ export function RunChapterTracker() {
                 map: form.map,
                 currentDay: Number(form.currentDay),
                 currentChapter: Number(form.currentChapter),
+                currentLevel: form.currentLevel,
                 crewNotes: form.crewNotes,
                 monstersEncountered: form.monstersText.split(',').map((item) => item.trim()).filter(Boolean),
                 lootNotes: form.lootNotes,
@@ -94,7 +96,8 @@ export function RunChapterTracker() {
         <div className="tool-step"><label htmlFor="run-name">Run name</label><input id="run-name" maxLength={200} onChange={(event) => update('runName', event.target.value)} required value={form.runName} /></div>
         <fieldset className="tool-step"><legend>Mode</legend><div className="choice-row">{([['solo', 'Solo'], ['coop', 'Co-op']] as const).map(([value, label]) => <label key={value}><input checked={form.mode === value} name="run-mode" onChange={() => update('mode', value as RunMode)} type="radio" /><span>{label}</span></label>)}</div></fieldset>
         <div className="tracker-inline">
-          <div className="tool-step"><label htmlFor="run-map">Map</label><select id="run-map" onChange={(event) => update('map', event.target.value)} value={form.map}><option>Ship</option><option>Castle</option><option>Silent Cove (Demo archive)</option><option>Other / unknown</option></select></div>
+          <div className="tool-step"><label htmlFor="run-map">Map</label><select id="run-map" onChange={(event) => update('map', event.target.value)} value={form.map}><option>Mansion</option><option>Ship</option><option>Castle</option><option>Silent Cove (Demo archive)</option><option>Other / unknown</option></select></div>
+          <div className="tool-step"><label htmlFor="run-level">Global level (optional)</label><input id="run-level" min="1" max="15" type="number" value={form.currentLevel??''} onChange={e=>update('currentLevel',e.target.value?Number(e.target.value):undefined)} /></div>
           <div className="tool-step"><label htmlFor="run-day">Day</label><input id="run-day" min="0" onChange={(event) => update('currentDay', Number(event.target.value))} type="number" value={form.currentDay} /></div>
           <div className="tool-step"><label htmlFor="run-chapter">Chapter</label><input id="run-chapter" min="0" onChange={(event) => update('currentChapter', Number(event.target.value))} type="number" value={form.currentChapter} /></div>
         </div>

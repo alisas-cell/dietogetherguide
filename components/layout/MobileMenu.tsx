@@ -85,7 +85,7 @@ export function MobileMenu() {
             <div className="mobile-menu-head">
               <p>
                 <span>Expedition index</span>
-                <strong>Die Together Guide</strong>
+                <strong>Die Together Wiki</strong>
               </p>
               <button
                 type="button"

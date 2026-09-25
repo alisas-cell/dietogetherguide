@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'Die Together Guide — Monsters. Maps. Loot. Get your crew home.';
+export const alt = 'Die Together Wiki — Monsters. Maps. Loot. Get your crew home.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -50,7 +50,7 @@ export default function OpenGraphImage() {
             EARLY ACCESS · AUG 18
           </span>
           <span style={{ fontSize: 70, fontWeight: 800, lineHeight: 0.98, letterSpacing: -4 }}>
-            Last Pirates: Die Together Guide
+            Last Pirates: Die Together Wiki
           </span>
           <span style={{ color: '#d7d4c4', fontSize: 30, marginTop: 24 }}>
             Monsters. Maps. Loot. Get your crew home.

@@ -15,13 +15,13 @@ import { formatLastModified, getLastModified } from '../../../lib/seo/routes';
 const route = '/tools/monster-finder';
 const url = `${canonicalOrigin}${route}`;
 const title = 'Last Pirates Monster Finder — Identify Enemies by Sound & Behavior';
-const description = 'Identify Last Pirates enemies with transparent sound, movement, loot-hiding, disguise, disturbance, pull, knockback, and rat-group rules.';
+const description = 'Filter current monsters by behavior, location, level, evidence and patch date. Head Crab, Anchorer and other threats share the wiki registry.';
 
 export const metadata: Metadata = {
-  title: { absolute: title },
+  title: { absolute: title + ' | Die Together Wiki' },
   description,
   alternates: { canonical: url },
-  openGraph: { type: 'website', url, siteName: 'Die Together Guide', title, description },
+  openGraph: { type: 'website', url, siteName: 'Die Together Wiki', title: title + ' | Die Together Wiki', description, images: ['/opengraph-image'] },
 };
 
 const schemas = [
@@ -43,10 +43,10 @@ export default function MonsterFinderPage() {
       <AdSlot pathname={route} placement="native_primary" />
       <div className="tool-explainer"><section><h2>How matching works</h2><p>All selected tags must exist on the same record. Sound maps to Ear, disguise to Mimic, disturbance to Sleeper, pull sound and knockback context to Siren, and rat-group context to Rat.</p></section><section><h2>Why no result can be useful</h2><p>An empty result means the verified registry cannot support that clue combination. Remove only a clue you are unsure about or continue with the broader monster hub.</p></section></div>
       <AdSlot pathname={route} placement="rectangle_300" />
-      <Callout variant="build" title="Evidence boundary"><p>The Anchorer taxonomy includes the approved loot-hiding clue while its current official launch description independently confirms sight and hook behavior. Exact monster meters, cooldowns, damage, and spawn rates remain unpublished.</p></Callout>
+      <Callout variant="build" title="Evidence boundary"><p>Anchorer uses a hook-and-pull clue. The new treasure-disguised enemy is unnamed; loot-hiding does not identify Anchorer. Exact monster meters, cooldowns, damage, and spawn rates remain unpublished.</p></Callout>
       <p className="tool-page-links"><Link href="/monsters">Monster hub</Link> · <Link href="/beginner-guide">Beginner guide</Link> · <Link href="/solo-guide">Solo guide</Link></p>
       <AdSlot pathname={route} placement="smartlink_primary" />
-      <SourceList sourceIds={['S08', 'S11', 'S13', 'S15', 'S17']} />
+      <SourceList sourceIds={['S11', 'S17', 'S20', 'S23', 'S25']} />
       <AdSlot pathname={route} placement="horizontal_468" />
     </Container></article></>
   );

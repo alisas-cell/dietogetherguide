@@ -40,7 +40,7 @@ describe('evidence registry validation', () => {
       items,
       effects,
       assets,
-      now: new Date('2026-08-26T13:00:00Z'),
+      now: new Date('2026-09-25T13:00:00Z'),
     });
 
     expect(result.errors).toEqual([]);
@@ -128,8 +128,8 @@ describe('evidence registry validation', () => {
     }
 
     for (const map of currentMaps) {
-      expect(map.overview?.evidence.build).toBe('ea-launch');
-      expect(map.overview?.evidence.sourceIds).toContain('S11');
+      expect(map.overview?.evidence.build).toBe('ea-2026-09-18');
+      expect(map.overview?.evidence.sourceIds).toContain('S23');
       expect(map.pageReady).toBe(true);
     }
   });

@@ -4,6 +4,8 @@ import { Container } from '../ui/Container';
 import { Brand } from './Brand';
 import { MobileMenu } from './MobileMenu';
 import { primaryNavigation, utilityNavigation } from './navigation';
+import { WikiSearch } from './WikiSearch';
+import { searchEntries } from '../../lib/search';
 
 export function Header() {
   return (
@@ -30,6 +32,7 @@ export function Header() {
           </nav>
         </Container>
       </div>
+      <Container><WikiSearch entries={searchEntries}/></Container>
     </header>
   );
 }

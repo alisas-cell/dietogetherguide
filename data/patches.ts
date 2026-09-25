@@ -1,6 +1,8 @@
 import type { PatchEntry } from './types';
+import { septemberPatches } from './september-patches';
 
 export const patches = [
+  ...septemberPatches,
   {
     id: '2026-08-26-golden-monster-balance',
     slug: 'golden-weapons-monster-rebalance',

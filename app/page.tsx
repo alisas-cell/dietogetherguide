@@ -1,37 +1,34 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { AdSlot } from '../components/ads/AdSlot';
 import { FaqList } from '../components/article/FaqList';
+import { SourceList } from '../components/article/SourceList';
 import { MapCard } from '../components/database/MapCard';
 import { MonsterCard } from '../components/database/MonsterCard';
 import { UpdateCard } from '../components/database/UpdateCard';
-import { EvidenceBadge } from '../components/evidence/EvidenceBadge';
 import { JsonLd } from '../components/seo/JsonLd';
 import { Container } from '../components/ui/Container';
 import { homeFaqs } from '../content/home';
-import { gameSnapshot, releaseLabel } from '../data/game';
+import { toolLinks } from '../content/september-hubs';
 import { maps } from '../data/maps';
 import { monsters } from '../data/monsters';
-import { patches } from '../data/patches';
-import { canonicalOrigin } from '../lib/seo/metadata';
+import { septemberPatches } from '../data/september-patches';
+import { canonicalOrigin, wikiTitle } from '../lib/seo/metadata';
 import { buildHomeSchemas } from '../lib/seo/schema';
-
+const title = 'Last Pirates: Die Together Wiki — Maps, Monsters, Loot';
+const description =
+  'Current September guides for Last Pirates: Die Together. Explore maps, monsters, loot, equipment, chapters, achievements and co-op tools with official sources.';
 export const metadata: Metadata = {
-  title: {
-    absolute: 'Last Pirates: Die Together Wiki & Guide — Monsters, Maps & Loot',
-  },
-  description:
-    'Source-checked Last Pirates: Die Together guides for monsters, maps, loot, co-op, Early Access updates and troubleshooting.',
+  title: { absolute: wikiTitle(title) },
+  description,
   alternates: { canonical: canonicalOrigin },
   openGraph: {
     type: 'website',
     url: canonicalOrigin,
-    siteName: 'Die Together Guide',
-    title: 'Last Pirates: Die Together Wiki & Guide — Monsters, Maps & Loot',
-    description:
-      'Monsters. Maps. Loot. Get your crew home with a source-checked independent field guide.',
+    siteName: 'Die Together Wiki',
+    title: wikiTitle(title),
+    description,
     images: [
       {
         url: '/images/game/steam-page-background.jpg',
@@ -40,227 +37,364 @@ export const metadata: Metadata = {
     ],
   },
 };
-
-const startCards = [
-  {
-    number: '01',
-    href: '/gameplay',
-    title: 'Know the mission',
-    description: 'Learn the extraction loop before the crew starts pulling at everything.',
-  },
-  {
-    number: '02',
-    href: '/coop',
-    title: 'Build your crew',
-    description: 'Set up one to four pirates, a lobby, and a recovery plan.',
-  },
-  {
-    number: '03',
-    href: '/monsters',
-    title: 'Learn the threats',
-    description: 'Read the evidence ledger without mistaking Demo names for a live roster.',
-  },
-  {
-    number: '04',
-    href: '/loot-and-extraction',
-    title: 'Bring the loot home',
-    description: 'Make the return decision before greed makes it for you.',
-  },
-] as const;
-
-const guideCards = [
-  ['/monsters', 'Threat ledger', 'Monsters', 'Names, triggers, behavior, and counterplay only when verified.'],
-  ['/maps', 'Location charts', 'Maps', 'Current Ship and Castle records, with Demo-era Silent Cove kept separate.'],
-  ['/loot-and-extraction', 'Haul protocol', 'Loot & Extraction', 'How physics, risk, and the return trip shape a run.'],
-  ['/items-and-weapons', 'Equipment locker', 'Items & Weapons', 'Official patch references with no invented statistics.'],
-  ['/rum-buffs-and-perks', 'Effects ledger', 'Rum / Buffs / Perks', 'Separate systems until the live build proves how they connect.'],
-  ['/troubleshooting', 'Problem desk', 'Fixes', 'Reversible launch, lobby, reconnect, and control checks.'],
-] as const;
-
-const problems = [
-  ['/coop/no-game-found', 'No Game Found', 'Compare versions, Steam state, lobby intent, codes, invites, and Quick Join safely.'],
-  ['/save-and-reconnect', 'Disconnected mid-run', 'Use the in-game recovery flow and protect local progress.'],
-  ['/performance', 'Low FPS or stutter', 'Use patch, preset, resolution, driver, file, and scene checks without random flags.'],
-  ['/revive-guide', 'Downed friend recovery', 'Separate official 25/15-second timers from player-reported stamina pressure.'],
-] as const;
-
-const priorityLinks = [
-  ['/solo-guide', 'Solo Guide', 'Separate balance, 25-second floor time, shop, hauling, and threats.'],
-  ['/golden-weapons', 'Golden Weapons', 'Golden Sword and Hand Cannon with exact unknowns kept visible.'],
-  ['/tools/monster-finder', 'Monster Finder', 'Identify a threat using transparent behavior rules.'],
-  ['/coop/no-game-found', 'No Game Found', 'Fix codes, invites, and Quick Join in a safe order.'],
-  ['/maps/ship', 'Ship', 'Titanic, hauling, and current Ship changes.'],
-  ['/maps/castle', 'Castle', 'Heavy loot, transport, and evidence boundaries.'],
-  ['/performance', 'Performance', 'Current official fixes and reversible diagnostics.'],
-  ['/revive-guide', 'Revive Guide', 'Current floor timers and recovery planning.'],
-] as const;
-
+const hubs: Array<[string, string, string, string]> = [
+  [
+    '/updates/september-2026',
+    'Patch log',
+    'September updates',
+    'Read the progression rebuild, current monster changes and subsequent fixes in date order.',
+  ],
+  [
+    '/maps',
+    'Locations',
+    'Mansion · Ship · Castle',
+    'Check transport, loot corrections and known progression milestones without a fabricated floor plan.',
+  ],
+  [
+    '/monsters',
+    'Bestiary',
+    'Recognize the threat',
+    'Separate sound hunting, head clamps, hook grabs, disguise and teleportation. Unknown assignments stay unknown.',
+  ],
+  [
+    '/loot',
+    'Cargo ledger',
+    'Loot and quota',
+    'Distinguish spawn points from guaranteed loot, carried value from secured money, and history from current prices.',
+  ],
+  [
+    '/items-and-weapons',
+    'Equipment',
+    'Tools and weapons',
+    'Boomerang, Cover and Teleport Crystal join the equipment record, with unpublished stats left blank.',
+  ],
+  [
+    '/guides',
+    'Run decisions',
+    'Practical guides',
+    'Use current hauling restrictions, elevator controls and store checks before committing your next load.',
+  ],
+];
 export default function Home() {
   return (
     <>
       <JsonLd schemas={buildHomeSchemas(homeFaqs)} />
-
       <section className="home-hero" id="hero">
         <Container className="home-hero-grid">
           <div className="home-hero-copy">
-            <div className="home-eyebrow">
-              <EvidenceBadge confidence="confirmed" />
-              <span>Independent Early Access field guide</span>
-            </div>
-            <h1>Last Pirates: Die Together Guide</h1>
-            <p className="home-tagline">Monsters. Maps. Loot. Get your crew home.</p>
+            <p className="section-kicker">
+              Independent field guide · September edition
+            </p>
+            <h1>
+              Last Pirates: Die Together Wiki — Maps, Monsters, Loot, Updates
+              &amp; Co-op Guides
+            </h1>
+            <p className="home-tagline">
+              Know the patch. Plan the haul. Bring the crew home.
+            </p>
             <p className="home-lede">
-              Source-checked Early Access briefings for the extraction loop, threats,
-              current locations, loot, public crews, and the problems that can strand a run.
+              Current-build answers backed by official announcements. Find what
+              changed, identify a threat and plan your next run without
+              mistaking old Demo mechanics for today’s game.
             </p>
             <div className="button-row">
-              <Link className="button button-primary" href="/beginner-guide">
-                Start the Beginner Guide
+              <Link
+                className="button button-primary"
+                href="/updates/september-2026"
+              >
+                Read September updates
               </Link>
-              <Link className="button button-secondary" href="/monsters">
-                Browse Monsters
+              <Link className="button button-secondary" href="/beginner-guide">
+                Start here
               </Link>
             </div>
             <p className="hero-source-note">
-              Early Access is live · evidence revalidated Aug 26, 2026
+              Reviewed September 25, 2026 · Latest gameplay patch found:
+              September 18
             </p>
           </div>
           <figure className="home-hero-visual">
-            <div className="image-coordinate">DTG / EA LIVE / PLATE 01</div>
+            <div className="image-coordinate">
+              DT WIKI / CURRENT FIELD NOTES
+            </div>
             <Image
-              alt="Official art of a pirate hauling colorful treasure while the crew and a monster close in"
+              alt="Official artwork of a pirate hauling treasure with crew and a monster nearby"
               fill
               priority
               sizes="(max-width: 900px) 100vw, 42vw"
               src="/images/game/steam-page-background.jpg"
             />
-            <figcaption>Official Steam media · localized · source registered</figcaption>
+            <figcaption>Official Steam artwork · source registered</figcaption>
           </figure>
         </Container>
       </section>
-
-      <section className="metric-section" id="metrics" aria-label="Quick facts">
+      <section
+        className="metric-section"
+        id="metrics"
+        aria-label="Current game facts"
+      >
         <Container className="metric-grid">
-          <div><strong>LIVE</strong><span>Early Access</span></div>
-          <div><strong>{gameSnapshot.playerRange.value.min}–{gameSnapshot.playerRange.value.max}</strong><span>Solo + online co-op</span></div>
-          <div><strong>{gameSnapshot.demoPlayerMilestone?.value}</strong><span>Historical Demo milestone</span></div>
-          <div><strong>{gameSnapshot.earlyAccessTarget?.value.toUpperCase()}</strong><span>Official launch target</span></div>
+          <div>
+            <strong>SEP 18</strong>
+            <span>Latest gameplay patch found</span>
+          </div>
+          <div>
+            <strong>1–4</strong>
+            <span>Solo + online co-op</span>
+          </div>
+          <div>
+            <strong>VERIFIED</strong>
+            <span>Steam Deck · announced Sep 9</span>
+          </div>
+          <div>
+            <strong>20</strong>
+            <span>Steam achievements</span>
+          </div>
         </Container>
       </section>
-
       <AdSlot pathname="/" placement="early_responsive" />
-
-      <section className="home-section" id="start-here">
+      <section className="home-section" id="current-patch">
         <Container>
           <div className="section-heading">
-            <div><p className="section-kicker">Start here · Expedition route</p><h2>Four moves before the first haul</h2></div>
-            <Link className="text-link" href="/beginner-guide">Open the full first-run guide <span aria-hidden="true">→</span></Link>
+            <div>
+              <p className="section-kicker">What changed most recently</p>
+              <h2>A clearer lobby. More places to find loot.</h2>
+            </div>
+            <Link
+              className="text-link"
+              href="/updates/fresh-lobby-70-loot-spawns"
+            >
+              September 18 details →
+            </Link>
           </div>
-          <div className="start-route-grid">
-            {startCards.map((card) => (
-              <Link href={card.href} key={card.number}>
-                <span>{card.number}</span><h3>{card.title}</h3><p>{card.description}</p><b aria-hidden="true">→</b>
+          <p>
+            The latest gameplay announcement found in the official archive adds
+            lobby previews, clearer waiting-for-host and code-copy feedback,
+            plus 70 loot spawn points distributed across 15 levels. It also
+            fixes lift cargo, revival, booty attachment and several enemy
+            interactions. Seventy spawn points does not mean seventy extra items
+            in every run.
+          </p>
+          <div className="live-priority-grid">
+            {(
+              [
+                ['/lobby', 'Lobby states'],
+                ['/guides/elevators', 'Current lift controls'],
+                ['/revive-guide', 'Recovery fixes'],
+                ['/loot', 'Loot changes'],
+              ] as const
+            ).map(([href, label]) => (
+              <Link href={href} key={href}>
+                <strong>{label}</strong>
+                <span>
+                  Read the current evidence and practical implications.
+                </span>
               </Link>
             ))}
           </div>
         </Container>
       </section>
-
       <AdSlot pathname="/" placement="native_primary" />
-
       <section className="home-section home-section-alt" id="field-guide">
         <Container>
-          <div className="section-heading"><div><p className="section-kicker">Field guide · Codex</p><h2>Choose the problem, not the lore shelf</h2></div><p>Every hub owns one player intent and carries its own evidence state.</p></div>
+          <div className="section-heading">
+            <div>
+              <p className="section-kicker">Wiki reference desk</p>
+              <h2>Find the answer for this run</h2>
+            </div>
+            <p>
+              Each guide links its current facts to a dated source and related
+              tools.
+            </p>
+          </div>
           <div className="guide-card-grid">
-            {guideCards.map(([href, kicker, title, description]) => (
-              <Link href={href} key={href}><span>{kicker}</span><h3>{title}</h3><p>{description}</p><b aria-hidden="true">Open record →</b></Link>
+            {hubs.map(([href, kicker, name, text]) => (
+              <Link href={href} key={href}>
+                <span>{kicker}</span>
+                <h3>{name}</h3>
+                <p>{text}</p>
+                <b aria-hidden="true">Open guide →</b>
+              </Link>
             ))}
           </div>
         </Container>
       </section>
-
       <AdSlot pathname="/" placement="smartlink_primary" />
-
-      <section className="home-section" id="early-access-delta">
+      <section className="home-section" id="progression">
         <Container className="ea-delta-grid">
           <div>
-            <p className="section-kicker">{releaseLabel}</p>
-            <h2>What Early Access includes now</h2>
-            <p>The live build now includes Ship and Castle, separate solo/team tuning, daily and chapter saves, public-default lobbies, Golden Weapons, and official fixes through Aug 26.</p>
-            <Link className="button button-secondary" href="/early-access">Read the evidence split</Link>
+            <p className="section-kicker">September progression rebuild</p>
+            <h2>Check the chapter before packing the cart</h2>
+            <p>
+              The first four chapters each contain one level; later chapters
+              have two. Ship enters at level 2 and Castle at level 4. The notes
+              do not publish every level’s location, enemy set or store
+              inventory, so the current preview remains your deciding reference.
+            </p>
+            <Link className="button button-secondary" href="/progression">
+              Progression reference
+            </Link>
           </div>
           <div className="delta-list">
-            <div><span>LIVE BUILD</span><strong>Golden Weapons</strong><p>Golden Sword and Golden Hand Cannon landed Aug 26.</p></div>
-            <div><span>BALANCE</span><strong>Solo and team split</strong><p>Quota, shop, item counts, and enemy spawns tune independently.</p></div>
-            <div><span>PROGRESS</span><strong>Daily + chapter saves</strong><p>The Aug 21 patch confirms both save checkpoints.</p></div>
-            <div><span>LOBBIES</span><strong>Public by default</strong><p>Quick Join now sits in a live public-lobby context.</p></div>
-            <div><span>LATEST</span><strong>Aug 26 balance pass</strong><p>Monster, floor-time, hauling, store, respawn, and voice changes.</p></div>
-          </div>
-        </Container>
-        <Container>
-          <div className="live-priority-grid" aria-label="Current priority guides">
-            {priorityLinks.map(([href, title, description]) => <Link href={href} key={href}><strong>{title}</strong><span>{description}</span><b aria-hidden="true">→</b></Link>)}
+            <div>
+              <span>QUOTA</span>
+              <strong>A corrected progression curve</strong>
+              <p>
+                September 14 fixes quotas that could drop after the reorder.
+                Plan from the value on your screen, not a guessed table.
+              </p>
+            </div>
+            <div>
+              <span>STORE</span>
+              <strong>Reordered unlocks and persistent cards</strong>
+              <p>
+                Check actual prices and uses. Water Pistol was removed from the
+                store; the three new equipment entries have separate guides.
+              </p>
+            </div>
+            <div>
+              <span>HAULING</span>
+              <strong>Large items became heavier</strong>
+              <p>
+                September supersedes the August weight reduction. Multi-grab
+                follows the heaviest item, and Ship’s cart restriction is based
+                on location day.
+              </p>
+            </div>
           </div>
         </Container>
       </section>
-
       <AdSlot pathname="/" placement="rectangle_300" />
-
-      <section className="home-section split-teaser" id="monsters-teaser">
+      <section className="home-section home-section-alt" id="monsters-teaser">
         <Container>
-          <div className="section-heading"><div><p className="section-kicker">Early Access threat snapshot</p><h2>Current names. No fake stat blocks.</h2></div><p>The launch announcement identifies these threats and their broad behavior. It does not establish a complete roster or hidden statistics.</p></div>
+          <div className="section-heading">
+            <div>
+              <p className="section-kicker">Current threat records</p>
+              <h2>Head Crab changed shape</h2>
+            </div>
+            <p>
+              The rebuilt creature is a jellyfish. Two other September threats
+              remain unnamed in the announcement; we do not assign invented
+              names or conflate them with Anchorer or Mimic.
+            </p>
+          </div>
           <div className="database-grid">
-            {monsters.filter((monster) => monster.status === 'ea-confirmed').slice(0, 3).map((monster) => <MonsterCard key={monster.id} monster={monster} />)}
+            {monsters
+              .filter((m) =>
+                ['head-crab', 'anchorer', 'man-in-shadows'].includes(m.id),
+              )
+              .map((monster) => (
+                <MonsterCard key={monster.id} monster={monster} />
+              ))}
           </div>
-          <Link className="text-link section-link" href="/monsters">Open the monster evidence table <span aria-hidden="true">→</span></Link>
+          <Link className="text-link section-link" href="/tools/monster-finder">
+            Use Monster Finder →
+          </Link>
         </Container>
       </section>
-
       <AdSlot pathname="/" placement="horizontal_468" />
-
-      <section className="home-section home-section-alt" id="maps-teaser">
+      <section className="home-section" id="maps-teaser">
         <Container>
-          <div className="section-heading"><div><p className="section-kicker">Location charts</p><h2>Ship and Castle are live</h2></div><p>Those two launch locations are current. Silent Cove remains a clearly labeled Demo-era record until direct current evidence connects it to the live build.</p></div>
+          <div className="section-heading">
+            <div>
+              <p className="section-kicker">Current locations</p>
+              <h2>Mansion, Ship and Castle</h2>
+            </div>
+            <p>
+              Current location records are separate from the Silent Cove Demo
+              archive. Level-specific enemy assignments are not filled from old
+              assumptions.
+            </p>
+          </div>
           <div className="database-grid map-grid">
-            {maps.map((map) => <MapCard key={map.id} map={map} />)}
+            {maps
+              .filter((m) => m.status === 'ea-live')
+              .map((map) => (
+                <MapCard key={map.id} map={map} />
+              ))}
           </div>
         </Container>
       </section>
-
-      <section className="crew-strip" id="crew-utility">
-        <Container className="crew-strip-grid">
-          <div><p className="section-kicker">Crew utility</p><h2>Public crew? Keep the recovery plan close.</h2><p>Public lobbies are enabled by default. Use Quick Join for the feature path, No Game Found for failed discovery, and the contextual troubleshooter for codes, invites, voice, version, lobby, disconnect, or reconnect symptoms.</p></div>
-          <div className="button-row"><Link className="button button-primary" href="/coop/no-game-found">No Game Found</Link><Link className="button button-secondary" href="/tools/coop-troubleshooter">Open troubleshooter</Link></div>
+      <section className="home-section home-section-alt" id="crew-utility">
+        <Container>
+          <div className="section-heading">
+            <div>
+              <p className="section-kicker">Five practical browser tools</p>
+              <h2>Identify, troubleshoot, record and calculate</h2>
+            </div>
+            <p>
+              Tools share the wiki’s evidence. Personal notes stay local; no
+              tool reads your Steam save or predicts unverified mechanics.
+            </p>
+          </div>
+          <div className="live-priority-grid">
+            {toolLinks.map(([href, label]) => (
+              <Link href={href} key={href}>
+                <strong>{label}</strong>
+                <span>Open tool →</span>
+              </Link>
+            ))}
+          </div>
+          <p>
+            Need a crew? Use <Link href="/coop/quick-join">Quick Join</Link>. If
+            discovery fails, follow{' '}
+            <Link href="/coop/no-game-found">No Game Found</Link>. Waiting for
+            host, host migration and voice problems each have their own
+            diagnostic path.
+          </p>
         </Container>
       </section>
-
       <section className="home-section" id="latest-updates">
         <Container>
-          <div className="section-heading"><div><p className="section-kicker">Verified build log</p><h2>Latest official updates</h2></div><Link className="text-link" href="/updates">Full update timeline <span aria-hidden="true">→</span></Link></div>
-          <div className="updates-list">{patches.map((patch) => <UpdateCard key={patch.id} patch={patch} />)}</div>
-        </Container>
-      </section>
-
-      <section className="home-section home-section-alt" id="common-problems">
-        <Container>
-          <div className="section-heading"><div><p className="section-kicker">Popular problems</p><h2>Get the crew moving again</h2></div><p>Safe checks first. No random DLLs, save deletion, or global security shutdowns.</p></div>
-          <div className="problem-grid">
-            {problems.map(([href, title, description]) => <Link href={href} key={href}><h3>{title}</h3><p>{description}</p><span>Open field note →</span></Link>)}
+          <div className="section-heading">
+            <div>
+              <p className="section-kicker">Dated official announcements</p>
+              <h2>The current patch sequence</h2>
+            </div>
+            <Link className="text-link" href="/updates">
+              Full update timeline →
+            </Link>
+          </div>
+          <div className="updates-list">
+            {septemberPatches.slice(0, 3).map((patch) => (
+              <UpdateCard key={patch.id} patch={patch} />
+            ))}
           </div>
         </Container>
       </section>
-
-      <section className="home-section" id="faq">
+      <section className="home-section home-section-alt" id="faq">
         <Container className="faq-home-grid">
-          <div><p className="section-kicker">Direct answers</p><h2>Early Access questions</h2><p>Every answer below comes from the same release and evidence registry as the rest of the site.</p><Link className="text-link" href="/faq">Read all questions <span aria-hidden="true">→</span></Link></div>
+          <div>
+            <p className="section-kicker">Direct answers</p>
+            <h2>Before your next run</h2>
+            <p>
+              Short answers from the same evidence used by the full guides. A
+              dated official fix is not a promise that every related edge case
+              is impossible.
+            </p>
+          </div>
           <FaqList items={[...homeFaqs]} />
         </Container>
       </section>
-
       <section className="disclaimer-section" id="disclaimer">
-        <Container className="disclaimer-grid">
-          <div><p className="section-kicker">Source & fan disclaimer</p><h2>An independent logbook, not an official ship’s order.</h2></div>
-          <div><p>Die Together Guide is not affiliated with RetroStyle Games, Judatone Studios, Elegoose Games, Valve, or Steam. Official media is locally hosted with provenance; trademarks and artwork belong to their owners.</p><p>Checked Aug 26, 2026. Current Early Access evidence and historical Demo evidence stay visibly separated.</p><div className="inline-links"><Link href="/about">Editorial method</Link><Link href="/contact">Corrections</Link><Link href="/tools">All tools</Link><a href="https://store.steampowered.com/app/4317790/Last_Pirates_Die_Together/" rel="noopener noreferrer">Official Steam page</a></div></div>
+        <Container>
+          <h2>Independent, source-led and explicit about unknowns</h2>
+          <p>
+            Die Together Wiki is a fan-made reference, not an official game
+            service. Trademarks and artwork belong to their owners. We
+            distinguish current facts, dated changes, practical suggestions and
+            unverified details. No independently tested FPS, hidden damage, drop
+            probability or complete level chart is claimed.
+          </p>
+          <p>
+            <Link href="/about">
+              Read the source registry and editorial method
+            </Link>{' '}
+            · <Link href="/contact">Send a correction</Link> ·{' '}
+            <Link href="/achievements">Achievement evidence</Link> ·{' '}
+            <Link href="/steam-deck">Steam Deck status</Link>
+          </p>
+          <SourceList sourceIds={['S01', 'S22', 'S23', 'S24', 'S25', 'S26']} />
         </Container>
       </section>
     </>

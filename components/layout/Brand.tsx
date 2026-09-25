@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export function Brand() {
   return (
-    <Link className="brand" href="/" aria-label="Die Together Guide home">
+    <Link className="brand" href="/" aria-label="Die Together Wiki home">
       <Image
         src="/brand/field-guide-mark.svg"
         alt=""
@@ -13,8 +13,8 @@ export function Brand() {
       />
       <span className="brand-copy">
         <span>Last Pirates</span>
-        <strong>Die Together</strong>
-        <span>Field Guide</span>
+        <strong>Die Together Wiki</strong>
+        <span>Independent field guide</span>
       </span>
     </Link>
   );

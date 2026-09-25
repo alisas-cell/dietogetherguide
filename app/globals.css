@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+.wiki-search { padding: 10px 0 14px; max-width: 720px; position: relative; }
+.wiki-search > label { font-size: .72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .1em; }
+.wiki-search-input { display:flex; gap:8px; margin-top:5px; }
+.wiki-search input { width:100%; min-width:0; padding:10px 14px; border:1px solid #344751; border-radius:6px; background:#0e1b22; color:#edf4ed; }
+.wiki-search button { padding:8px; border:1px solid #344751; border-radius:6px; }
+.wiki-search-results { position:absolute; z-index:45; top:100%; width:100%; background:#10212a; border:1px solid #40606d; padding:12px; box-shadow:0 12px 30px #0008; }
+.wiki-search-results ul { list-style:none; margin:0; padding:0; }
+.wiki-search-results a { display:block; padding:10px; color:#edf4ed; }
+.wiki-search-results a:hover { background:#223b44; }
+.wiki-facts { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px; }
+.wiki-facts dd { margin:0; font-weight:700; }
+.finder-grid label { min-width:0; }
+.finder-grid select,.finder-grid input[type="number"] { width:100%; padding:10px; border:1px solid #3b515d; border-radius:5px; background:#0b1920; color:#f1f4ed; }
+.finder-grid small { display:block; font-size:.75rem; line-height:1.5; color:#b8c8c9; margin-top:5px; }
+.wiki-patch-links li,.wiki-source-ledger li { padding:16px 0; border-bottom:1px solid #2a3c43; }
+.home-hero h1 { font-size:clamp(2rem,3.3vw,3.7rem); }
+@media (min-width:1100px) { .desktop-nav { gap:14px; } .desktop-nav a { font-size:.76rem; } .brand-copy strong { font-size:1.25rem; } }
+@media (max-width:600px) { .wiki-facts { grid-template-columns:1fr; gap:6px; } .wiki-facts dd { margin-bottom:14px; } .wiki-search-results { max-height:55vh; overflow:auto; } }
+
 :root {
   --bg: #071014;
   --bg-elevated: #0a1519;
@@ -2731,6 +2750,10 @@ main:has(.disclaimer-section) + .site-footer {
     margin-left: calc(50% - 50vw);
   }
 }
+
+.home-hero h1 { font-size:clamp(30px,3.2vw,48px); line-height:1.14; }
+@media (min-width:1100px) { .desktop-nav { gap:14px; } .desktop-nav a { font-size:12px; } .brand-copy strong { font-size:20px; } }
+@media (max-width:600px) { .home-hero h1 { font-size:32px; } .home-hero-visual { min-height:300px; } }
 
 @media (prefers-reduced-motion: reduce) {
   html {

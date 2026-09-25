@@ -67,6 +67,9 @@ export type DetectionTrigger =
   | 'unknown';
 
 export type MonsterBehaviorTag =
+  | 'head-clamp'
+  | 'hook'
+  | 'teleport'
   | 'sound'
   | 'movement'
   | 'loot-hiding'
@@ -89,6 +92,8 @@ export interface EntityImage {
 }
 
 export interface MonsterEntry {
+  levelNumbers?: number[];
+  locationNote?: string;
   id: string;
   slug: string;
   name: string;
@@ -171,6 +176,10 @@ export interface EffectEntry {
 }
 
 export interface PatchEntry {
+  severity?: 'hotfix' | 'update' | 'major';
+  sourceUrl?: string;
+  affectedTopics?: string[];
+  affectedEntities?: string[];
   id: string;
   slug: string;
   title: string;

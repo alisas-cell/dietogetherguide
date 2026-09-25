@@ -18,8 +18,8 @@ export function UpdateCard({ patch }: { patch: PatchEntry }) {
           ))}
         </ul>
         {patch.affectedRoutes[0] ? (
-          <Link className="text-link" href={patch.affectedRoutes[0]}>
-            See affected guide <span aria-hidden="true">→</span>
+          <Link className="text-link" href={['2026-09-18','2026-09-14','2026-09-10'].includes(patch.date)?'/updates/'+patch.slug:'/updates#'+patch.id}>
+            Read patch context <span aria-hidden="true">→</span>
           </Link>
         ) : null}
       </div>

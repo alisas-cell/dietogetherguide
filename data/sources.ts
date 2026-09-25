@@ -1,13 +1,16 @@
 import type { SourceRef } from './types';
+import { septemberSources } from './september-patches';
+import { REVIEWED_AT } from './current';
 
 export const sources = [
+  ...septemberSources,
   {
     id: 'S01',
     title: 'Last Pirates: Die Together on Steam',
     url: 'https://store.steampowered.com/app/4317790/Last_Pirates_Die_Together/',
     publisher: 'Steam',
     sourceType: 'official-store',
-    checkedAt: '2026-08-26T12:36:29Z',
+    checkedAt: REVIEWED_AT,
     notes: 'Primary current source for released availability, Early Access state, current store features, current requirements, and EA wording.',
   },
   {

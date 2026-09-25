@@ -1,13 +1,14 @@
 import { describe, expect, it } from 'vitest';
 
 import { guidePages, requiredCoreRoutes } from '../../content';
+import { primaryNavigation, utilityNavigation } from '../../components/layout/navigation';
 import { publicRoutes } from '../../lib/seo/routes';
 
 describe('public route and internal-link graph', () => {
-  it('publishes 36 core routes plus all three accepted tools', () => {
-    expect(publicRoutes).toHaveLength(39);
+  it('publishes the September guide registry plus five tools', () => {
+    expect(publicRoutes).toHaveLength(88);
     expect(new Set(publicRoutes)).toEqual(
-      new Set([...requiredCoreRoutes, '/tools/coop-troubleshooter', '/tools/monster-finder', '/tools/run-chapter-tracker']),
+      new Set([...requiredCoreRoutes, '/tools/coop-troubleshooter', '/tools/monster-finder', '/tools/run-chapter-tracker','/tools/progression-tracker','/tools/quota-planner']),
     );
     expect(publicRoutes).toContain('/tools/monster-finder');
     expect(publicRoutes).toContain('/tools/run-chapter-tracker');
@@ -15,9 +16,9 @@ describe('public route and internal-link graph', () => {
   });
 
   it('has no broken related-guide targets or orphan core routes', () => {
-    const linked = new Set<string>(['/']);
+    const linked = new Set<string>(['/',...primaryNavigation.map(l=>l.href),...utilityNavigation.map(l=>l.href)]);
     for (const page of guidePages) {
-      for (const item of page.related) {
+      for (const item of [...page.related,...page.sections.flatMap(s=>s.links??[])].filter(l=>l.href.startsWith('/'))) {
         expect(publicRoutes, `${page.route} -> ${item.href}`).toContain(item.href);
         linked.add(item.href);
       }

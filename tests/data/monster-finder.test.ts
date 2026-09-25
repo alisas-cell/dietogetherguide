@@ -5,8 +5,8 @@ import { findMonsters } from '../../lib/tools/monster-finder';
 describe('transparent Monster Finder rules', () => {
   it.each([
     ['sound', 'Ear'],
-    ['loot-hiding', 'Anchorer'],
-    ['movement', 'Snake'],
+    ['hook', 'Anchorer'],
+    ['head-clamp', 'Head Crab'],
     ['disturbed', 'Sleeper'],
     ['disguise', 'Mimic'],
     ['pull-sound', 'Siren'],

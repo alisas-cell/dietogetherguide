@@ -1,6 +1,7 @@
 import type { GuidePageData } from '../../content';
 import { canonicalOrigin, canonicalUrl } from './metadata';
 import { getLastModified } from './routes';
+import { sourceById } from '../../data/sources';
 
 export type JsonLdObject = Record<string, unknown>;
 
@@ -19,7 +20,7 @@ export function buildGuideSchemas(page: GuidePageData): JsonLdObject[] {
         '@type': 'WebSite',
         '@id': `${canonicalOrigin}/#website`,
         url: canonicalOrigin,
-        name: 'Die Together Guide',
+        name: 'Die Together Wiki',
       },
       dateModified: getLastModified(page.route),
       inLanguage: 'en',
@@ -51,6 +52,10 @@ export function buildGuideSchemas(page: GuidePageData): JsonLdObject[] {
     });
   }
 
+  if(page.route.startsWith('/guides/')||page.route.startsWith('/updates/')){
+    schemas.push({'@context':'https://schema.org','@type':'Article','@id':url+'#article',headline:page.h1,description:page.description,mainEntityOfPage:{'@id':url+'#webpage'},dateModified:getLastModified(page.route),inLanguage:'en',publisher:{'@type':'Organization',name:'Die Together Wiki',url:canonicalOrigin},citation:page.sourceIds.flatMap(id=>sourceById.get(id)?.url??[])});
+  }
+
   return schemas;
 }
 
@@ -72,7 +77,7 @@ export function buildHomeSchemas(
       '@type': 'WebSite',
       '@id': `${canonicalOrigin}/#website`,
       url: canonicalOrigin,
-      name: 'Die Together Guide',
+      name: 'Die Together Wiki',
       description:
         'Independent source-checked field guide for Last Pirates: Die Together.',
       inLanguage: 'en',
@@ -82,7 +87,7 @@ export function buildHomeSchemas(
       '@type': 'WebPage',
       '@id': `${canonicalOrigin}/#webpage`,
       url: canonicalOrigin,
-      name: 'Last Pirates: Die Together Guide',
+      name: 'Last Pirates: Die Together Wiki',
       description:
         'Source-checked Last Pirates: Die Together guides for monsters, maps, loot, co-op, Early Access updates and troubleshooting.',
       isPartOf: { '@id': `${canonicalOrigin}/#website` },

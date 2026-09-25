@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { guidePages } from '../../content';
-import { buildGuideMetadata } from '../../lib/seo/metadata';
+import { buildGuideMetadata, wikiTitle } from '../../lib/seo/metadata';
 import { buildGuideSchemas } from '../../lib/seo/schema';
 import sitemap from '../../app/sitemap';
 
@@ -10,7 +10,7 @@ describe('guide SEO builders', () => {
     for (const page of guidePages) {
       const metadata = buildGuideMetadata(page);
 
-      expect(metadata.title).toEqual({ absolute: page.title });
+      expect(metadata.title).toEqual({ absolute: wikiTitle(page.title) });
       expect(metadata.description).toBe(page.description);
       expect(metadata.alternates?.canonical).toBe(
         `https://dietogetherguide.shop${page.route}`,
@@ -48,10 +48,10 @@ describe('guide SEO builders', () => {
       h1: 'Last Pirates: Die Together Release Date',
     });
     expect(identities.get('/privacy')).toEqual({
-      title: 'Privacy Policy — Die Together Guide',
+      title: 'Privacy Policy — Die Together Wiki',
       h1: 'Privacy Policy',
     });
-    expect(sitemap()).toHaveLength(39);
+    expect(sitemap()).toHaveLength(88);
     expect(sitemap().map((entry) => entry.url)).toEqual(
       expect.arrayContaining([
         'https://dietogetherguide.shop',
@@ -71,13 +71,13 @@ describe('guide SEO builders', () => {
       ]),
     );
 
-    expect(entries.get('/')).toBe('2026-08-26T00:00:00.000Z');
-    expect(entries.get('/release-date')).toBe('2026-08-26T00:00:00.000Z');
-    expect(entries.get('/troubleshooting')).toBe('2026-08-26T00:00:00.000Z');
+    expect(entries.get('/')).toBe('2026-09-25T00:00:00.000Z');
+    expect(entries.get('/release-date')).toBe('2026-09-25T00:00:00.000Z');
+    expect(entries.get('/troubleshooting')).toBe('2026-09-25T00:00:00.000Z');
     expect(entries.get('/tools/coop-troubleshooter')).toBe(
-      '2026-08-26T00:00:00.000Z',
+      '2026-09-25T00:00:00.000Z',
     );
-    expect(entries.get('/privacy')).toBe('2026-08-18T00:00:00.000Z');
-    expect(entries.get('/terms')).toBe('2026-08-17T00:00:00.000Z');
+    expect(entries.get('/privacy')).toBe('2026-09-25T00:00:00.000Z');
+    expect(entries.get('/terms')).toBe('2026-09-25T00:00:00.000Z');
   });
 });

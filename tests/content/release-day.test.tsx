@@ -32,10 +32,10 @@ describe('release-day public content', () => {
   it('renders the verified live state in the homepage first viewport', () => {
     const html = renderToStaticMarkup(<Home />);
 
-    expect(html).toContain('EARLY ACCESS · LIVE');
-    expect(html).toContain('Last Pirates: Die Together Guide');
-    expect(html).toContain('Monsters. Maps. Loot. Get your crew home.');
-    expect(html).toContain('<strong>LIVE</strong><span>Early Access</span>');
+    expect(html).toContain('September edition');
+    expect(html).toContain('Last Pirates: Die Together Wiki');
+    expect(html).toContain('Know the patch. Plan the haul. Bring the crew home.');
+    expect(html).toContain('<strong>SEP 18</strong><span>Latest gameplay patch found</span>');
     expect(html).not.toMatch(staleAvailability);
   });
 
@@ -52,7 +52,7 @@ describe('release-day public content', () => {
     expect(monstersPage).toBeDefined();
 
     const html = renderToStaticMarkup(<GuidePage page={monstersPage!} />);
-    expect(html).toContain('Last checked Aug 26, 2026');
-    expect(html).toContain('Steam · checked Aug 26, 2026');
+    expect(html).toContain('Last checked Sep 25, 2026');
+    expect(html).toContain('Steam · checked Sep 25, 2026');
   });
 });

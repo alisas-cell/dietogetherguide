@@ -27,16 +27,16 @@ export const metadata: Metadata = {
   metadataBase: new URL(canonicalOrigin),
   title: {
     default: 'Last Pirates: Die Together Wiki & Guide',
-    template: '%s | Die Together Guide',
+    template: '%s | Die Together Wiki',
   },
   description:
     'Source-checked Last Pirates: Die Together guides for monsters, maps, loot, co-op, Early Access updates and troubleshooting.',
-  applicationName: 'Die Together Guide',
+  applicationName: 'Die Together Wiki',
   alternates: { canonical: canonicalOrigin },
   openGraph: {
     type: 'website',
     url: canonicalOrigin,
-    siteName: 'Die Together Guide',
+    siteName: 'Die Together Wiki',
     title: 'Last Pirates: Die Together Wiki & Guide',
     description:
       'Monsters. Maps. Loot. Get your crew home with a source-checked independent field guide.',

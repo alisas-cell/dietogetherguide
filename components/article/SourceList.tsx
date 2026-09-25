@@ -24,6 +24,8 @@ export function SourceList({ sourceIds }: { sourceIds: string[] }) {
             <span>
               {source.publisher} · checked {checkedDateFormatter.format(new Date(source.checkedAt))}
             </span>
+            {source.publishedAt?<span>Published {source.publishedAt.slice(0,10)}</span>:null}
+            {source.notes?<span>{source.notes}</span>:null}
           </li>
         ))}
       </ul>

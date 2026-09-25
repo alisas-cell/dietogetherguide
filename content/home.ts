@@ -27,7 +27,7 @@ export const homeFaqs = [
   {
     question: 'Is this an official game website?',
     answer:
-      'No. Die Together Guide is an independent fan-made field guide. We cite official sources and separate Demo evidence from facts verified for Early Access.',
+      'No. Die Together Wiki is an independent fan-made field guide. We cite official sources and separate Demo evidence from facts verified for Early Access.',
   },
   {
     question: 'Is this the full 1.0 release?',
@@ -42,7 +42,7 @@ export const homeFaqs = [
   {
     question: 'Which maps and monsters are live?',
     answer:
-      'The launch post names Ship, Castle, and several current monsters. The evidence hubs keep those confirmations separate from Demo references and do not claim the roster is complete.',
+      'September names Mansion, Ship and Castle, rebuilds Head Crab as a jellyfish and makes enemy sets level-specific. No complete roster or level assignment is claimed.',
   },
   {
     question: 'Does solo use separate balance?',

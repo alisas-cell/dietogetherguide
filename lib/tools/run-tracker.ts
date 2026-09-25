@@ -12,6 +12,7 @@ export interface RunRecordInput {
   map: string;
   currentDay: number;
   currentChapter: number;
+  currentLevel?: number;
   crewNotes: string;
   monstersEncountered: string[];
   lootNotes: string;
@@ -39,6 +40,7 @@ function isRunRecord(value: unknown): value is RunRecord {
     Number(item.currentDay) >= 0 &&
     Number.isInteger(item.currentChapter) &&
     Number(item.currentChapter) >= 0 &&
+    (item.currentLevel === undefined || (Number.isInteger(item.currentLevel) && item.currentLevel >= 1 && item.currentLevel <= 15)) &&
     typeof item.crewNotes === 'string' &&
     typeof item.lootNotes === 'string' &&
     Array.isArray(item.monstersEncountered) &&

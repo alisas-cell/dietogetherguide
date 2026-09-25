@@ -3,6 +3,7 @@ import type {
   MonsterEntry,
   VersionedField,
 } from './types';
+import { addedMonsters, reviewMonster } from './current-entities';
 
 const launchCheckedAt = '2026-08-19T05:33:14Z';
 const currentCheckedAt = '2026-08-26T12:36:29Z';
@@ -195,7 +196,8 @@ const historicalEntries: Array<[string, string, string[]]> = [
 ];
 
 export const monsters: MonsterEntry[] = [
-  ...currentMonsters,
+  ...addedMonsters,
+  ...currentMonsters.map(reviewMonster),
   ...historicalEntries.map(([id, name, sourceIds]) => ({
     id,
     slug: id,

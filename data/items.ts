@@ -1,4 +1,5 @@
 import type { ItemCategory, ItemEntry, VersionedField } from './types';
+import { septemberItems, reviewItem } from './september-items';
 
 const historicalCheckedAt = '2026-08-17T00:00:00Z';
 const launchCheckedAt = '2026-08-19T05:33:14Z';
@@ -85,7 +86,8 @@ const liveItems: ItemEntry[] = [
 ];
 
 export const items = [
-  ...liveItems,
+  ...septemberItems,
+  ...liveItems.map(reviewItem),
   ...currentItems.map((item) => ({
     ...item,
     status: 'ea-confirmed' as const,
@@ -100,6 +102,6 @@ export const items = [
     },
     pageReady: false,
     lastVerifiedAt: launchCheckedAt,
-  })),
+  })).map(reviewItem),
   ...historicalItems,
 ] satisfies ItemEntry[];

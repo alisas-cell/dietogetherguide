@@ -18,10 +18,10 @@ const title = 'Last Pirates Run & Chapter Tracker — Save Progress & Crew Notes
 const description = 'Keep personal Last Pirates run, day, chapter, crew, monster, loot, and checklist notes in localStorage with edit, delete, reset, and JSON backup.';
 
 export const metadata: Metadata = {
-  title: { absolute: title },
+  title: { absolute: title + ' | Die Together Wiki' },
   description,
   alternates: { canonical: url },
-  openGraph: { type: 'website', url, siteName: 'Die Together Guide', title, description },
+  openGraph: { type: 'website', url, siteName: 'Die Together Wiki', title: title + ' | Die Together Wiki', description, images: ['/opengraph-image'] },
 };
 
 const schemas = [
@@ -37,7 +37,7 @@ export default function RunChapterTrackerPage() {
   return (
     <><JsonLd schemas={schemas} /><article className="tool-page"><Container>
       <header className="tool-hero"><Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Tools', href: '/tools' }, { label: 'Run & Chapter Tracker' }]} /><p className="section-kicker">Personal local notebook</p><h1>Last Pirates Run and Chapter Tracker</h1><p>Keep run, crew, map, day, chapter, monster, loot, and checklist notes in this browser. This tool does not read, locate, edit, or replace Last Pirates game save files.</p></header>
-      <EvidenceBanner confidence="confirmed" context="Local-only tracker · official save context" date={formatLastModified(route)}>The Aug 21 official patch says game progress saves every day and every chapter. This independent notebook stores only what you type in localStorage.</EvidenceBanner>
+      <EvidenceBanner confidence="confirmed" context="Local-only tracker · official save context" date={formatLastModified(route)}>September chapters have one level each for the first four and two thereafter. Global level and location day are separate. This notebook preserves old records and stores only what you type.</EvidenceBanner>
       <AdSlot pathname={route} placement="early_responsive" />
       <RunChapterTracker />
       <AdSlot pathname={route} placement="native_primary" />
@@ -46,7 +46,7 @@ export default function RunChapterTrackerPage() {
       <Callout variant="build" title="Not a save-file reader"><p>The tracker cannot verify in-game save state and never modifies game files. Use the <Link href="/save-and-reconnect">save and reconnect guide</Link> for official daily/chapter and reconnect context.</p></Callout>
       <p className="tool-page-links"><Link href="/solo-guide">Solo guide</Link> · <Link href="/maps">Maps</Link> · <Link href="/tools/monster-finder">Monster Finder</Link></p>
       <AdSlot pathname={route} placement="smartlink_primary" />
-      <SourceList sourceIds={['S16']} />
+      <SourceList sourceIds={['S16','S23','S24','S25']} />
       <AdSlot pathname={route} placement="horizontal_468" />
     </Container></article></>
   );

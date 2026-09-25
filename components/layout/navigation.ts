@@ -1,17 +1,6 @@
 export const primaryNavigation = [
-  { href: '/beginner-guide', label: 'Start' },
-  { href: '/monsters', label: 'Monsters' },
-  { href: '/maps', label: 'Maps' },
-  { href: '/loot-and-extraction', label: 'Loot' },
-  { href: '/coop', label: 'Co-op' },
-  { href: '/gameplay', label: 'Guides' },
-  { href: '/updates', label: 'Updates' },
+ {href:'/',label:'Home'},{href:'/updates',label:'Updates'},{href:'/maps',label:'Maps'},{href:'/monsters',label:'Monsters'},{href:'/loot',label:'Loot'},{href:'/items-and-weapons',label:'Items'},{href:'/guides',label:'Guides'},{href:'/coop',label:'Co-op'},{href:'/tools',label:'Tools'},
 ] as const;
-
 export const utilityNavigation = [
-  { href: '/release-date', label: 'Release' },
-  { href: '/roadmap', label: 'Roadmap' },
-  { href: '/troubleshooting', label: 'Fixes' },
-  { href: '/tools', label: 'Tools' },
-  { href: '/faq', label: 'FAQ' },
+ {href:'/beginner-guide',label:'Start here'},{href:'/progression',label:'Progression'},{href:'/achievements',label:'Achievements'},{href:'/steam-deck',label:'Steam Deck'},{href:'/troubleshooting',label:'Fixes'},{href:'/about',label:'Sources & method'},
 ] as const;

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import type { GuidePageData } from '../../content';
 
 export const canonicalOrigin = 'https://dietogetherguide.shop';
+export const wikiTitle = (title:string) => title.replace(/\s*\|\s*Die Together (?:Guide|Wiki)$/, '') + ' | Die Together Wiki';
 
 export function canonicalUrl(pathname: string): string {
   return pathname === '/'
@@ -13,14 +14,14 @@ export function canonicalUrl(pathname: string): string {
 export function buildGuideMetadata(page: GuidePageData): Metadata {
   const url = canonicalUrl(page.route);
   return {
-    title: { absolute: page.title },
+    title: { absolute: wikiTitle(page.title) },
     description: page.description,
     alternates: { canonical: url },
     openGraph: {
       type: 'article',
       url,
-      siteName: 'Die Together Guide',
-      title: page.title,
+      siteName: 'Die Together Wiki',
+      title: wikiTitle(page.title),
       description: page.description,
       images: page.heroImage
         ? [
@@ -33,7 +34,7 @@ export function buildGuideMetadata(page: GuidePageData): Metadata {
     },
     twitter: {
       card: 'summary_large_image',
-      title: page.title,
+      title: wikiTitle(page.title),
       description: page.description,
       images: page.heroImage ? [page.heroImage.src] : ['/opengraph-image'],
     },

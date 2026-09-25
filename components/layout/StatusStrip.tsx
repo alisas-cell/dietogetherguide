@@ -20,7 +20,7 @@ export function StatusStrip() {
           {gameSnapshot.playerRange.value.min}–{gameSnapshot.playerRange.value.max} players
         </span>
         <span className="status-fact">
-          {gameSnapshot.demoPlayerMilestone?.value} Demo players
+          Steam Deck Verified
         </span>
         <span className="status-checked">Checked {checkedDate}</span>
       </Container>

@@ -16,6 +16,7 @@ import { FaqList } from './FaqList';
 import { RelatedGuides } from './RelatedGuides';
 import { ResponsiveTable } from './ResponsiveTable';
 import { SourceList } from './SourceList';
+import { PatchLinks, SourceLedger } from './PatchLinks';
 
 const calloutVariants = {
   'field-note': 'note',
@@ -172,6 +173,8 @@ export function GuidePage({ page }: { page: GuidePageData }) {
                 </section>
               ) : null}
 
+              <PatchLinks route={page.route}/>
+              {page.route==='/about'?<SourceLedger/>:null}
               <SourceList sourceIds={page.sourceIds} />
             </div>
 

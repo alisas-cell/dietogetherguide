@@ -96,7 +96,7 @@ describe('top-heavy Adsterra source-of-truth registry', () => {
   });
 
   it('classifies all public routes and excludes only the two legal routes', () => {
-    expect(Object.keys(ROUTE_MONETIZATION)).toHaveLength(39);
+    expect(Object.keys(ROUTE_MONETIZATION)).toHaveLength(88);
     expect(new Set(Object.keys(ROUTE_MONETIZATION))).toEqual(new Set(publicRoutes));
     expect(new Set(MONETIZED_PUBLIC_ROUTES)).toEqual(
       new Set(publicRoutes.filter((route) => !['/privacy', '/terms'].includes(route))),

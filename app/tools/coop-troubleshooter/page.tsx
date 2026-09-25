@@ -16,15 +16,16 @@ const route = '/tools/coop-troubleshooter';
 const url = `${canonicalOrigin}${route}`;
 
 export const metadata: Metadata = {
-  title: { absolute: 'Last Pirates: Die Together Co-op Troubleshooter' },
+  title: { absolute: 'Co-op Troubleshooter | Die Together Wiki' },
   description:
     'Choose a No Game Found, Quick Join, code, invite, voice, version, lobby, disconnect, or reconnect symptom and get the safest source-backed checks first.',
   alternates: { canonical: url },
   openGraph: {
     type: 'website',
     url,
-    siteName: 'Die Together Guide',
-    title: 'Last Pirates: Die Together Co-op Troubleshooter',
+    siteName: 'Die Together Wiki',
+    title: 'Co-op Troubleshooter | Die Together Wiki',
+    images: ['/opengraph-image'],
     description: 'Tell us what is happening and get the safest source-backed steps first.',
   },
 };

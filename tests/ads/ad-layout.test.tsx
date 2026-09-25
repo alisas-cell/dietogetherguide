@@ -27,11 +27,11 @@ describe('max-harvest editorial placement tree', () => {
     expectInOrder(html, [
       'id="metrics"',
       'data-ad-placement="early_responsive"',
-      'id="start-here"',
+      'id="current-patch"',
       'data-ad-placement="native_primary"',
       'id="field-guide"',
       'data-ad-placement="smartlink_primary"',
-      'id="early-access-delta"',
+      'id="progression"',
       'data-ad-placement="rectangle_300"',
       'id="monsters-teaser"',
       'data-ad-placement="horizontal_468"',

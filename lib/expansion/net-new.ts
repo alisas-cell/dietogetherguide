@@ -1,4 +1,4 @@
-import type { PageReview, ReleaseCount, RouteObservation } from './types';
+import type { PageReview, ReleaseCount, RouteObservation, ReviewPolicy } from './types';
 import { normalizedText, qualifyPage } from './qualification';
 const origin = 'https://dietogetherguide.shop';
 function normalizeUrl(value: string): string {
@@ -13,13 +13,14 @@ function duplicates(values: string[]): Set<string> {
   for (const value of values) { if (seen.has(value)) repeated.add(value); seen.add(value); }
   return repeated;
 }
-export function evaluateNetNew(baseline: string[], observations: RouteObservation[], reviews: PageReview[], expected = 500): ReleaseCount {
+export function evaluateNetNew(baseline: string[], observations: RouteObservation[], reviews: PageReview[], expected = 500, policy?: ReviewPolicy): ReleaseCount {
   const old = new Set(baseline);
   const repeatedRoutes = duplicates(observations.map((o) => o.route));
   const repeatedCanonical = duplicates(observations.map((o) => normalizeUrl(o.canonical)).filter(Boolean));
   const repeatedReviews = duplicates(reviews.map((r) => r.route));
   const repeatedIntent = duplicates(reviews.map((r) => normalizedText(r.intent)));
   const repeatedBody = duplicates(reviews.map((r) => r.reviewedDigest));
+  const baselineBodies = new Set(observations.filter((o) => old.has(o.route)).map((o) => o.bodyDigest).filter(Boolean));
   const byRoute = new Map(reviews.map((r) => [r.route, r]));
   const exclusions: ReleaseCount['exclusions'] = [];
   const valid = new Set<string>();
@@ -36,7 +37,8 @@ export function evaluateNetNew(baseline: string[], observations: RouteObservatio
       const review = byRoute.get(route);
       if (!review) reasons.push('unreviewed');
       else {
-        reasons.push(...qualifyPage(review));
+        reasons.push(...qualifyPage(review, policy));
+        if (baselineBodies.has(review.reviewedDigest)) reasons.push('baseline-body-reused');
         if (repeatedReviews.has(route) || repeatedIntent.has(normalizedText(review.intent)) || repeatedBody.has(review.reviewedDigest)) reasons.push('duplicate-review-intent-or-body');
         if (review.reviewedDigest !== observation.bodyDigest) reasons.push('observed-body-not-reviewed');
       }

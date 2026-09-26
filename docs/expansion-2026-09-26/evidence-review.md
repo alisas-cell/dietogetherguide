@@ -41,7 +41,7 @@ The official [Steam news archive](https://steamcommunity.com/app/4317790/allnews
 | Preview URL | None for this expansion |
 | New deployment ID | None |
 | Baseline indexable URLs | 88 total / 87 inner |
-| Latest live technical count | 88 total / 87 inner, checked2026-09-26T11:58:21.656Z |
+| Latest live technical count | 88 total / 87 inner, checked2026-09-26T12:06:27.907Z |
 | Net-new qualified published URLs | 0 — target500 not met |
 | Exact primary route collisions | 5: IDs178,180,182,200,231 |
 | Semantic exclusions | See four evidence reports; not conflated with exact-path collisions |
@@ -57,7 +57,7 @@ The official [Steam news archive](https://steamcommunity.com/app/4317790/allnews
 | Orphan audit | No new routes added; new500 graph not implemented or certified |
 | Ads audit | Static88-route registration passes;86 eligible,2 legal exclusions |
 | Build/lint/typecheck | Passed locally; production-equivalent build generated95 framework paths, NOT95 indexable content URLs |
-| Unit tests | 124 passing at initial gate completion; see subsequent review verification for final count |
+| Unit tests | 135 passing after independent review fixes;22test files |
 | Browser screenshots | None newly captured; no claim of new mobile/CLS acceptance |
 | Human Gate | Production authorized by user, evidence/quantity gate failed |
 | Rollback / existing deployment | Existing production left untouched: dpl_HMd6oucZwhRG6bRa4NbYQjrLFqa4 |
@@ -69,6 +69,21 @@ No provider configuration, ad IDs, loader, CMP, CSS or renderer was changed. Exi
 
 ## Audit limitations
 
-The new qualification helpers check structural review records and observed-response consistency, not truth by automation. A named human/editorial review remains required for independent facts, actual utility, original intent, first80words, contextual linking, and source context. The CLI fails closed for an unimplemented sitemap-index crawler and requires a real HTTP base URL for net-new counting. It never counts requested manifest lines as actual pages.
+The new qualification helpers check structural review records and observed-response consistency, not truth by automation. Explicit baseline-bound originality approval is required for intent/body/metadata. Source records must report successful verification within the CLI's24-hour release-review policy; stale, future, failed and pending records do not qualify. Dates describe source retrieval, not patch publication. All tool certificates remain held until Task3 implements real executable/report artifact verification.
+
+A human/editorial review remains required for independent facts, actual utility, first80words, contextual linking, and source context. The CLI fails closed for an unimplemented sitemap-index crawler, any nonempty robots Disallow rule (including cases with Allow overrides or specialized agents), and requires a real HTTP base URL for net-new counting. An RFC-aware route/group parser must replace this conservative hold in the integration phase if restrictive rules are introduced. It never counts requested manifest lines as actual pages.
+
+## Independent review and decisions
+
+Fresh-context review identified four important false-positive risks: self-declared tool proofs, reuse of baseline body, route-specific robots exclusions, and stale/failed evidence records. All four received regression tests observed failing before the fixes; the whole suite then passed135tests. No minor findings were deferred.
+
+Rulings in order:
+1. User's direct confirmation supplies production authority without another procedural prompt. Cost if mistaken: authorization misinterpretation; quality gates were never relaxed.
+2. Stop before content/deployment when the approved evidence/count precondition fails. Cost if mistaken: delayed useful release; no filler published.
+3. Keep tool proofs and restrictive robots rules fail-closed pending their real Task3/4 verification contracts, and require explicit successful source verification within24hours for this urgent release. Cost: conservative false holds and additional review effort; not a claim that older historical facts become false.
+4. Reviewer did not independently revalidate560dispositions: retain the four research reports as evidence, do not claim a second complete content review. Cost: residual editorial judgment risk.
+5. Gameplay truth, live Steam availability and actual new tool behavior were not rechecked by the code reviewer: no new content/tools exist and no certification is claimed. Cost: subsequent implementation still requires these checks.
+6. Tasks3–4, browser advertising layout and deployment readiness remain unstarted, not silently approved. Cost: no expanded production release this turn.
+7. Reviewer excluded the parent's in-progress fixes: verify them by observed RED→GREEN regression tests plus full suite, per execution skill, without claiming reviewer reapproval. Cost: no second independent review of fixes.
 
 Tasks3–4 are unstarted under the approved plan's Task2 release blocker. Publishing audit-only commits would not fulfill the expansion request and would misleadingly suggest a release; no deployment was performed.

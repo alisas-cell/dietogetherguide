@@ -5,19 +5,22 @@ import { sourceReview } from '../data/current';
 import { parseCandidateManifest, assessCandidates } from '../lib/expansion/candidates';
 import { bodyDigest, qualifyPage } from '../lib/expansion/qualification';
 import { evaluateNetNew } from '../lib/expansion/net-new';
+import { permitsUnrestrictedCrawl } from '../lib/expansion/robots';
 import type { PageReview, RouteObservation } from '../lib/expansion/types';
 
 const directory = 'docs/expansion-2026-09-26/';
 const baseline = readFileSync(directory + 'baseline-indexable.txt', 'utf8').trim().split('\n').map((url) => new URL(url).pathname);
 const candidates = parseCandidateManifest(readFileSync(directory + 'requested-route-manifest.md', 'utf8'));
 const reviews: PageReview[] = JSON.parse(readFileSync('data/expansion/editorial-reviews.json', 'utf8'));
+const policy = { baselineSha: JSON.parse(readFileSync(directory + 'baseline-routes.json', 'utf8')).sha as string,
+  asOf: new Date().toISOString(), maxEvidenceAgeMs: 86_400_000 };
 const mode = process.argv[2] ?? 'readiness';
 const errors: string[] = [];
 let details: unknown;
 let scope = 'Static repository checks only; no live HTTP, source availability, ad fill or semantic originality certification.';
 
 if (mode === 'readiness') {
-  const rows = assessCandidates(candidates, baseline, reviews);
+  const rows = assessCandidates(candidates, baseline, reviews, policy);
   const decisions = Object.fromEntries([...new Set(rows.map((r) => r.decision))].map((decision) => [decision, rows.filter((r) => r.decision === decision).length]));
   details = { primary: candidates.filter((c) => c.pool === 'primary').length, replacements: candidates.filter((c) => c.pool === 'replacement').length, decisions };
   if ((decisions.qualified ?? 0) !== 500) errors.push('Exactly 500 completed editorial/tool reviews are not present. Draft-ready candidates are not publication approvals.');
@@ -27,7 +30,7 @@ if (mode === 'readiness') {
   if (missing.length) errors.push('Baseline routes missing from registry');
   if (new Set(publicRoutes).size !== publicRoutes.length) errors.push('Duplicate registered routes');
 } else if (mode === 'sources' || mode === 'thin-pages') {
-  const issues = reviews.map((review) => ({ route: review.route, issues: qualifyPage(review) })).filter((r) => r.issues.length);
+  const issues = reviews.map((review) => ({ route: review.route, issues: qualifyPage(review, policy) })).filter((r) => r.issues.length);
   details = { reviewedNewPages: reviews.length, issues,
     knownLatestOfficialPatch: '2026-09-25', representedLatestPatch: sourceReview.latestGameplayPatch,
     evidenceReport: directory + 'evidence-review.md',
@@ -68,7 +71,7 @@ if (mode === 'readiness') {
       }
     }));
   }
-  const result = evaluateNetNew(baseline, observations, reviews);
+  const result = evaluateNetNew(baseline, observations, reviews, 500, policy);
   const sitemapResponse = await fetch(new URL('/sitemap.xml', base), { signal: AbortSignal.timeout(15_000) });
   const sitemap = await sitemapResponse.text();
   const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]!);
@@ -79,10 +82,10 @@ if (mode === 'readiness') {
       sitemapRoutes.length !== publicRoutes.length || publicRoutes.some((r) => !sitemapRoutes.includes(r))) errors.push('Sitemap differs from observed route set; sitemap indexes require recursive support before passing this gate');
   const robots = await fetch(new URL('/robots.txt', base), { signal: AbortSignal.timeout(15_000) });
   const robotsText = await robots.text();
-  if (robots.status !== 200 || /^Disallow:\s*\/\s*$/im.test(robotsText)) errors.push('robots.txt unavailable or blocks all routes');
+  if (robots.status !== 200 || !permitsUnrestrictedCrawl(robotsText)) errors.push('robots.txt unavailable or requires per-route rule evaluation; this scaffold fails closed on any nonempty Disallow');
   details = { base, ...result, sitemapUrls: sitemapUrls.length, observations };
   errors.push(...result.errors);
 } else throw new Error('Unknown audit mode: ' + mode);
 
-console.log(JSON.stringify({ mode, checkedAt: new Date().toISOString(), scope, details, errors, passed: errors.length === 0 }, null, 2));
+console.log(JSON.stringify({ mode, checkedAt: new Date().toISOString(), scope, policy, details, errors, passed: errors.length === 0 }, null, 2));
 if (errors.length) process.exitCode = 1;

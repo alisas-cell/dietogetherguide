@@ -1,4 +1,4 @@
-import type { PageReview } from './types';
+import type { PageReview, ReviewPolicy } from './types';
 import { normalizedText, qualifyPage } from './qualification';
 export interface Candidate { id: string; route: string; title: string; pool: 'primary' | 'replacement' }
 export function parseCandidateManifest(markdown: string): Candidate[] {
@@ -16,7 +16,7 @@ export function parseCandidateManifest(markdown: string): Candidate[] {
   }
   return entries;
 }
-export function assessCandidates(entries: Candidate[], baseline: string[], reviews: PageReview[]): Array<Candidate & { decision: string }> {
+export function assessCandidates(entries: Candidate[], baseline: string[], reviews: PageReview[], policy?: ReviewPolicy): Array<Candidate & { decision: string }> {
   const old = new Set(baseline);
   return entries.map((entry) => {
     const review = reviews.find((r) => r.route === entry.route);
@@ -24,7 +24,7 @@ export function assessCandidates(entries: Candidate[], baseline: string[], revie
     if (old.has(entry.route)) decision = 'exact-collision';
     else if (review) {
       const duplicates = reviews.filter((r) => normalizedText(r.intent) === normalizedText(review.intent));
-      decision = duplicates.length > 1 ? 'duplicate-intent' : qualifyPage(review).length ? 'fails-evidence-gate' : 'qualified';
+      decision = duplicates.length > 1 ? 'duplicate-intent' : qualifyPage(review, policy).length ? 'fails-evidence-gate' : 'qualified';
     }
     return { ...entry, decision };
   });

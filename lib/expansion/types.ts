@@ -4,7 +4,9 @@ export interface EvidenceFact {
   sourceUrl: string;
   evidence: string;
   checkedAt: string;
+  retrievalStatus: 'verified' | 'failed' | 'pending';
 }
+export interface ReviewPolicy { baselineSha: string; asOf: string; maxEvidenceAgeMs: number }
 export interface PageReview {
   route: string;
   intent: string;
@@ -12,6 +14,7 @@ export interface PageReview {
   reviewedDigest: string;
   reviewer: string;
   artifact: string;
+  originality?: { baselineSha: string; intentDistinct: boolean; bodyDistinct: boolean; metadataDistinct: boolean; note: string };
   kind: 'editorial' | 'tool';
   facts?: EvidenceFact[];
   toolProof?: { command: string; reportPath: string; passedTests: string[]; testedDigest: string };

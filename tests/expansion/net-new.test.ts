@@ -1,17 +1,21 @@
 import { describe, expect, it } from 'vitest';
-import { evaluateNetNew } from '../../lib/expansion/net-new';
+import { evaluateNetNew as evaluate } from '../../lib/expansion/net-new';
 import { bodyDigest } from '../../lib/expansion/qualification';
 import type { PageReview, RouteObservation } from '../../lib/expansion/types';
 
 const origin = 'https://dietogetherguide.shop';
+const policy = { baselineSha: 'baseline', asOf: '2026-09-26T12:00:00Z', maxEvidenceAgeMs: 86_400_000 };
+const evaluateNetNew = (baseline: string[], observations: RouteObservation[], reviews: PageReview[], expected = 500) =>
+  evaluate(baseline, observations, reviews, expected, policy);
 function fixture(n = 500) {
   const baseline = ['/'];
   const reviews: PageReview[] = Array.from({ length: n }, (_, i) => {
     const route = '/new/' + i, body = 'Unique content with reviewed task ' + i;
     return { route, body, intent: 'Intent ' + i, reviewedDigest: bodyDigest(body),
       reviewer: 'editor', artifact: 'Table for task ' + i, kind: 'editorial',
+      originality: { baselineSha: 'baseline', intentDistinct: true, bodyDistinct: true, metadataDistinct: true, note: 'Reviewed independent intent and content' },
       facts: [1, 2, 3].map((f) => ({ id: i + '-' + f, claim: 'Claim ' + i + '-' + f,
-        sourceUrl: origin + '/source/' + f, evidence: 'Passage ' + f, checkedAt: '2026-09-26T12:00:00Z' })),
+        sourceUrl: origin + '/source/' + f, evidence: 'Passage ' + f, checkedAt: '2026-09-26T12:00:00Z', retrievalStatus: 'verified' })),
     };
   });
   const observations: RouteObservation[] = ['/', ...reviews.map((r) => r.route)].map((route) => ({
@@ -49,5 +53,13 @@ describe('net-new indexable release contract', () => {
     const f = fixture(); f.reviews[1]!.intent = f.reviews[0]!.intent; f.reviews.pop();
     const result = evaluateNetNew(f.baseline, f.observations, f.reviews);
     expect(result.ok).toBe(false); expect(result.netNew).toBeLessThan(500);
+  });
+  it('rejects a new URL that reuses observed baseline body', () => {
+    const f = fixture();
+    f.observations[0]!.bodyDigest = f.reviews[0]!.reviewedDigest;
+    const result = evaluateNetNew(f.baseline, f.observations, f.reviews);
+    expect(result.ok).toBe(false);
+    expect(result.netNew).toBe(499);
+    expect(result.exclusions.find((e) => e.route === '/new/0')?.reasons).toContain('baseline-body-reused');
   });
 });

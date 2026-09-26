@@ -1,0 +1,17 @@
+{
+  "mode": "readiness",
+  "checkedAt": "2026-09-26T11:58:13.088Z",
+  "scope": "Static repository checks only; no live HTTP, source availability, ad fill or semantic originality certification.",
+  "details": {
+    "primary": 500,
+    "replacements": 60,
+    "decisions": {
+      "unreviewed": 555,
+      "exact-collision": 5
+    }
+  },
+  "errors": [
+    "Exactly 500 completed editorial/tool reviews are not present. Draft-ready candidates are not publication approvals."
+  ],
+  "passed": false
+}

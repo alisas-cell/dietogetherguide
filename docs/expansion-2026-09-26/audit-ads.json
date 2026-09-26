@@ -1,0 +1,18 @@
+{
+  "mode": "ads",
+  "checkedAt": "2026-09-26T11:58:12.876Z",
+  "scope": "Static repository checks only; no live HTTP, source availability, ad fill or semantic originality certification.",
+  "details": {
+    "registered": 88,
+    "eligible": 86,
+    "legalExclusions": [
+      "/privacy",
+      "/terms"
+    ],
+    "missing": [],
+    "invalid": [],
+    "limitation": "Run tests/ads and browser privacy tests for layout/consent. Provider fill and real CLS are not established by this registry check."
+  },
+  "errors": [],
+  "passed": true
+}

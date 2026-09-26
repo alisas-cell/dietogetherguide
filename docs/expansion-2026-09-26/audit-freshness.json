@@ -1,0 +1,20 @@
+{
+  "asOf": "2026-09-26T11:58:13.274Z",
+  "sourceReview": {
+    "checkedAt": "2026-09-25T00:00:00Z",
+    "latestGameplayPatch": "2026-09-18",
+    "latestTitle": "A Fresh Lobby, 70 More Places to Find Loot",
+    "archiveUrl": "https://steamcommunity.com/app/4317790/allnews/",
+    "method": "Official announcement archive and Steam Store reviewed on September 25; no newer gameplay announcement appeared in the current archive."
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "code": "unreferenced-source",
+      "target": "S06",
+      "message": "Source has no page, entity or patch consumer. Ledger-only listing is not a substantive reference."
+    }
+  ],
+  "errors": 0,
+  "warnings": 1
+}

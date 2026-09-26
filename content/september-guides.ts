@@ -11,7 +11,7 @@ export const septemberGuides = [
         'before',
         'Before selecting a chapter',
         [
-          'Read the level preview before buying for a remembered enemy set. Enemy and boss selection is now level-specific, and the first four chapters each contain one level. Later chapters contain two. An old chapter number alone is not a reliable description of the run.',
+          'Read the level preview before buying for a remembered enemy set. Enemy and boss selection is level-specific. September 10 described one-level early chapters and two-level later chapters, but September 25 uses different Chapter 1 wording. An old chapter number alone is not a reliable description of the run.',
         ],
         [
           'Record your selected chapter and level separately.',
@@ -39,7 +39,7 @@ export const septemberGuides = [
     ['S23', 'S25'],
     [
       s('known', 'What the order actually establishes', [
-        'The September 10 update moved Ship and Castle earlier and put chapter selection on one page. A level is a stage within progression; a chapter is the selection/completion grouping. The first four chapters are one level each, while later chapters have two.',
+        'The September 10 update moved Ship and Castle earlier and put chapter selection on one page. Its description of one-level early chapters and two-level later chapters is dated evidence. September 25 refers differently to Chapter 1; use the actual selector instead of guessing how those labels map.',
       ]),
       s('unknown', 'How to use an incomplete map table', [
         'Treat the current in-game preview as the deciding information for a particular selection. Record the location and threats you observe instead of extrapolating a full repeating sequence from two unlock points. Fifteen levels is supported by the September 18 spawn-point announcement, but that announcement does not enumerate their names.',

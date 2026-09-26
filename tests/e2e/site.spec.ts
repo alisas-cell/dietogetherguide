@@ -54,7 +54,7 @@ test('home is coherent, noindex in development, and free of horizontal overflow'
   ).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     'content',
-    /noindex.*nofollow/i,
+    process.env.PLAYWRIGHT_EXPECT_INDEXABLE === '1' ? /^index, follow$/i : /noindex.*nofollow/i,
   );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
@@ -139,6 +139,7 @@ test('mobile troubleshooter core controls meet the preferred touch target height
 });
 
 test('co-op troubleshooter returns an ordered safe checklist', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('dietogetherguide:advertising-consent', JSON.stringify({ policyVersion: 1, advertising: 'rejected' })));
   await page.goto('/tools/coop-troubleshooter');
   await page.selectOption('#problem', 'reconnect-fails');
   await page.getByLabel('Host').check();
@@ -156,7 +157,8 @@ test('co-op troubleshooter returns an ordered safe checklist', async ({ page }) 
 test('all public routes render one H1 with no broken local images', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop-1440x900');
 
-  test.setTimeout(180_000);
+  // Full-registry sweep scales with the route inventory; keep every assertion.
+  test.setTimeout(publicRoutes.length * 5_000);
   for (const route of publicRoutes) {
     const response = await page.goto(route);
     expect(response?.status(), route).toBe(200);

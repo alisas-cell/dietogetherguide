@@ -1,6 +1,21 @@
 import { REVIEWED_AT } from './current';
 import { septemberPatches } from './september-patches';
 import type { MonsterEntry, VersionedField } from './types';
+import { BATCH_REVIEW_DATE, september25Patch } from './september26';
+
+export function applySeptember25MonsterReview(monster: MonsterEntry): MonsterEntry {
+  const changes = september25Patch.changes.filter((change) => change.affectedEntityIds?.includes(monster.id));
+  if (!changes.length) return monster;
+  const prior = monster.patchChanges ?? [];
+  return {
+    ...monster, lastVerifiedAt: BATCH_REVIEW_DATE,
+    behavior: {
+      value: [...(monster.behavior?.value ?? []), ...changes.map((change) => change.text)],
+      evidence: { confidence: 'confirmed', sourceIds: [...new Set([...(monster.behavior?.evidence.sourceIds ?? []), 'S28'])], verifiedAt: BATCH_REVIEW_DATE, build: 'ea-2026-09-25' },
+    },
+    patchChanges: [...prior, ...changes.filter((change) => !prior.some((old) => old.date === '2026-09-25' && old.text === change.text)).map((change) => ({ date: '2026-09-25', text: change.text, sourceIds: ['S28'] }))],
+  };
+}
 
 export const currentField = <T>(
   value: T,

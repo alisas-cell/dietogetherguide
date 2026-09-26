@@ -14,6 +14,7 @@ import { toolLinks } from '../content/september-hubs';
 import { maps } from '../data/maps';
 import { monsters } from '../data/monsters';
 import { septemberPatches } from '../data/september-patches';
+import { chapterWordingCaution, september25Patch, september25Route } from '../data/september26';
 import { canonicalOrigin, wikiTitle } from '../lib/seo/metadata';
 import { buildHomeSchemas } from '../lib/seo/schema';
 const title = 'Last Pirates: Die Together Wiki — Maps, Monsters, Loot';
@@ -109,8 +110,8 @@ export default function Home() {
               </Link>
             </div>
             <p className="hero-source-note">
-              Reviewed September 25, 2026 · Latest gameplay patch found:
-              September 18
+              Patch review September 26, 2026 · Latest gameplay patch found:
+              September 25
             </p>
           </div>
           <figure className="home-hero-visual">
@@ -135,7 +136,7 @@ export default function Home() {
       >
         <Container className="metric-grid">
           <div>
-            <strong>SEP 18</strong>
+            <strong>SEP 25</strong>
             <span>Latest gameplay patch found</span>
           </div>
           <div>
@@ -158,22 +159,19 @@ export default function Home() {
           <div className="section-heading">
             <div>
               <p className="section-kicker">What changed most recently</p>
-              <h2>A clearer lobby. More places to find loot.</h2>
+              <h2>Solo targets, shop balances and co-op recovery.</h2>
             </div>
             <Link
               className="text-link"
-              href="/updates/fresh-lobby-70-loot-spawns"
+              href={september25Route}
             >
-              September 18 details →
+              September 25 details →
             </Link>
           </div>
           <p>
-            The latest gameplay announcement found in the official archive adds
-            lobby previews, clearer waiting-for-host and code-copy feedback,
-            plus 70 loot spawn points distributed across 15 levels. It also
-            fixes lift cargo, revival, booty attachment and several enemy
-            interactions. Seventy spawn points does not mean seventy extra items
-            in every run.
+            {september25Patch.summary} Read the dated patch guide before
+            reusing an older quota or shopping plan. The new chapter wording
+            is not silently converted into an invented progression table.
           </p>
           <div className="live-priority-grid">
             {(
@@ -226,10 +224,7 @@ export default function Home() {
             <p className="section-kicker">September progression rebuild</p>
             <h2>Check the chapter before packing the cart</h2>
             <p>
-              The first four chapters each contain one level; later chapters
-              have two. Ship enters at level 2 and Castle at level 4. The notes
-              do not publish every level’s location, enemy set or store
-              inventory, so the current preview remains your deciding reference.
+              {chapterWordingCaution}
             </p>
             <Link className="button button-secondary" href="/progression">
               Progression reference

@@ -1,6 +1,6 @@
 import { defineConfig } from '@playwright/test';
 
-const port = 3101;
+const port = Number(process.env.PRIVACY_TEST_PORT ?? 3101);
 const localServerURL = `http://127.0.0.1:${port}`;
 const canonicalBaseURL = 'https://dietogetherguide.shop';
 

@@ -11,11 +11,11 @@ export const septemberSystems = [
     [
       s('order', 'The current progression structure', [
         'Mansion, Ship and Castle alternate in the revised campaign. The official fixed milestones are Ship at level 2 and Castle at level 4. Do not extend those two milestones into a guessed repeating 15-level table.',
-        'The first four chapters contain one level each. Subsequent chapters contain two. Chapter selection now fits on one screen; the current lobby preview is the place to confirm your next selection.',
+        'September 10 described the first four chapters as one level each and later chapters as two. September 25 uses different chapter wording; use the current selector rather than treating the earlier structure as a complete current table.',
       ]),
       s('systems', 'What advances with your run', [
         'Each level has its own enemy set and the boss is chosen for that level. Equipment unlocks and expensive loot were also reordered. That makes the level you select more useful than an old universal enemy or shop list.',
-        'Quota was smoothed in the major update, then corrected on September 14 so it rises consistently. Store cards should not disappear after unlocking. A lower target or missing card on an updated client is worth recording as a possible recurrence.',
+        'September 14 corrected the earlier quota curve. September 25 then introduced an early-solo exception, so a lower target alone is not proof of a bug. Record the actual target and selected chapter before comparing sessions. Store cards disappearing after unlocking are a separate issue.',
       ]),
       s(
         'checkpoint',
@@ -91,11 +91,11 @@ export const septemberSystems = [
   p(
     '/chapters',
     'Last Pirates Chapters — Single-Level and Two-Level Progress',
-    'The first four chapters each contain one level after September 10. Chapters after those contain two levels. Record chapter and level separately so a chapter selection is not mistaken for a full save-state readout.',
+    'Record chapter and level separately. September 10 described one-level early chapters and two-level later chapters; September 25 uses different Chapter 1 wording. The public notes do not reconcile those labels into a complete current table.',
     ['S23', 'S16', 'S25'],
     [
       s('chapter-length', 'How the new chapter grouping works', [
-        'Early chapters give a single-level milestone; later chapters span two levels. This changed the pacing and chapter-select layout. All chapters fit on one selection page in the major-update interface.',
+        'The September 10 structure changed pacing and put chapter selection on one page. Treat that as the dated major-update description, not a guarantee that every later selector label maps identically. September 25 also changed chapter-page navigation.',
         'The older daily/chapter save announcement explains save checkpoints, but it does not provide a save-file schema or guarantee recovery from every network failure.',
       ]),
       s('record', 'What to record between attempts', [
@@ -125,7 +125,7 @@ export const septemberSystems = [
         'A target displayed by your current game is more useful for planning than extrapolating a percentage increase from one level. Keep target value and delivered value distinct; carried loot can still be lost or damaged.',
       ]),
       s('changes', 'Why an old target can be wrong', [
-        'The new location order and payout curve shipped together September 10. Four days later the developer fixed a backwards step in the curve. The intended current direction is a steadily increasing requirement, but no formula was published.',
+        'The new location order and payout curve shipped together September 10. September 14 fixed a backwards step, but September 25 adds an early-solo exception. No complete replacement formula or reconciled chapter table is published.',
         'More valid loot positions on levels 3, 4 and 8 improved availability. The later 70-spawn expansion increased search opportunities; neither note promises a particular item value on every attempt.',
       ]),
       s(

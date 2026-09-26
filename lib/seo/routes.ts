@@ -15,6 +15,9 @@ export const lastModifiedByRoute: Record<string, string> = Object.fromEntries(
       REVIEW_DATE,
   ]),
 );
+lastModifiedByRoute['/'] = '2026-09-26';
+lastModifiedByRoute['/tools/monster-finder'] = '2026-09-26';
+for (const route of ['/tools/progression-tracker', '/tools/quota-planner', '/tools/run-chapter-tracker']) lastModifiedByRoute[route] = '2026-09-26';
 export function getLastModified(route: string): string {
   return lastModifiedByRoute[route] ?? REVIEW_DATE;
 }

@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { achievements } from '../../data/achievements';
+import { chapterWordingCaution } from '../../data/september26';
 import {
   calculateQuota,
   emptyProgression,
@@ -206,9 +207,7 @@ export function ProgressionTracker() {
             </label>
           </div>
           <p className="tool-help">
-            First four chapters: one level each; later chapters: two. This
-            notebook does not infer a full level/location mapping or the total
-            chapter count.
+            {chapterWordingCaution} This notebook does not infer a full level/location mapping or the total chapter count.
           </p>
         </fieldset>
         <fieldset disabled={!ready} className="tool-step">

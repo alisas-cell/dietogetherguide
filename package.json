@@ -18,6 +18,7 @@
     "audit:thin-pages": "node --import tsx scripts/audit-expansion.ts thin-pages",
     "audit:ads": "node --import tsx scripts/audit-expansion.ts ads",
     "audit:net-new-500": "node --import tsx scripts/audit-expansion.ts net-new-500",
+    "audit:qualified-batch": "node --import tsx scripts/audit-expansion.ts qualified-batch",
     "audit:expansion-readiness": "node --import tsx scripts/audit-expansion.ts readiness",
     "test:watch": "vitest",
     "test:e2e": "playwright test",

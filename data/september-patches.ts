@@ -1,5 +1,6 @@
 import { OFFICIAL_NEWS, REVIEWED_AT } from './current';
 import type { PatchEntry, SourceRef } from './types';
+import { BATCH_REVIEW_DATE, september25Patch, september25Source } from './september26';
 
 const sourceRows: Array<[string, string, string]> = [
   [
@@ -32,7 +33,7 @@ export const septemberSources: SourceRef[] = sourceRows.map(
     id,
     title,
     publishedAt: `${date}T00:00:00Z`,
-    checkedAt: REVIEWED_AT,
+    checkedAt: ['S19', 'S20', 'S23', 'S24', 'S25'].includes(id) ? BATCH_REVIEW_DATE : REVIEWED_AT,
     publisher: 'RetroStyle Games via Steam',
     sourceType: 'official-news',
     url:
@@ -45,6 +46,7 @@ export const septemberSources: SourceRef[] = sourceRows.map(
         : 'Full official announcement reviewed in the archive. Date is the published calendar date; midnight does not assert an exact publication time.',
   }),
 );
+septemberSources.push(september25Source);
 septemberSources.push({
   id: 'S26',
   title: 'Last Pirates: Die Together — Steam global achievements',
@@ -57,6 +59,7 @@ septemberSources.push({
 });
 
 export const septemberPatches: PatchEntry[] = [
+  september25Patch,
   {
     id: '2026-09-18-lobby-loot',
     slug: 'fresh-lobby-70-loot-spawns',

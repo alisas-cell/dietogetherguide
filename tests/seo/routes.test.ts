@@ -6,7 +6,7 @@ import { publicRoutes } from '../../lib/seo/routes';
 
 describe('public route and internal-link graph', () => {
   it('publishes the September guide registry plus five tools', () => {
-    expect(publicRoutes).toHaveLength(88);
+    expect(publicRoutes).toHaveLength(95);
     expect(new Set(publicRoutes)).toEqual(
       new Set([...requiredCoreRoutes, '/tools/coop-troubleshooter', '/tools/monster-finder', '/tools/run-chapter-tracker','/tools/progression-tracker','/tools/quota-planner']),
     );

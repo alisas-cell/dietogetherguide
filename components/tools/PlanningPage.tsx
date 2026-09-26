@@ -8,8 +8,9 @@ import { Container } from '../ui/Container';
 import { ProgressionTracker, QuotaPlanner } from './PlanningTools';
 import { buildGuideSchemas } from '../../lib/seo/schema';
 import { wikiPage } from '../../content/wiki-factory';
+import { BATCH_REVIEW_DATE, chapterWordingCaution } from '../../data/september26';
 export function planningData(kind: 'progression-tracker' | 'quota-planner') {
-  return wikiPage(
+  return { ...wikiPage(
     '/tools/' + kind,
     kind === 'quota-planner'
       ? 'Quota Planner: Calculate Your Loot Gap'
@@ -17,10 +18,10 @@ export function planningData(kind: 'progression-tracker' | 'quota-planner') {
     kind === 'quota-planner'
       ? 'Plan with your current quota, secured loot and estimated cargo. No invented level values, prices or spawn predictions.'
       : 'Keep a local notebook of chapter, level, observed unlocks and Steam achievement progress. No save access or automatic game tracking.',
-    ['S23', 'S24', 'S25', 'S26'],
+    ['S23', 'S24', 'S25', 'S26', 'S28'],
     [],
     [],
-  );
+  ), lastModified: BATCH_REVIEW_DATE };
 }
 export function PlanningPage({
   kind,
@@ -42,7 +43,7 @@ export function PlanningPage({
           <EvidenceBanner
             confidence="confirmed"
             context="September evidence · your observations stay separate"
-            date="Sep 25, 2026"
+            date="Sep 26, 2026"
           >
             Inputs are personal estimates or notes, not official game telemetry.
           </EvidenceBanner>
@@ -53,10 +54,7 @@ export function PlanningPage({
             <section>
               <h2>Current progression context</h2>
               <p>
-                The first four chapters each have one level; later chapters have
-                two. Ship first appears at level 2 and Castle at level 4.
-                September corrected quota progression and store unlock
-                persistence.
+                {chapterWordingCaution}
               </p>
             </section>
             <section>

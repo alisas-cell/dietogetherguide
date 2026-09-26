@@ -1,0 +1,6 @@
+
+Running 1 test using 1 worker
+
+  ✓  1 [desktop-1440x900] › tests/e2e/site.spec.ts:157:1 › all public routes render one H1 with no broken local images (34.1s)
+
+  1 passed (35.7s)

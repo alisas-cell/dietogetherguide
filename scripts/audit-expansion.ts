@@ -7,6 +7,9 @@ import { bodyDigest, qualifyPage } from '../lib/expansion/qualification';
 import { evaluateNetNew } from '../lib/expansion/net-new';
 import { permitsUnrestrictedCrawl } from '../lib/expansion/robots';
 import type { PageReview, RouteObservation } from '../lib/expansion/types';
+import { guidePageByRoute } from '../content';
+import { qualifiedBatchRoutes } from '../content/qualified-batch';
+import { observedContentDigest } from '../lib/expansion/rendered-content';
 
 const directory = 'docs/expansion-2026-09-26/';
 const baseline = readFileSync(directory + 'baseline-indexable.txt', 'utf8').trim().split('\n').map((url) => new URL(url).pathname);
@@ -49,7 +52,15 @@ if (mode === 'readiness') {
     legalExclusions: ['/privacy', '/terms'], missing, invalid,
     limitation: 'Run tests/ads and browser privacy tests for layout/consent. Provider fill and real CLS are not established by this registry check.' };
   if (missing.length || invalid.length) errors.push('Ad registration/placement failures');
-} else if (mode === 'net-new-500') {
+} else if (mode === 'net-new-500' || mode === 'qualified-batch') {
+  const expected = mode === 'qualified-batch' ? qualifiedBatchRoutes.length : 500;
+  if (mode === 'qualified-batch') {
+    const newRoutes = publicRoutes.filter((route) => !baseline.includes(route));
+    if (newRoutes.length !== 7 || qualifiedBatchRoutes.length !== 7 ||
+        newRoutes.some((route) => !qualifiedBatchRoutes.includes(route)) ||
+        reviews.length !== 7 || reviews.some((review) => !qualifiedBatchRoutes.includes(review.route)))
+      errors.push('Selected seven-page batch differs from registered routes or editorial reviews');
+  }
   const base = process.env.AUDIT_BASE_URL;
   if (!base) throw new Error('AUDIT_BASE_URL is required: use a production-equivalent server or canonical production; Preview noindex must not be overridden.');
   scope = 'Live HTTP responses, robots, canonical and reviewed-body digest. Not Google index coverage; semantic review remains separately required.';
@@ -63,15 +74,16 @@ if (mode === 'readiness') {
         const canonical = html.match(/<link rel="canonical" href="([^"]*)"/)?.[1] ?? '';
         const metaRobots = [...html.matchAll(/<meta name="(?:robots|googlebot)" content="([^"]*)"/g)].map((m) => m[1]).join(',');
         const article = html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)?.[1] ?? '';
+        const page = guidePageByRoute.get(route);
         observations.push({ route, status: response.status, canonical, metaRobots,
-          headerRobots: response.headers.get('x-robots-tag') ?? '', bodyDigest: bodyDigest(article) });
+          headerRobots: response.headers.get('x-robots-tag') ?? '', bodyDigest: page ? observedContentDigest(html, page) : bodyDigest(article) });
       } catch (error) {
         errors.push(route + ': ' + String(error));
         observations.push({ route, status: 0, canonical: '', metaRobots: '', headerRobots: '', bodyDigest: '' });
       }
     }));
   }
-  const result = evaluateNetNew(baseline, observations, reviews, 500, policy);
+  const result = evaluateNetNew(baseline, observations, reviews, expected, policy);
   const sitemapResponse = await fetch(new URL('/sitemap.xml', base), { signal: AbortSignal.timeout(15_000) });
   const sitemap = await sitemapResponse.text();
   const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]!);

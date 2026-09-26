@@ -1,6 +1,6 @@
 import type { SourceRef } from './types';
 import { septemberSources } from './september-patches';
-import { REVIEWED_AT } from './current';
+import { BATCH_REVIEW_DATE } from './september26';
 
 export const sources = [
   ...septemberSources,
@@ -10,7 +10,7 @@ export const sources = [
     url: 'https://store.steampowered.com/app/4317790/Last_Pirates_Die_Together/',
     publisher: 'Steam',
     sourceType: 'official-store',
-    checkedAt: REVIEWED_AT,
+    checkedAt: BATCH_REVIEW_DATE,
     notes: 'Primary current source for released availability, Early Access state, current store features, current requirements, and EA wording.',
   },
   {

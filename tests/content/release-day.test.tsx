@@ -35,7 +35,7 @@ describe('release-day public content', () => {
     expect(html).toContain('September edition');
     expect(html).toContain('Last Pirates: Die Together Wiki');
     expect(html).toContain('Know the patch. Plan the haul. Bring the crew home.');
-    expect(html).toContain('<strong>SEP 18</strong><span>Latest gameplay patch found</span>');
+    expect(html).toContain('<strong>SEP 25</strong><span>Latest gameplay patch found</span>');
     expect(html).not.toMatch(staleAvailability);
   });
 
@@ -52,7 +52,7 @@ describe('release-day public content', () => {
     expect(monstersPage).toBeDefined();
 
     const html = renderToStaticMarkup(<GuidePage page={monstersPage!} />);
-    expect(html).toContain('Last checked Sep 25, 2026');
-    expect(html).toContain('Steam · checked Sep 25, 2026');
+    expect(html).toContain('Last checked Sep 26, 2026');
+    expect(html).toContain('Steam · checked Sep 26, 2026');
   });
 });

@@ -19,7 +19,7 @@ export function PatchLinks({ route }: { route: string }) {
             <p>{patch.summary}</p>
             <Link
               href={
-                ['2026-09-18', '2026-09-14', '2026-09-10'].includes(patch.date)
+                ['2026-09-25', '2026-09-18', '2026-09-14', '2026-09-10'].includes(patch.date)
                   ? '/updates/' + patch.slug
                   : '/updates/september-2026'
               }

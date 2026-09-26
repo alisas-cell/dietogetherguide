@@ -3,7 +3,7 @@ import type {
   MonsterEntry,
   VersionedField,
 } from './types';
-import { addedMonsters, reviewMonster } from './current-entities';
+import { addedMonsters, reviewMonster, applySeptember25MonsterReview } from './current-entities';
 
 const launchCheckedAt = '2026-08-19T05:33:14Z';
 const currentCheckedAt = '2026-08-26T12:36:29Z';
@@ -195,7 +195,7 @@ const historicalEntries: Array<[string, string, string[]]> = [
   ['pirate-head', 'Pirate Head', ['S02']],
 ];
 
-export const monsters: MonsterEntry[] = [
+export const monsters: MonsterEntry[] = ([
   ...addedMonsters,
   ...currentMonsters.map(reviewMonster),
   ...historicalEntries.map(([id, name, sourceIds]) => ({
@@ -207,4 +207,4 @@ export const monsters: MonsterEntry[] = [
     pageReady: false,
     lastVerifiedAt: historicalCheckedAt,
   })),
-];
+] as MonsterEntry[]).map(applySeptember25MonsterReview);

@@ -51,7 +51,7 @@ describe('guide SEO builders', () => {
       title: 'Privacy Policy — Die Together Wiki',
       h1: 'Privacy Policy',
     });
-    expect(sitemap()).toHaveLength(88);
+    expect(sitemap()).toHaveLength(95);
     expect(sitemap().map((entry) => entry.url)).toEqual(
       expect.arrayContaining([
         'https://dietogetherguide.shop',
@@ -71,9 +71,9 @@ describe('guide SEO builders', () => {
       ]),
     );
 
-    expect(entries.get('/')).toBe('2026-09-25T00:00:00.000Z');
+    expect(entries.get('/')).toBe('2026-09-26T00:00:00.000Z');
     expect(entries.get('/release-date')).toBe('2026-09-25T00:00:00.000Z');
-    expect(entries.get('/troubleshooting')).toBe('2026-09-25T00:00:00.000Z');
+    expect(entries.get('/troubleshooting')).toBe('2026-09-26T00:00:00.000Z');
     expect(entries.get('/tools/coop-troubleshooter')).toBe(
       '2026-09-25T00:00:00.000Z',
     );

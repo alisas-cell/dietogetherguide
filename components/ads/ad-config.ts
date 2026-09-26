@@ -223,6 +223,13 @@ const legalPlan: RouteMonetizationPlan = {
 };
 
 export const ROUTE_MONETIZATION = {
+  '/updates/september-25-mimic-coop-sync': enabled('short-guide', shortAndDatabasePlacements),
+  '/updates/sep-01-cleaner-carrying-fresh-loot': enabled('short-guide', shortAndDatabasePlacements),
+  '/updates/aug-28-healing-fish-fixes': enabled('short-guide', shortAndDatabasePlacements),
+  '/updates/changes/slot-machine-dice-refund': enabled('short-guide', shortAndDatabasePlacements),
+  '/items/cauldron': enabled('short-guide', shortAndDatabasePlacements),
+  '/guides/returning-player-guide': enabled('short-guide', shortAndDatabasePlacements),
+  '/platform/language-support': enabled('short-guide', shortAndDatabasePlacements),
   '/progression': enabled('short-guide', shortAndDatabasePlacements),
   '/levels': enabled('short-guide', shortAndDatabasePlacements),
   '/chapters': enabled('short-guide', shortAndDatabasePlacements),

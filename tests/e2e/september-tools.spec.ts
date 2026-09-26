@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test';
+// Functional tool checks exercise the non-advertising path; consent itself is
+// covered separately by the canonical-host privacy suite.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('dietogetherguide:advertising-consent', JSON.stringify({ policyVersion: 1, advertising: 'rejected' })));
+});
 test('search indexes entity synonyms and clears after navigation', async ({
   page,
 }) => {

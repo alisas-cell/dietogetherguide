@@ -190,7 +190,7 @@ const decisions: Record<
       [
         'Chapter',
         'The selection and completion grouping.',
-        'Opening chapters contain one level; later ones contain two.',
+        'September 10 described one level in each opening chapter and two later. September 25 uses different Chapter 1 wording; check the current selector.',
       ],
       [
         'Location day',

@@ -28,13 +28,13 @@ const dedicatedToolRoutes = new Set([
 
 describe('SEO MAX expansion route contract', () => {
   it('preserves the 15 August routes while allowing the September expansion', () => {
-    expect(publicRoutes).toHaveLength(88);
+    expect(publicRoutes).toHaveLength(95);
     for (const route of newRoutes) expect(publicRoutes).toContain(route);
-    expect(new Set(publicRoutes).size).toBe(88);
+    expect(new Set(publicRoutes).size).toBe(95);
     expect(publicRoutes).not.toContain('/gold-weapons');
     expect(publicRoutes).not.toContain('/monster-finder');
-    expect(requiredCoreRoutes).toHaveLength(83);
-    expect(guidePages).toHaveLength(82);
+    expect(requiredCoreRoutes).toHaveLength(90);
+    expect(guidePages).toHaveLength(89);
   });
 
   it('gives every new article a substantive sourced answer and link graph', () => {

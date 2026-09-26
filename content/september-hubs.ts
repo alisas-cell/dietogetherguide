@@ -111,7 +111,7 @@ export const septemberHubs = [
         },
       },
       s('order', 'Location order versus chapter order', [
-        'The first four chapters contain one level apiece; later chapters contain two. The location sequence was reordered September 10, and enemy sets are level-specific. An old launch route should not be treated as a current progression table.',
+        'September 10 described one-level early chapters and two-level later chapters while reordering locations. September 25 uses different Chapter 1 wording. Enemy sets remain level-specific evidence, but an old route is not a complete current progression table.',
       ]),
       s('spawns', '70 additional possible loot positions', [
         'September 18 added 70 spawn points across 15 levels and fixed large loot under Ship floors and oversized items in Mansion chests. This does not guarantee a fixed count or value in every run.',
@@ -291,7 +291,7 @@ export const updatesHub = p(
       'current',
       'September current-build review',
       [
-        'Start with the monthly summary for all seven late-August/September gameplay and platform posts. Only the three substantial gameplay updates receive separate detail pages.',
+        'Start with the monthly timeline, then open a dated detail guide for the patch or interaction you need. Historical corrections are not universal promises about the newest build.',
       ],
       undefined,
       [

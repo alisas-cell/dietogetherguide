@@ -77,7 +77,7 @@ export function MonsterFinder() {
             <p className="section-kicker">Transparent rule result</p>
             <h2>{!submitted ? 'Choose your clues' : matches.length > 0 ? `${matches.length} matching ${matches.length === 1 ? 'record' : 'records'}` : 'No verified match'}</h2>
           </div>
-          <span>Reviewed Sep 25 · latest patch Sep 18</span>
+          <span>Patch review Sep 26 · latest patch Sep 25</span>
         </div>
         {!submitted ? <p>Select clues, then run the matcher. It will not fill missing information with a guess.</p> : null}
         {submitted && matches.length === 0 ? <p>No record matches every selected clue. Remove one uncertain clue or use the monsters hub; “not sure” intentionally returns no invented answer.</p> : null}

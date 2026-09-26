@@ -11,9 +11,9 @@ function wordCount(value: string): number {
 
 describe('public content registry', () => {
   it('covers every required non-home route exactly once', () => {
-    expect(requiredCoreRoutes).toHaveLength(83);
+    expect(requiredCoreRoutes).toHaveLength(90);
     expect(requiredCoreRoutes[0]).toBe('/');
-    expect(guidePages).toHaveLength(82);
+    expect(guidePages).toHaveLength(89);
     expect(new Set(guidePages.map((page) => page.route))).toEqual(
       new Set(requiredCoreRoutes.slice(1)),
     );

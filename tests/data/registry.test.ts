@@ -40,7 +40,7 @@ describe('evidence registry validation', () => {
       items,
       effects,
       assets,
-      now: new Date('2026-09-25T13:00:00Z'),
+      now: new Date('2026-09-26T13:00:00Z'),
     });
 
     expect(result.errors).toEqual([]);

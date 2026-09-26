@@ -8,7 +8,7 @@ import {
 } from '../../components/ads/ad-config';
 
 const canonicalOrigin = 'https://dietogetherguide.shop';
-const localOrigin = 'http://127.0.0.1:3101';
+const localOrigin = `http://127.0.0.1:${process.env.PRIVACY_TEST_PORT ?? 3101}`;
 const consentStorageKey = 'dietogetherguide:advertising-consent';
 const grantedConsent = JSON.stringify({ policyVersion: 1, advertising: 'granted' });
 const globalScriptUrls: string[] = [

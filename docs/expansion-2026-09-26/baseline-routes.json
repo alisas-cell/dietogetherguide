@@ -1,0 +1,949 @@
+{
+  "checkedAt": "2026-09-26T11:32:28.477Z",
+  "repo": "/Users/alisa/Documents/ChatGPT/高优先级/.worktrees/dietogether-massive-seo-20260925",
+  "branch": "codex/dietogether-massive-seo-20260925",
+  "sha": "406eb5ab559a69dbb86a244fa6796a23b722dfc1",
+  "gitStatus": "",
+  "records": [
+    {
+      "route": "/",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "not-specified",
+      "validIndexable": true
+    },
+    {
+      "route": "/about",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/about",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "evergreen",
+      "validIndexable": true
+    },
+    {
+      "route": "/achievements",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/achievements",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/beginner-guide",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/beginner-guide",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/chapters",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/chapters",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/contact",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "evergreen",
+      "validIndexable": true
+    },
+    {
+      "route": "/coop",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/coop",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/coop/no-game-found",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/coop/no-game-found",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/coop/quick-join",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/coop/quick-join",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/early-access",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/early-access",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/faq",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/faq",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/gameplay",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/gameplay",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/golden-weapons",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/golden-weapons",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/guides",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/guides",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/guides/controls",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/guides/controls",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/guides/elevators",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/guides/elevators",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/guides/fragile-loot",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/guides/fragile-loot",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/guides/hauling",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/guides/hauling",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/guides/level-order",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/guides/level-order",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/guides/progression",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/guides/progression",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/guides/quota",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/guides/quota",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/guides/store-unlocks",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/guides/store-unlocks",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/guides/strong-arms-big-palms",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/guides/strong-arms-big-palms",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/host-migration",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/host-migration",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/items-and-weapons",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/items-and-weapons",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/items/boomerang",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/items/boomerang",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/items/cover",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/items/cover",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/items/healing-fish",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/items/healing-fish",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/items/instruments",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/items/instruments",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/items/teleport-crystal",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/items/teleport-crystal",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/levels",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/levels",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/lobby",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/lobby",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/loot",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/loot",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/loot-and-extraction",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/loot-and-extraction",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/loot/large-items",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/loot/large-items",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/loot/progression",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/loot/progression",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/loot/rare",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/loot/rare",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/maps",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/maps",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/maps/castle",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/maps/castle",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/maps/mansion",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/maps/mansion",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/maps/ship",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/maps/ship",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/maps/silent-cove",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/maps/silent-cove",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "historical",
+      "validIndexable": true
+    },
+    {
+      "route": "/monkey-cart",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monkey-cart",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/anchorer",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/anchorer",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/bosses",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/bosses",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/crab",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/crab",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/ear",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/ear",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/head-crab",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/head-crab",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/kraken",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/kraken",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/man-in-shadows",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/man-in-shadows",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/mimic",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/mimic",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/parrot",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/parrot",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/rat",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/rat",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/siren",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/siren",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/sleeper",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/sleeper",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/monsters/snake",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/monsters/snake",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/performance",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/performance",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/privacy",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "evergreen",
+      "validIndexable": true
+    },
+    {
+      "route": "/progression",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/progression",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/quota",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/quota",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/release-date",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/release-date",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/revive-guide",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/revive-guide",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/roadmap",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/roadmap",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/rum-buffs-and-perks",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/rum-buffs-and-perks",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/save-and-reconnect",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/save-and-reconnect",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/solo-guide",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/solo-guide",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/steam-deck",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/steam-deck",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/store",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/store",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/system-requirements",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/system-requirements",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/terms",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/terms",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "evergreen",
+      "validIndexable": true
+    },
+    {
+      "route": "/tools",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/tools",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/tools-and-utility",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/tools-and-utility",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/tools/coop-troubleshooter",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/tools/coop-troubleshooter",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "not-specified",
+      "validIndexable": true
+    },
+    {
+      "route": "/tools/monster-finder",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/tools/monster-finder",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "not-specified",
+      "validIndexable": true
+    },
+    {
+      "route": "/tools/progression-tracker",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/tools/progression-tracker",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "not-specified",
+      "validIndexable": true
+    },
+    {
+      "route": "/tools/quota-planner",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/tools/quota-planner",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "not-specified",
+      "validIndexable": true
+    },
+    {
+      "route": "/tools/run-chapter-tracker",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/tools/run-chapter-tracker",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "not-specified",
+      "validIndexable": true
+    },
+    {
+      "route": "/troubleshooting",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/troubleshooting",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/troubleshooting/loading",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/troubleshooting/loading",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/tutorial",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/tutorial",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/updates",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/updates",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/updates/fresh-lobby-70-loot-spawns",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/updates/fresh-lobby-70-loot-spawns",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/updates/september-14-tutorial-store-loot",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/updates/september-14-tutorial-store-loot",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/updates/september-2026",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/updates/september-2026",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/updates/statues-head-crab-major-update",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/updates/statues-head-crab-major-update",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/voice-chat",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/voice-chat",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    },
+    {
+      "route": "/weapons",
+      "status": 200,
+      "redirect": null,
+      "canonical": "https://dietogetherguide.shop/weapons",
+      "robots": "index, follow",
+      "xRobotsTag": null,
+      "evidenceScope": "current",
+      "validIndexable": true
+    }
+  ],
+  "counts": {
+    "repo": 88,
+    "sitemap": 88,
+    "validIndexable": 88,
+    "validIndexableInner": 87,
+    "redirects": 0,
+    "noindex": 0,
+    "notFound": 0,
+    "duplicateCanonical": 0
+  },
+  "duplicateCanonicals": [],
+  "robotsTxt": "User-Agent: *\nAllow: /\n\nHost: https://dietogetherguide.shop\nSitemap: https://dietogetherguide.shop/sitemap.xml\n",
+  "probes": {
+    "missing": 404,
+    "wwwStatus": 308,
+    "wwwLocation": "https://dietogetherguide.shop/"
+  },
+  "primaryCount": 500,
+  "replacementCount": 60,
+  "primaryExactCollisions": [
+    {
+      "id": 178,
+      "route": "/items/boomerang",
+      "cluster": "Items & Loot"
+    },
+    {
+      "id": 180,
+      "route": "/items/cover",
+      "cluster": "Items & Loot"
+    },
+    {
+      "id": 182,
+      "route": "/items/teleport-crystal",
+      "cluster": "Items & Loot"
+    },
+    {
+      "id": 200,
+      "route": "/items/healing-fish",
+      "cluster": "Items & Loot"
+    },
+    {
+      "id": 231,
+      "route": "/loot/large-items",
+      "cluster": "Items & Loot"
+    }
+  ],
+  "clusters": {
+    "Updates": 50,
+    "Monsters": 72,
+    "Maps": 45,
+    "Items & Loot": 90,
+    "Co-op & Fixes": 80,
+    "Achievements": 40,
+    "How-to & Progression": 60,
+    "Tools": 25,
+    "Platform & Performance": 25,
+    "Comparisons": 13
+  },
+  "method": "Read-only union of repository publicRoutes and live production sitemap. Each URL fetched without following redirects; canonical and robots meta/header checked. This records technical indexability, not Google index coverage or an editorial thin-content certification.",
+  "countingRule": "Baseline includes homepage once for preservation. New URL set must exclude homepage. Target 588 total technically indexable URLs / 587 inner URLs, assuming all 88 existing URLs remain valid."
+}

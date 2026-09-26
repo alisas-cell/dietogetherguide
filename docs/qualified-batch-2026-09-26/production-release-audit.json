@@ -1,0 +1,785 @@
+{
+  "mode": "qualified-batch",
+  "checkedAt": "2026-09-26T12:51:23.841Z",
+  "scope": "Live HTTP responses, robots, canonical and reviewed-body digest. Not Google index coverage; semantic review remains separately required.",
+  "policy": {
+    "baselineSha": "406eb5ab559a69dbb86a244fa6796a23b722dfc1",
+    "asOf": "2026-09-26T12:51:10.280Z",
+    "maxEvidenceAgeMs": 86400000
+  },
+  "details": {
+    "base": "https://dietogetherguide.shop",
+    "ok": true,
+    "baselineCount": 88,
+    "finalCount": 95,
+    "netNew": 7,
+    "missingBaseline": [],
+    "exclusions": [],
+    "errors": [],
+    "sitemapUrls": 95,
+    "observations": [
+      {
+        "route": "/release-date",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/release-date",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "8db1fbe8c5b0f4f7d4b8cfcea04bed2ea414851bc09cd42212494df73ff50b96"
+      },
+      {
+        "route": "/",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "59e5a17b4d6789fbe114055ba80adace329d1717f7905e02f1eccf771ac7a54a"
+      },
+      {
+        "route": "/roadmap",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/roadmap",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "c8399820609ec4da178af36c2c21f642acf893762b204251cfdd8009f1bc0fc3"
+      },
+      {
+        "route": "/early-access",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/early-access",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "66a766e89f518df2cf9fe00667b73d356a86f8ffa03085381a2aa5744bc49a89"
+      },
+      {
+        "route": "/gameplay",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/gameplay",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "cc12af6d3a2145ddabdddf79c2d444234957eb23e50f5dc49e8c11a0e45c6fe9"
+      },
+      {
+        "route": "/beginner-guide",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/beginner-guide",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "4b11c5992fe3a90c98b5e29d56067f2fb3c400736e67a46b7eeb7ffd215788da"
+      },
+      {
+        "route": "/maps",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/maps",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "a47c6632250375afd707d7f6cf1a9eeb0d29e29594f739ac32845ce0408e0f76"
+      },
+      {
+        "route": "/rum-buffs-and-perks",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/rum-buffs-and-perks",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "e0836c7184c1c231d38d96897ebf4b2b0e1193391913a97c621599d8dbfd155a"
+      },
+      {
+        "route": "/items-and-weapons",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/items-and-weapons",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "9d9929ed2eb7430f08fc20ddbeddc6c0e5a8b58013883f00fc8c7f5d8f123bbf"
+      },
+      {
+        "route": "/maps/silent-cove",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/maps/silent-cove",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "4641130bf15f58e59a70fe450c3f24ee9b1f1824f766591fdc8e5bdaba8b2b06"
+      },
+      {
+        "route": "/loot-and-extraction",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/loot-and-extraction",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "54c60ba96cd36cf85c26599f00b5974e2b0d090b42fc1ce511cc86cf04804207"
+      },
+      {
+        "route": "/monsters",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "1fe520d579f53e7e8ea637ccf05c2b6cfde17fd8d3286a0971e10d8b54bdd954"
+      },
+      {
+        "route": "/system-requirements",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/system-requirements",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "9333ec905c3fe4ee28b0dc7e105cbdfab9ba87eb234b37eec89d4e0008b6eb06"
+      },
+      {
+        "route": "/coop/quick-join",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/coop/quick-join",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "83f721a26380ef40efd83ee5fdd9976b821c8e9769ea1223aa6f541077770251"
+      },
+      {
+        "route": "/save-and-reconnect",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/save-and-reconnect",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "d1fcfaf5f14ffa2ad972d7059cd6bc8cf099ee1d64e7703f828b77389dc04a29"
+      },
+      {
+        "route": "/troubleshooting",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/troubleshooting",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "b37990f7d10e33939de351a74be1100da19ccde604d9c4d9d22de5c33f892c4d"
+      },
+      {
+        "route": "/coop",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/coop",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "a894b9faeed52d3858b4e0032cf04f2ad8b25a9d3e2e0721e41a49f67de8f0de"
+      },
+      {
+        "route": "/updates",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/updates",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "7549352519557357385384453ef3e5665517f27c047f342fd88ab6e67cba53a6"
+      },
+      {
+        "route": "/monsters/siren",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/siren",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "cb2c2c25b734086e1eb3544fe3cbb766813817d45b72d705f7602fb1c59382e8"
+      },
+      {
+        "route": "/golden-weapons",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/golden-weapons",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "d61c73934f4100e1815114f2dfeb748e9dc46f69f06f8f2534d7f9f4e185cc66"
+      },
+      {
+        "route": "/monsters/anchorer",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/anchorer",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "22b1bd6502e63e41890bffb90277f0111d50c7dec8eb86e1e456396fd8c4f448"
+      },
+      {
+        "route": "/monsters/ear",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/ear",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "ec3fbb91a697b545190c0d53102b9f493112654854de623e77121d65b5eafeed"
+      },
+      {
+        "route": "/solo-guide",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/solo-guide",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "7a5a60f16feb8753d90e414358323f80f5016ec9279fde0c4839a9628ce67930"
+      },
+      {
+        "route": "/faq",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/faq",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "60ced20892b47c3ad7b1ae91b207cc6bbf0f706b4dbe96bc4e9206b2c38b9804"
+      },
+      {
+        "route": "/monkey-cart",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monkey-cart",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "d7f5ae92438f0e854a1e2d88c302eafcfed18bc925021d85789de46fefea351f"
+      },
+      {
+        "route": "/maps/ship",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/maps/ship",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "6c827c2fa4a13a8c315d8cc5e134ab1d54a10ab70a438f3b79e399dae24a34b4"
+      },
+      {
+        "route": "/monsters/mimic",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/mimic",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "f83b3182fe3f6c108274a4dbca8dd17d2a7536c29647eba7bc666ab734ca7ad6"
+      },
+      {
+        "route": "/coop/no-game-found",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/coop/no-game-found",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "cbeb5d49727541121e460d7fee9bbd9e8d8f4852affe9e488fb019a1922f2b4a"
+      },
+      {
+        "route": "/maps/castle",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/maps/castle",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "6672b3c70e9ed4ebdc5741f0edbca821b0ebaf7d613626a99fc0e95245b283ba"
+      },
+      {
+        "route": "/performance",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/performance",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "86f2b185e57340964145fae6dde5b54ca97b52adf7b1fe6e1cb3e226a3e5890f"
+      },
+      {
+        "route": "/revive-guide",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/revive-guide",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "f2c08fd522e0dffb5c7db1b00350b42569fca4d1dee1846ef32b71aafc257444"
+      },
+      {
+        "route": "/terms",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/terms",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "a0b698c607bdda78da103dc367d3ee904d04dcf9432e75579874bee87e134ec8"
+      },
+      {
+        "route": "/privacy",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/privacy",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "3eee8c9145cbdcff4434ae4d5e1f466d4b6c2f738f1e54e5c1b2a2037dc07255"
+      },
+      {
+        "route": "/tools",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/tools",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "f299e0e81053055870f3e289765d83a0fd8fd91525e6ef012db8730599d8967b"
+      },
+      {
+        "route": "/about",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/about",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "dd78437309b1973c167c43f402de921502524162ae2c34de6800b5c863cd329e"
+      },
+      {
+        "route": "/contact",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/contact",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "4e039dec70d6a37fdba9deb824f18b5f0141dec5da58ebdb2e7a804bbc2c17bd"
+      },
+      {
+        "route": "/progression",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/progression",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "26340b6b02bb813552e3708a6686f08d1d7acc91d9e94956a00b22399ea3461c"
+      },
+      {
+        "route": "/levels",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/levels",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "b9b6e8e214282a8f6e7dca8d2eb9b0c9b78cd2993ecacd19348a8da85df2e6ca"
+      },
+      {
+        "route": "/chapters",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/chapters",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "94a70bbe2bc0a9964aebe40ecddea01a881a6a6f53088d9f491235f2d7e359a5"
+      },
+      {
+        "route": "/quota",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/quota",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "465e2bf8c50a092aef1e509192622aca58f8bd0f97e4354161881745b5ab7ecb"
+      },
+      {
+        "route": "/loot",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/loot",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "c05e690fc50b19471a0dc1f16c89ed98c69878a8bcf1d1fe5f246645533bcfc2"
+      },
+      {
+        "route": "/store",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/store",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "5456b6d0e19b9400409a60ab90042dd8227957dfecac81ba08431d7f54aec527"
+      },
+      {
+        "route": "/loot/progression",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/loot/progression",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "e7edee2f1dec56876908e2e853a5ab90c49d04c620c57b528f4ba11b3037beb0"
+      },
+      {
+        "route": "/tutorial",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/tutorial",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "2c1601c68781aac675fca7e495563bd3e70f3fa9277212d6ed594431c7b0d36b"
+      },
+      {
+        "route": "/achievements",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/achievements",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "f8266a6b1fee3b6c450e31c52f06ab206eec8c72a3d9fb40c4edc3bbca934a21"
+      },
+      {
+        "route": "/loot/rare",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/loot/rare",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "5dc08ef3057dbf18e596a4e11ff1c90819627033cc42a5f33e989f3a6c079a18"
+      },
+      {
+        "route": "/loot/large-items",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/loot/large-items",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "649354d0ad3d8eb34c57f608591601e550b5c3142c7c8996a9a950cea139a6a8"
+      },
+      {
+        "route": "/steam-deck",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/steam-deck",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "18369d8e4a0e640ca16bacc96a6852d8be420d04a383e2a75b4c55c28cc76a40"
+      },
+      {
+        "route": "/weapons",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/weapons",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "16380313979024e076400803e1c1291c118bb318cf52637c27c798fdbcb35cd1"
+      },
+      {
+        "route": "/tools-and-utility",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/tools-and-utility",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "f04f6469381de397443407a65d779a49556e855c8510be728ed4fb5f7b4a2964"
+      },
+      {
+        "route": "/voice-chat",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/voice-chat",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "2b2fc4966ff6074a4498231d2c916ef37bee55f645a8cd87a8fec491907676c0"
+      },
+      {
+        "route": "/host-migration",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/host-migration",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "7e92b814e90d573b4f0250015eedbc4fcc82462dd1e97567ab3c93700b021a0e"
+      },
+      {
+        "route": "/guides/progression",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides/progression",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "1591c4daf5aeee23c48def6c3c8e68812d9f687fe5d96c83ada3e0b27691e04e"
+      },
+      {
+        "route": "/lobby",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/lobby",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "a855a7e3194dfaaaaa1c3c97c01c65faad71e2d7f3c7cb4ace775fb44404a1a9"
+      },
+      {
+        "route": "/guides/level-order",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides/level-order",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "4c312c14f1bfc7c7136abdee3cc8c82e1967bee4d3eef57e2068f87295ce2f3a"
+      },
+      {
+        "route": "/guides/elevators",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides/elevators",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "16d950cdb68d55dcbf6edc30e29f0037aead7b0c08c6e0e05ad4a32041fdd1ac"
+      },
+      {
+        "route": "/guides/quota",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides/quota",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "122a7db8aebc42edfccb7cd16fd4b93efd8183505cb34f59838c7fa16890a947"
+      },
+      {
+        "route": "/guides/store-unlocks",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides/store-unlocks",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "a6dc7787b890adf529379a148f825105925ec5e2ada56f671f920cd6773a54f9"
+      },
+      {
+        "route": "/guides/hauling",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides/hauling",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "b9bae406b8df97cc870dba0c717fbc46c49bd8b5285fbc9f55886eeb9e30c15e"
+      },
+      {
+        "route": "/guides/fragile-loot",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides/fragile-loot",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "04651dc952306061c81c15af0401c29d311e71bb0da7f7c58b1d1f36a3b53400"
+      },
+      {
+        "route": "/troubleshooting/loading",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/troubleshooting/loading",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "1e7a0cebd3719f72a3d609fdcfdebf5379a2786c228bd418fafd4210ee5af8e8"
+      },
+      {
+        "route": "/guides",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "d2866cf63a18afaf8a5a9770ac16615799b846f9460dec6ea0354fc6e5b00920"
+      },
+      {
+        "route": "/monsters/head-crab",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/head-crab",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "aee2ec32a3fb7ee59b63dc9dc570c4f7f14593535fb13b4e5d9f23edc2fd3d36"
+      },
+      {
+        "route": "/monsters/man-in-shadows",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/man-in-shadows",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "77f4a1c1bb3703003b65b0e4454e0ea0568adf7aac11b96533a855599e1ebbfa"
+      },
+      {
+        "route": "/guides/strong-arms-big-palms",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides/strong-arms-big-palms",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "746d8d5a091b6a32855baeb9e695fa0f1c0c45ff194bdf336b7d340401037945"
+      },
+      {
+        "route": "/guides/controls",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides/controls",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "97b96ef950ba99249d657b2ed09a3dccb495fe6ef216473c67f98ca9352ff2d5"
+      },
+      {
+        "route": "/monsters/sleeper",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/sleeper",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "b273c88f572fc9b2f4817e67cc43376a91d4ff2da94408c2887a843a14115dce"
+      },
+      {
+        "route": "/monsters/rat",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/rat",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "eba24b9419ca39f70c301dcb541a2f7493109acad7fca54c3183a4bc7c3e6904"
+      },
+      {
+        "route": "/monsters/snake",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/snake",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "15f9ca8f54eb6d3fc170cc5dbdc1eb8adb49b4881110e5e62e4a09dd3671fd7f"
+      },
+      {
+        "route": "/monsters/crab",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/crab",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "aaea4defd514d538da4941dad51463b9176db9f737b4849e0a3068f07440bcd5"
+      },
+      {
+        "route": "/monsters/kraken",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/kraken",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "0129952aa7fc1effa410036efef0d69d50f35820ccde767997b6c0b05c39a117"
+      },
+      {
+        "route": "/monsters/parrot",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/parrot",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "cfba60944874edbf435772a1eca3f3e39df894e6fc251370776560fc70a91301"
+      },
+      {
+        "route": "/items/healing-fish",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/items/healing-fish",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "9e7ff00f833a401bbc049080337a4260181c8a4311b00d4edf8b38ec22fbb566"
+      },
+      {
+        "route": "/items/instruments",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/items/instruments",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "14bbbda1f2f0b8219050f46d84890105ff2966aef7749fda23cbc1a94ddbd56f"
+      },
+      {
+        "route": "/items/cover",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/items/cover",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "c5c616b2d1842da4a45978c3ef8572aba54374c97c360c68e3f23b439bcc9e59"
+      },
+      {
+        "route": "/items/teleport-crystal",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/items/teleport-crystal",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "b7fb0d5a9ae602544fd7168b77c36accae5a7dec497b816cda237e06525544ca"
+      },
+      {
+        "route": "/items/boomerang",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/items/boomerang",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "0e9a995ad9b682e027fa323df6d4c0d1eef8fd81dfd5d8f5680687cf8f5dd399"
+      },
+      {
+        "route": "/updates/fresh-lobby-70-loot-spawns",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/updates/fresh-lobby-70-loot-spawns",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "17375dc80b8222d6edadb6be5a8c0952c790c1d0e8b651fb7423b583a00a6bfa"
+      },
+      {
+        "route": "/updates/september-25-mimic-coop-sync",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/updates/september-25-mimic-coop-sync",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "c443c63785cd2fcd2f7b53931c34fbfbf65ef48eb4cb7e9352ac063490958e17"
+      },
+      {
+        "route": "/maps/mansion",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/maps/mansion",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "c7968fa935d72bc7c78ad4dfd385e0a15359970b09c8d66fba4ea15346234342"
+      },
+      {
+        "route": "/updates/september-14-tutorial-store-loot",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/updates/september-14-tutorial-store-loot",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "250108cdecbcae753ffa6b002d60190b33403870413ad297f9c7e04f21df5ddb"
+      },
+      {
+        "route": "/monsters/bosses",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/monsters/bosses",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "b1e6018bc4c9a6cb5c971daa506171817629d5de6a0e34242cf5502fa99be85d"
+      },
+      {
+        "route": "/updates/statues-head-crab-major-update",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/updates/statues-head-crab-major-update",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "bf5358589fff8739d38ee7cd68666cddcfa05b9cf75fda94229c3ea7d1b109b5"
+      },
+      {
+        "route": "/updates/september-2026",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/updates/september-2026",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "bbe65044cefa7eb2c5344e45a116d3745952c706360626aa7953dcfaa2493b63"
+      },
+      {
+        "route": "/updates/aug-28-healing-fish-fixes",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/updates/aug-28-healing-fish-fixes",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "172e60b5f746455f3eae8446e8973cabebce5ff36cfd0c42baeb64667a32066b"
+      },
+      {
+        "route": "/guides/returning-player-guide",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/guides/returning-player-guide",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "5b33355638cfa166e187188ac84cc436971a3b49f5bfd9255cefec7ad989c5e9"
+      },
+      {
+        "route": "/updates/changes/slot-machine-dice-refund",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/updates/changes/slot-machine-dice-refund",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "5de78d3fa8bb65f1bfba0a80401e7367d47b9c7db3fdee646d7c82203b79983b"
+      },
+      {
+        "route": "/items/cauldron",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/items/cauldron",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "1e20eb3692a9458d41068f45442e2e1dead49c05c347877eaa812bf316410903"
+      },
+      {
+        "route": "/platform/language-support",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/platform/language-support",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "2ab13b895823bee97be9488416955af12cfcb28bfce597851d1ba1ba14019479"
+      },
+      {
+        "route": "/updates/sep-01-cleaner-carrying-fresh-loot",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/updates/sep-01-cleaner-carrying-fresh-loot",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "b30334468057ef5b59e7503d0d1d5966329b23164601ea12da751ec39861ee9f"
+      },
+      {
+        "route": "/tools/quota-planner",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/tools/quota-planner",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "fbf5686796f8328e6c837e77be64e18d71cf7829f93160e20877cd4da3d5f15e"
+      },
+      {
+        "route": "/tools/coop-troubleshooter",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/tools/coop-troubleshooter",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "1501f1845e329624f9ff5d754297487a31bd6269742cc701fb0e5bc9782b9a2d"
+      },
+      {
+        "route": "/tools/progression-tracker",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/tools/progression-tracker",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "5d235b2ca965dd60895963b7ccdfe07f0c2b56a8661fd568b389c71852320f1f"
+      },
+      {
+        "route": "/tools/monster-finder",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/tools/monster-finder",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "fa3900531fedb02c6e87bba3198211488479e9d989cfdf807abf8cc8e97fa6c4"
+      },
+      {
+        "route": "/tools/run-chapter-tracker",
+        "status": 200,
+        "canonical": "https://dietogetherguide.shop/tools/run-chapter-tracker",
+        "metaRobots": "index, follow",
+        "headerRobots": "",
+        "bodyDigest": "e43f2c327f08777d3eb7cb1cd7ff6ffee521618673d174cc270f348a83bee289"
+      }
+    ]
+  },
+  "errors": [],
+  "passed": true
+}

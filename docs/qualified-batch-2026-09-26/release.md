@@ -35,4 +35,10 @@ Preview HTTP verification: language-page body matches frozen review, self-canoni
 
 Previous production / rollback: `https://dietogetherguide-bt0j958rd-alisasun.vercel.app`, deployment `dpl_HMd6oucZwhRG6bRa4NbYQjrLFqa4`. Rollback command: `npx vercel rollback https://dietogetherguide-bt0j958rd-alisasun.vercel.app --scope alisasun`.
 
-Production deployment and live audit: pending; do not interpret this preparation record as a success claim.
+Production promoted successfully to `dpl_2f5YuoxtePeKwenMtx7LwpCUfvBp`. Canonical domain: https://dietogetherguide.shop. Implementation commit: `b1144f1` on `codex/dietogether-net-new-500-20260926` (pushed). The candidate was built from the tested working tree before this commit; the deployed editorial bodies match the frozen review. No merge into the unrelated main checkout was performed; branch and worktree retained.
+
+Live release audit at `2026-09-26T12:51:23.841Z`: PASS, baseline88, final95, netNew7, zero exclusions/errors, all canonical responses200/indexable and sitemap matches95. Live SEO audit at `12:51:50.720Z`: zero failures. See `production-release-audit.json` and `production-seo-audit.json`.
+
+Live browser smoke: September25 page at390px/1440px returns200, oneH1, `index, follow`, native+responsive shells, bannerwidth320/728, no horizontal overflow or page errors. Debug mode was used to avoid generating live provider traffic; actual advertising fill/revenue remains provider-dependent. `www` returns308 to the apex. Privacy/Terms remain excluded from monetization.
+
+Rollback is available but was not needed. The original +500 target is still incomplete and is not a release claim for this batch.
